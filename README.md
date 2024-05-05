@@ -174,3 +174,8 @@ With this setting, we were able to achieve an accuracy of 0.590 on Kaggle. In th
 **After achieving initial results, we extended the training by an additional 6 epochs, which further refined our model.** Observing continuous improvement, we decided that maintaining the learning rate of 2e-05 was optimal and proceeded to extend the training for a **total of 15 more epochs**. Throughout this extended training period, we noticed that while the **average loss consistently decreased, the accuracy improvements on our model plateaued, showing only marginal gains**.
 
 The decrease in average loss indicates that our model was becoming better at fitting the training data, effectively minimizing the error between the predicted values and the actual values. This can be attributed to the model's increasing proficiency in identifying patterns and reducing prediction errors for the specific scenarios presented during training. However, the minimal gains in accuracy suggest that these improvements in loss did not translate to a broader generalization capability on unseen data. 
+
+## **Making predictions on the YouTube video**
+
+
+## **Impementing Doc2Vec, Word2Vec, BERT**
