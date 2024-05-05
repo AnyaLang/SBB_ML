@@ -369,8 +369,9 @@ BERT is another model that we deployed from Hugging Face. While the capabilities
            3       0.43      0.46      0.44       153
            4       0.37      0.36      0.36       152
            5       0.48      0.45      0.46       165
+           
     accuracy                           0.45       960
    macro avg       0.44      0.44      0.44       960
 weighted avg       0.45      0.45      0.45       960
 
-![bert_confusion](!https://github.com/AnyaLang/SBB_ML/blob/d793e080ecaa64a25a35fe512a9ef92109dd285e/confusion%20matrix_BERT.png)
+![bert_confusion](https://github.com/AnyaLang/SBB_ML/blob/d793e080ecaa64a25a35fe512a9ef92109dd285e/confusion%20matrix_BERT.png)
