@@ -281,7 +281,7 @@ Based on the results after training the model on the dataset we obtained from Ka
 
 The video was produced for beginner French learners. From the plot, we can see that 16 sentences fall into the A2 category and 4 into the A1 category. Additionally, some sentences are classified as more difficult, at the B1 level, by the model. This classification could pose challenges for learners but also encourage them to acquire new vocabulary and further develop their language skills."
 
-## **Impementing Doc2Vec, Word2Vec, BERT**
+## **Impementing Doc2Vec, BERT**
 
 **Doc2Vec**
 
@@ -335,6 +335,8 @@ The integration of TF-IDF features with Doc2Vec embeddings has improved the perf
    macro avg       0.43      0.43      0.43       960
 weighted avg       0.43      0.43      0.43       960
 
+![tf-idf](https://github.com/AnyaLang/SBB_ML/blob/18c355a151c996d9a5e7fe071d9441811cddb981/confusion%20matrix_TFIDF.png)
+
 
 In our Doc2Vec model, each word in the corpus is represented as a unique, high-dimensional vector. These vectors are trained such that words appearing in similar contexts have vectors that are close to each other in vector space. This characteristic allows the model to capture semantic relationships between words based on their usage in the text. We decided to explore which words our model finds semantically similar. We decided to look at the word "jour"
 
@@ -349,3 +351,27 @@ In our Doc2Vec model, each word in the corpus is represented as a unique, high-d
 - habiter: 0.9794
 - sport: 0.9793
 - voir: 0.9790
+
+
+**BERT**
+
+BERT is another model that we deployed from Hugging Face. While the capabilities of this model are extensive, we chose the FlauBERT model, which is more targeted towards our task, and therefore did not perform hyperparameter tuning for BERT. By simply deploying the model alongside the XGBoost algorithm, we achieved an accuracy of 45%. We used the large cased BERT model to achieve these results.
+
+`tokenizer = BertTokenizer.from_pretrained('bert-large-cased')`
+`model_bert = BertModel.from_pretrained('bert-large-cased')`
+
+
+              precision    recall  f1-score   support
+
+           0       0.65      0.65      0.65       166
+           1       0.35      0.37      0.36       158
+           2       0.39      0.37      0.38       166
+           3       0.43      0.46      0.44       153
+           4       0.37      0.36      0.36       152
+           5       0.48      0.45      0.46       165
+
+    accuracy                           0.45       960
+   macro avg       0.44      0.44      0.44       960
+weighted avg       0.45      0.45      0.45       960
+
+
