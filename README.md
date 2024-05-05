@@ -93,7 +93,8 @@ We also experimented and changed the number of epochs to 4, 6 and 8. However, 6 
 ### **Model with a different learning rate adjustement**
 
 Modifications for Warm-Up Phase and Learning Rate Adjustment
-**Increaseв the Initial Learning Rate:** We start with a higher initial learning rate - 1e-4.
+
+**Increased the Initial Learning Rate:** We start with a higher initial learning rate - 1e-4.
 
 **Added Warm-Up Steps:** Introduce a warm-up phase where the learning rate will linearly increase to this higher initial rate over a number of steps. A common strategy is to set the warm-up steps to 10% of the total training steps.
 
