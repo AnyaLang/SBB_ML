@@ -159,4 +159,10 @@ We achieved an accuracy of 51% within just two epochs using a learning rate of 2
 | 14/15  | 3e-05         | 0.1160823275044 | 0.584375            |                                           |
 | 15/15  | 3e-05         | 0.1117068582588 | 0.5885417           |                                           |
 
-With this setting, we were able to achieve an accuracy of 0.590 on Kaggle. We repeated the same code, and the next time achieved an accuracy on Kaggle of 0.593. While we try to ensure that our code reproducible, some aspects of the model are outside of our control and are influenced by some degree of the randomness.
+With this setting, we were able to achieve an accuracy of 0.590 on Kaggle. In the subsequent training session, we achieved an accuracy on Kaggle of 0.593. While we strive to make our code reproducible, some aspects of the model are outside our control and are influenced by a degree of randomness.
+
+**We saved this best model and continued the training with a lower learning rate of 2e-05.**
+
+`best_model_path = 'best_model_lr3e-05_ep13_acc0.60.pt'`  #the second time we run the code, our best model was in epoch 7
+`model.load_state_dict(torch.load(best_model_path, map_location=device))`
+`model.to(device)`
