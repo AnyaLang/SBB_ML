@@ -175,6 +175,8 @@ With this setting, we were able to achieve an accuracy of 0.590 on Kaggle. In th
 
 The decrease in average loss indicates that our model was becoming better at fitting the training data, effectively minimizing the error between the predicted values and the actual values. This can be attributed to the model's increasing proficiency in identifying patterns and reducing prediction errors for the specific scenarios presented during training. However, the minimal gains in accuracy suggest that these improvements in loss did not translate to a broader generalization capability on unseen data. 
 
+So, based on our observations, it is worth continuing the training with the lower learning rate but not for such an extensive number of epochs.
+
 ## **Making predictions on the YouTube video**
 
 We wanted to use our model to make the predictions on the videos targeted to beginner French learners. We chose the video on YouTube and created the df with the sentences from the video.
