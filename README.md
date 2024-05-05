@@ -122,7 +122,9 @@ While the model with the adjusted learning rate demonstrated a higher accuracy s
 
 ### **Model 3e-05 with large number of epochs and batch size 16**
 
-Following the same code as for batch 32, we adjusted the number of epochs to 15 and also changed the learning rate to 3e-05 after additional evaluating the models with different learning rate over 2 epochs.
+We decided, to explore a bit more the training of the models over the lower batch size and different learning rates than before.
+
+Each training session was conducted with a distinct learning rate, ranging from 1e-06 to 2e-05. The goal was to find an optimal rate that balances fast learning without overshooting the minimum of the loss function. For each learning rate, the model was trained over two epochs. This limited exposure was designed to quickly assess the impact of each learning rate without extensive computational cost.
 
 | Learning Rate | Epoch | Average Loss    | Validation Accuracy |
 |---------------|-------|-----------------|---------------------|
