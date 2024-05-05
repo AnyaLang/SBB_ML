@@ -26,9 +26,9 @@ Given the computational limitation, we will train our model only on 2 different 
 
 ### **Model with different learning rates**
 
-Important to note that our first model is trained using the AdamW optimizer, which is a variant of the traditional Adam optimizer. AdamW incorporates a regularization technique known as [weight decay](https://github.com/tml-epfl/why-weight-decay), which is used in training neural networks to prevent overfitting. It functions by incorporating a term into the loss function that penalizes large weights.
+Important to note that our first model is trained using the **AdamW optimizer**, which is a variant of the traditional Adam optimizer. AdamW incorporates a regularization technique known as [weight decay](https://github.com/tml-epfl/why-weight-decay), which is used in training neural networks to prevent overfitting. It functions by incorporating a term into the loss function that penalizes large weights.
 
-Besides, we also employ a Linear Learning Rate Scheduler to manage the learning rate throughout the training process. This scheduler starts with a relatively high learning rate and gradually decreases it to near zero by the end of the training. This approach ensures that we begin training with aggressive learning steps and fine-tune the model parameters more delicately as training progresses.
+Besides, we also employ a **Linear Learning Rate Scheduler** to manage the learning rate throughout the training process. This scheduler starts with a relatively high learning rate and gradually decreases it to near zero by the end of the training. This approach ensures that we begin training with aggressive learning steps and fine-tune the model parameters more delicately as training progresses.
 
 Although this training setup does not include a warm-up phase where the learning rate would gradually ramp up before decreasing, the scheduler is configured to reduce the learning rate slightly with each training step. This gradual reduction helps in stabilizing the training as it advances.
 
@@ -71,6 +71,8 @@ The main difference between the performance of the training on the batch 16 and 
 
 ![16 and 32 batch_loss.png](https://github.com/AnyaLang/SBB_ML/blob/125ad85ffe0c16a54ce6138367cc1b7af2dc0b6e/16%20and%2032%20batch_loss.png)
 
+### **Model with 5e-5 learning rate, batch 32, 6 epochs**
+
 We decided to train the model over a larger number of epochs, in this case 6 with the batch 32 and the same learning rate as before.
 
 **Results with the batch 32, learning rate 5e-5 over larger number of epochs**
@@ -87,3 +89,6 @@ We decided to train the model over a larger number of epochs, in this case 6 wit
 We then submitted two models on Kaggle, from the epoch 4 and 6. While the epoch 4 had higher accuracy, it provided the result of 0.573 on Kaggle. For the model on the epoch 6th, the F1 score was higher, leading to the result of Kaggle of 0.601. This demonstrates that relying solely on accuracy might not give a comprehensive assessment of a model's performance. Therefore, it is crucial to consider multiple metrics.
 
 We also experimented and changed the number of epochs to 4, 6 and 8. However, 6 epochs resulted in the highest accuracy of the model and F1 value.
+
+### **Training the model on batch 16 with larger number of epochs**
+
