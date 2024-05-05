@@ -177,6 +177,21 @@ The decrease in average loss indicates that our model was becoming better at fit
 
 So, based on our observations, it is worth continuing the training with the lower learning rate but not for such an extensive number of epochs.
 
+While our best model achieved an accuracy of 0.610 on Kaggle by following this approach, below we display the results for the model with an accuracy of 0.600 on Kaggle. Given the computational limitations and financial constraints our team faced, as we had to purchase computational units via Google Colab Pro, we did not fully rerun the model to generate the visualization of the final results. However, these results should still be close to those we would obtain with the 0.610 accuracy model from Kaggle.
+
+**Our predictions made with the model**
+
+| Difficulty Level | Count |
+|------------------|-------|
+| A1               | 176   |
+| A2               | 182   |
+| B1               | 244   |
+| B2               | 200   |
+| C1               | 242   |
+| C2               | 156   |
+
+
+
 ## **Making predictions on the YouTube video**
 
 We wanted to use our model to make the predictions on the videos targeted to beginner French learners. We chose the video on YouTube and created the df with the sentences from the video.
