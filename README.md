@@ -257,7 +257,7 @@ While our best model achieved an accuracy of 0.610 on Kaggle by following this a
 | C1               | 173   |
 | C2               | 183   |
 
-
+![predictions_best.png](https://github.com/AnyaLang/SBB_ML/blob/4f95efcdcfd33810b7f1419ee02da33ddcb365f1/best_graph.png)
 
 ## **Making predictions on the YouTube video**
 
