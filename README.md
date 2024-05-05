@@ -171,15 +171,23 @@ With this setting, we were able to achieve an accuracy of 0.590 on Kaggle. In th
 
 **We saved this best model and continued the training with a lower learning rate of 2e-05.**
 
-**After achieving initial results, we extended the training by an additional 6 epochs, which further refined our model.** Observing continuous improvement, we decided that maintaining the learning rate of 2e-05 was optimal and proceeded to extend the training for a **total of 15 more epochs**. Throughout this extended training period, we noticed that while the **average loss consistently decreased, the accuracy improvements on our model plateaued, showing only marginal gains**.
+For instance, in the example below we demonstrate the results per epoch after the training on 15 epochs with the learning rate 3e-05 and then continuing the training on the lower learning rate for 9 epochs.
 
-The decrease in average loss indicates that our model was becoming better at fitting the training data, effectively minimizing the error between the predicted values and the actual values. This can be attributed to the model's increasing proficiency in identifying patterns and reducing prediction errors for the specific scenarios presented during training. However, the minimal gains in accuracy suggest that these improvements in loss did not translate to a broader generalization capability on unseen data. 
+| Epoch | Learning Rate | Average Loss   | Validation Accuracy |
+|-------|---------------|----------------|---------------------|
+| 1/9   | 2e-05         | 0.533422770320 | 0.5625              |
+| 2/9   | 2e-05         | 0.269488133614 | 0.5614583333333333  |
+| 3/9   | 2e-05         | 0.143803662904 | 0.5666666666666667  |
+| 4/9   | 2e-05         | 0.137765339206 | 0.5739583333333333  |
+| 5/9   | 2e-05         | 0.076707698969 | 0.56875             |
+| 6/9   | 2e-05         | 0.065273187822 | **0.5979166666666667**  |
+| 7/9   | 2e-05         | 0.045589126971 | 0.596875            |
+| 8/9   | 2e-05         | 0.199297960250 | 0.5739583333333333  |
+| 9/9   | 2e-05         | 0.160073978136 | 0.584375            |
 
-So, based on our observations, it is worth continuing the training with the lower learning rate but not for such an extensive number of epochs.
+The best model from this training had the result on Kaggle of 0.600.
 
-While our best model achieved an accuracy of 0.610 on Kaggle by following this approach, below we display the results for the model with an accuracy of 0.600 on Kaggle. Given the computational limitations and financial constraints our team faced, as we had to purchase computational units via Google Colab Pro, we did not fully rerun the model to generate the visualization of the final results. However, these results should still be close to those we would obtain with the 0.610 accuracy model from Kaggle.
-
-**Our predictions made with the model**
+**Our predictions made with the model 0.600 for Kaggle**
 
 | Difficulty Level | Count |
 |------------------|-------|
@@ -191,6 +199,65 @@ While our best model achieved an accuracy of 0.610 on Kaggle by following this a
 | C2               | 156   |
 
 ![predictions.png](https://github.com/AnyaLang/SBB_ML/blob/a61cf5434af67b37f57bf0cd083882fffb8aaa4a/all_predictions.png)
+
+**Approach we took for the best model on Kaggle**
+
+**After achieving initial results from 15 epochs with the learning rate 3e-05, we changed the learning rate to 1e-05 and continued the training for 3 more epochs. We saw the improvement of the model, so decided to proceed the training with slightly higher learning rate.**
+
+We extended the training by **an additional 6 epochs with learning rate 2e-05, which further refined our model.** 
+
+| Epoch | Learning Rate | Average Loss        | Validation Accuracy | Notes                                          |
+|-------|---------------|---------------------|---------------------|------------------------------------------------|
+| 1/6   | 2e-05         | 0.06369797926811316 | 0.5697916666666667  | Saved as `best_model_lr2e-05_ep1_acc0.57.pt`    |
+| 2/6   | 2e-05         | 0.0697462880416424  | 0.5864583333333333  | Saved as `best_model_lr2e-05_ep2_acc0.59.pt`    |
+| 3/6   | 2e-05         | 0.08821526710380567 | 0.5697916666666667  |                                                |
+| 4/6   | 2e-05         | 0.03653059935331839 | 0.584375            |                                                |
+| 5/6   | 2e-05         | 0.03376048295150819 | 0.5864583333333333  |                                                |
+| 6/6   | 2e-05         | 0.02625617888628161 | 0.5916666666666667  | Saved as `best_model_lr2e-05_ep6_acc0.59.pt`    |
+
+Observing continuous improvement, we decided that maintaining the learning rate of 2e-05 was optimal and proceeded to extend the training for 3 more epochs, however, given one issue in the code, the training extended to additional **9 epochs**. Throughout this extended training period, we noticed that while the **average loss consistently decreased, the accuracy improvements on our model plateaued, showing only marginal gains**.
+
+| Epoch | Learning Rate | Average Loss         | Validation Accuracy   |
+|-------|---------------|----------------------|-----------------------|
+| 1/9   | 2e-05         | 0.049511629976404944 | 0.5791666666666667    |
+| 2/9   | 2e-05         | 0.17178194310969655  | 0.5864583333333333    |
+| 3/9   | 2e-05         | 0.03391529844190397  | 0.5927083333333333    |
+| 4/9   | 2e-05         | 0.01702627820344181  | 0.5989583333333334    |
+| 5/9   | 2e-05         | 0.049664503030241273 | 0.6020833333333333    |
+| 6/9   | 2e-05         | 0.028027213982947313 | 0.59375               |
+| 7/9   | 2e-05         | 0.01858836026416005  | 0.5947916666666667    |
+| 8/9   | 2e-05         | 0.015126325636394237 | 0.59375               |
+| 9/9   | 2e-05         | 0.03083539136728177  | 0.5927083333333333    |
+
+
+The decrease in average loss indicates that our model was becoming better at fitting the training data, effectively minimizing the error between the predicted values and the actual values. This can be attributed to the model's increasing proficiency in identifying patterns and reducing prediction errors for the specific scenarios presented during training. However, the minimal gains in accuracy suggest that these improvements in loss did not translate to a broader generalization capability on unseen data. 
+
+While our best model achieved an accuracy of 0.610 on Kaggle by following this approach, we did not fully rerun the model to generate the evaluation metrics of the final results due to computational limitations and financial constraints, as our team had to purchase computational units via Google Colab Pro. However, following the approach of initially training the model for 15 epochs with a learning rate of 3e-05, and then continuing the training with a starting with lower learning rate and adjusting it given the model results, should produce similar results.
+
+| Description                     | Details                                        |
+|---------------------------------|------------------------------------------------|
+| **Initial Training**            | Learning rate of 1e-05                         |
+| **Extended Fine-Tuning**        | Increased learning rate to 2e-05               |
+| **Total Epochs**                | 15 (started with 6 and then 9)                 |
+| **Epoch of Notable Outcome**    | 5 (from training with additional epochs)       |
+| **Average Loss at Epoch 5**     | 0.049664503030241273                           |
+| **Validation Accuracy at Epoch 5** | 0.6020833333333333                          |
+| **Model Saved As**              | `best_model_lr2e-05_ep5_acc0.60.pt`            |
+| **Final Loss**                  | 0.03083539136728177                            |
+| **Final Accuracy**              | 0.6020833333333333                             |
+
+**Our predictions made with the model 0.610 for Kaggle**
+
+| Difficulty Level | Count |
+|------------------|-------|
+| A1               | 180   |
+| A2               | 242   |
+| B1               | 180   |
+| B2               | 242   |
+| C1               | 173   |
+| C2               | 183   |
+
+
 
 ## **Making predictions on the YouTube video**
 
