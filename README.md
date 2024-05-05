@@ -119,3 +119,42 @@ Modifications for Warm-Up Phase and Learning Rate Adjustment
 ![learning_rate.png](https://github.com/AnyaLang/SBB_ML/blob/b509447374760d91759c3c62027701d928a15ce2/Model%20with%20a%20different%20learning%20rate%20adjustement.png)
 
 While the model with the adjusted learning rate demonstrated a higher accuracy score and performed better than the models before over other metrics, the submission on Kaggle provided a lower acore. We also adjusted the number of epochs to 15 and lower, however, the results were worse.
+
+### **Model 3e-05 with large number of epochs and batch size 16**
+
+Following the same code as for batch 32, we adjusted the number of epochs to 15 and also changed the learning rate to 3e-05 after additional evaluating the models with different learning rate over 2 epochs.
+
+| Learning Rate | Epoch | Average Loss    | Validation Accuracy |
+|---------------|-------|-----------------|---------------------|
+| 1e-05         | 1/2   | 1.776790196200212 | 0.3614583333333333  |
+| 1e-05         | 2/2   | 1.4493117819229762| 0.4354166666666667  |
+| 2e-05         | 1/2   | 1.8514792347947757| 0.43020833333333336 |
+| 2e-05         | 2/2   | 1.3657454945147038| 0.5104166666666666  |
+| 5e-06         | 1/2   | 2.1787539795041084| 0.3072916666666667  |
+| 5e-06         | 2/2   | 1.7749672616521517| 0.346875            |
+| 1e-06         | 1/2   | 2.78974984139204  | 0.19375             |
+| 1e-06         | 2/2   | 2.3164451534549397| 0.20208333333333334 |
+
+We achieved an accuracy of 51% within just two epochs using a learning rate of 2e-05. Encouraged by these results, we have decided to continue refining the model with this learning rate. To explore the model's capacity further, we plan to keep the batch size to 16 and adjust the learning rate to 3e-05, while extending the training period to 15 epochs.
+
+**Model 3e-05 with large number of epochs and batch size 16**
+
+| Epoch  | Learning Rate | Average Loss    | Validation Accuracy | Notes                                     |
+|--------|---------------|-----------------|---------------------|-------------------------------------------|
+| 1/15   | 3e-05         | 1.6861949928105 | 0.459375            | Saved as `best_model_lr3e-05_ep1_acc0.46.pt`  |
+| 2/15   | 3e-05         | 1.2930432051420 | 0.5104167           | Saved as `best_model_lr3e-05_ep2_acc0.51.pt`  |
+| 3/15   | 3e-05         | 1.1450499561926 | 0.5020833           |                                           |
+| 4/15   | 3e-05         | 0.9551384929568 | 0.5479167           | Saved as `best_model_lr3e-05_ep4_acc0.55.pt`  |
+| 5/15   | 3e-05         | 0.8847448159009 | 0.5552083           | Saved as `best_model_lr3e-05_ep5_acc0.56.pt`  |
+| 6/15   | 3e-05         | 0.6622620061661 | 0.5541667           |                                           |
+| 7/15   | 3e-05         | 0.5362344713571 | 0.5625              | Saved as `best_model_lr3e-05_ep7_acc0.56.pt`  |
+| 8/15   | 3e-05         | 0.4089817595979 | 0.5875              | Saved as `best_model_lr3e-05_ep8_acc0.59.pt`  |
+| 9/15   | 3e-05         | 0.3382450588358 | 0.5885417           | Saved as `best_model_lr3e-05_ep9_acc0.59.pt`  |
+| 10/15  | 3e-05         | 0.2671806021050 | 0.5770833           |                                           |
+| 11/15  | 3e-05         | 0.2069165084783 | 0.590625            | Saved as `best_model_lr3e-05_ep11_acc0.59.pt` |
+| 12/15  | 3e-05         | 0.1845976701433 | 0.5927083           | Saved as `best_model_lr3e-05_ep12_acc0.59.pt` |
+| 13/15  | 3e-05         | 0.1560351345979 | 0.5958333           | Saved as `best_model_lr3e-05_ep13_acc0.60.pt` |
+| 14/15  | 3e-05         | 0.1160823275044 | 0.584375            |                                           |
+| 15/15  | 3e-05         | 0.1117068582588 | 0.5885417           |                                           |
+
+With this setting, we were able to achieve an accuracy of 0.590 on Kaggle. We repeated the same code, and the next time achieved an accuracy on Kaggle of 0.593. While we try to ensure that our code reproducible, some aspects of the model are outside of our control and are influenced by some degree of the randomness.
