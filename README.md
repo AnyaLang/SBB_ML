@@ -284,6 +284,7 @@ The video was produced for beginner French learners. From the plot, we can see t
 ## **Impementing Doc2Vec, Word2Vec, BERT**
 
 **Doc2Vec**
+
 Prior to deploying the Doc2Vec model, essential preprocessing steps were executed to prepare French language texts, which are crucial for optimizing model performance:
 
 *Tokenization and Cleaning:* Implemented a custom tokenizer using spaCy to:
@@ -302,4 +303,49 @@ Prior to deploying the Doc2Vec model, essential preprocessing steps were execute
 
 Transformed the sentence to "équipe sbb faire mieux développer meilleur machine apprentissage automatique classification phrase"
 
+We have developed and evaluated a text classification model combining Doc2Vec embeddings with Logistic Regression. The model achieved an overall accuracy of 38.33% on the test dataset. 
 
+              precision    recall  f1-score   support
+
+           0       0.41      0.53      0.46       166
+           1       0.37      0.35      0.36       158
+           2       0.28      0.25      0.26       166
+           3       0.37      0.39      0.38       153
+           4       0.42      0.38      0.40       152
+           5       0.43      0.40      0.42       165
+
+    accuracy                           0.38       960
+   macro avg       0.38      0.38      0.38       960
+weighted avg       0.38      0.38      0.38       960
+
+The initial results suggest that the combination of Doc2Vec and Logistic Regression provides a baseline for understanding and classifying our text data. We further adding more features such as TF-IDF scores to improve the model's understanding of the text.
+
+The integration of TF-IDF features with Doc2Vec embeddings has improved the performance of our logistic regression model for text classification. The updated model achieved an accuracy of 43.125% on the test dataset.
+
+              precision    recall  f1-score   support
+
+           0       0.49      0.46      0.47       166
+           1       0.39      0.41      0.40       158
+           2       0.36      0.31      0.34       166
+           3       0.39      0.40      0.39       153
+           4       0.45      0.49      0.47       152
+           5       0.51      0.52      0.51       165
+
+    accuracy                           0.43       960
+   macro avg       0.43      0.43      0.43       960
+weighted avg       0.43      0.43      0.43       960
+
+
+In our Doc2Vec model, each word in the corpus is represented as a unique, high-dimensional vector. These vectors are trained such that words appearing in similar contexts have vectors that are close to each other in vector space. This characteristic allows the model to capture semantic relationships between words based on their usage in the text. We decided to explore which words our model finds semantically similar. We decided to look at the word "jour"
+
+*Similar Words to 'jour':*
+- paris: 0.9852
+- tard: 0.9822
+- matin: 0.9821
+- vacance: 0.9809
+- après-midi: 0.9809
+- coucher: 0.9807
+- cinéma: 0.9796
+- habiter: 0.9794
+- sport: 0.9793
+- voir: 0.9790
