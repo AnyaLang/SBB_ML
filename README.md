@@ -56,4 +56,5 @@ We further trained the model on the batch size 32 over 4 epochs with the learnin
 | 3/4   | 5e-5          | 0.031953962224846| 0.5510417  | 0.5744112 | 0.5510417| 0.5477183 |
 | 4/4   | 5e-5          | 0.025974183475288| 0.5739583  | 0.5810352 | 0.5739583| 0.5750711 |
 
+![alt text](http://url/to/img.png)
 
