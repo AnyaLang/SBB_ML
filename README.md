@@ -282,3 +282,24 @@ Based on the results after training the model on the dataset we obtained from Ka
 The video was produced for beginner French learners. From the plot, we can see that 16 sentences fall into the A2 category and 4 into the A1 category. Additionally, some sentences are classified as more difficult, at the B1 level, by the model. This classification could pose challenges for learners but also encourage them to acquire new vocabulary and further develop their language skills."
 
 ## **Impementing Doc2Vec, Word2Vec, BERT**
+
+**Doc2Vec**
+Prior to deploying the Doc2Vec model, essential preprocessing steps were executed to prepare French language texts, which are crucial for optimizing model performance:
+
+*Tokenization and Cleaning:* Implemented a custom tokenizer using spaCy to:
+- Lemmatize words to their base forms.
+- Remove stopwords, punctuation, and placeholders like 'xx' or 'xxxx'.
+- Convert all text to lowercase to ensure uniformity.
+  
+
+*Example Transformation:* 
+
+`sample_sentence = "Nous sommes l'équipe SBB et nous faisons de notre mieux pour développer la meilleure machine d'apprentissage automatique pour la classification des phrases."`
+
+`processed_text = spacy_tokenizer(sample_sentence)`
+
+`processed_text`
+
+Transformed the sentence to "équipe sbb faire mieux développer meilleur machine apprentissage automatique classification phrase"
+
+
