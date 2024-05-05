@@ -90,5 +90,29 @@ We then submitted two models on Kaggle, from the epoch 4 and 6. While the epoch 
 
 We also experimented and changed the number of epochs to 4, 6 and 8. However, 6 epochs resulted in the highest accuracy of the model and F1 value.
 
-### **Training the model on batch 16 with larger number of epochs**
+### **Model with a different learning rate adjustement**
+
+Modifications for Warm-Up Phase and Learning Rate Adjustment
+**Increaseв the Initial Learning Rate:** We start with a higher initial learning rate - 1e-4.
+
+**Added Warm-Up Steps:** Introduce a warm-up phase where the learning rate will linearly increase to this higher initial rate over a number of steps. A common strategy is to set the warm-up steps to 10% of the total training steps.
+
+`# Initialize the optimizer with a higher initial learning rate`
+`optimizer = AdamW(model.parameters(), lr=1e-4, betas=(0.9, 0.999), eps=1e-08)`
+
+`# Scheduler with warm-up phase`
+`scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=warmup_steps, num_training_steps=total_steps)`
+
+**Results for 8 epochs with the adjusted learning rate**
+
+| Epoch | Learning Rate | Average Loss      | Accuracy   | Precision | Recall   | F1 Score  |
+|-------|---------------|-------------------|------------|-----------|----------|-----------|
+| 1/8   | 0.00009722    | 0.059470302890986 | 0.365625   | 0.3330621 | 0.365625 | 0.3027832 |
+| 2/8   | 0.00008333    | 0.053232380685707 | 0.4791667  | 0.4275987 | 0.4791667| 0.4342403 |
+| 3/8   | 0.00006944    | 0.038865594674523 | 0.5541667  | 0.5699164 | 0.5541667| 0.5361277 |
+| 4/8   | 0.00005556    | 0.034336493226389 | 0.565625   | 0.5869896 | 0.565625 | 0.5635115 |
+| 5/8   | 0.00004167    | 0.022284670624261 | 0.6010417  | 0.5997075 | 0.6010417| 0.5990875 |
+| 6/8   | 0.00002778    | 0.015347646844263 | 0.603125   | 0.6056449 | 0.603125 | 0.5911651 |
+| 7/8   | 0.00001389    | 0.009685143810930 | 0.6020833  | 0.6107261 | 0.6020833| 0.6032911 |
+| 8/8   | 0.00000000    | 0.005019144429146 | 0.6166667  | 0.6212918 | 0.6166667| 0.6177674 |
 
