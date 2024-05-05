@@ -163,6 +163,6 @@ With this setting, we were able to achieve an accuracy of 0.590 on Kaggle. In th
 
 **We saved this best model and continued the training with a lower learning rate of 2e-05.**
 
-`best_model_path = 'best_model_lr3e-05_ep13_acc0.60.pt'`  #the second time we run the code, our best model was in epoch 7
+`best_model_path = 'best_model_lr3e-05_ep13_acc0.60.pt'  #the second time we run the code, our best model was in epoch 7`
 `model.load_state_dict(torch.load(best_model_path, map_location=device))`
 `model.to(device)`
