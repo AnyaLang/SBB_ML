@@ -177,5 +177,21 @@ The decrease in average loss indicates that our model was becoming better at fit
 
 ## **Making predictions on the YouTube video**
 
+We wanted to use our model to make the predictions on the videos targeted to beginner French learners. We chose the video on YouTube and created the df with the sentences from the video.
+
+The video selected to make predictions is: [What Do French People Actually Eat? | Easy French 189](https://www.youtube.com/watch?v=p65EBC9lW9k&list=PLnazreCxpqRmpb4lGvzvCGXIXZkL3Nc27&index=4)
+
+Example of the sentences:
+`sentences = [
+    "Salut les amis, bienvenue dans ce nouvel épisode.",
+    "Aujourd'hui je suis dans le 11e arrondissement et je vais demander aux gens de parler de leurs habitudes alimentaires.",
+    "Alors c'est parti, qu'est-ce que vous avez mangé depuis ce matin?",
+]`
+
+Since we could not access the models from the previous training due to a runtime interruption, we trained another model with a batch size of 32, for 6 epochs, and a learning rate of 5e-5 to make the predictions.
+
+Based on the results after training the model on the dataset we obtained from Kaggle, we believe our model can well predict the difficulty of the sentences.
+
+The video was produced for beginner French learners. From the plot, we can see that 16 sentences fall into the A2 category and 4 into the A1 category. Additionally, some sentences are classified as more difficult, at the B1 level, by the model. This classification could pose challenges for learners but also encourage them to acquire new vocabulary and further develop their language skills."
 
 ## **Impementing Doc2Vec, Word2Vec, BERT**
