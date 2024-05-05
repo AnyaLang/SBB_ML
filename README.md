@@ -161,8 +161,16 @@ We achieved an accuracy of 51% within just two epochs using a learning rate of 2
 
 With this setting, we were able to achieve an accuracy of 0.590 on Kaggle. In the subsequent training session, we achieved an accuracy on Kaggle of 0.593. While we strive to make our code reproducible, some aspects of the model are outside our control and are influenced by a degree of randomness.
 
+`best_model_path = 'best_model_lr3e-05_ep13_acc0.60.pt'  #the second time we run the code, our best model was in epoch 7`
+
+`model.load_state_dict(torch.load(best_model_path, map_location=device))`
+
+`model.to(device)`
+
+`model.train()`
+
 **We saved this best model and continued the training with a lower learning rate of 2e-05.**
 
-`best_model_path = 'best_model_lr3e-05_ep13_acc0.60.pt'  #the second time we run the code, our best model was in epoch 7`
-`model.load_state_dict(torch.load(best_model_path, map_location=device))`
-`model.to(device)`
+**After achieving initial results, we extended the training by an additional 6 epochs, which further refined our model.** Observing continuous improvement, we decided that maintaining the learning rate of 2e-05 was optimal and proceeded to extend the training for a **total of 15 more epochs**. Throughout this extended training period, we noticed that while the **average loss consistently decreased, the accuracy improvements on our model plateaued, showing only marginal gains**.
+
+The decrease in average loss indicates that our model was becoming better at fitting the training data, effectively minimizing the error between the predicted values and the actual values. This can be attributed to the model's increasing proficiency in identifying patterns and reducing prediction errors for the specific scenarios presented during training. However, the minimal gains in accuracy suggest that these improvements in loss did not translate to a broader generalization capability on unseen data. 
