@@ -24,7 +24,8 @@ Also, the [BERT authors recommend fine-tuning](https://github.com/google-researc
 
 Given the computational limitation, we will train our model only on 2 different different batch sizes.
 
-**Model with different learning rates**
+### **Model with different learning rates**
+
 Important to note that our first model is trained using the AdamW optimizer, which is a variant of the traditional Adam optimizer. AdamW incorporates a regularization technique known as [weight decay](https://github.com/tml-epfl/why-weight-decay), which is used in training neural networks to prevent overfitting. It functions by incorporating a term into the loss function that penalizes large weights.
 
 Besides, we also employ a Linear Learning Rate Scheduler to manage the learning rate throughout the training process. This scheduler starts with a relatively high learning rate and gradually decreases it to near zero by the end of the training. This approach ensures that we begin training with aggressive learning steps and fine-tune the model parameters more delicately as training progresses.
