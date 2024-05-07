@@ -48,9 +48,11 @@ We used "saga2 as it showed slightly higher results than "lbfgs" in this scenari
 1) **Regularization and Solver:** Configurations using {'C': 10, 'penalty': 'l1'} slightly outperformed those with {'C': 1, 'penalty': 'l2'}, indicating that stronger regularization with L1 penalty (which also promotes feature sparsity) might be more effective for this dataset.
 2) **Epochs:** Increasing the number of training epochs from 40 to 60 or even 100 did not consistently improve performance, suggesting that the model might be converging early or requires different adjustments in learning rate or vector dimensionality for further improvements. 40 epochs had the highest results for different configurations we made
 3) **Frequency count** Increasing min_count did not lead to an increase in the accuracy
-4) **Window** Larger window sizes led to higher accuracy from 2 to 8
+4) **Window** Larger window sizes led to higher accuracy from 2 to 8. This suggests that considering a broader context around each word helps the model to better understand the text and make more accurate predictions.
 5) **Vector_size**: With the vector size increase from 50 to 200, the accuracy of the model substantially increases
 6) **Training algorithms** DBOW (dm=0) performed better than DM (dm=1)
+
+The best accuracy observed was 43.33%, achieved with a configuration of 100-dimensional vectors, an 8-word window, min count of 1, 100 epochs, and logistic regression with C=10 and L1 penalty. This configuration suggests that higher dimensional vectors and more extensive training (more epochs) with stronger regularization might help in capturing more complex patterns in the data effectively.
 
 
 We have developed and evaluated a text classification model combining Doc2Vec embeddings with Logistic Regression. The model achieved an overall accuracy of 38.33% on the test dataset. 
