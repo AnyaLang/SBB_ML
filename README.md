@@ -20,14 +20,32 @@
 Transformed the sentence to *"équipe sbb faire mieux développer meilleur machine apprentissage automatique classification phrase"*
 
 **2. Feature Selection and Model Setup** Doc2Vec has several parameters that can be tuned:
-- *vector_size:* Dimensionality of the feature vectors. Values assessed: 50, 
-- *window:* The maximum distance between the current and predicted word within a sentence. Values assessed: 2, 
-- *min_count:* Ignores all words with total frequency lower than this. Values assessed: 1 (no words are ignored based on frequency)
-- *workers:* Use these many worker threads to train the model (faster training with multicore machines). Values assessed: 4, 
+- *vector_size:* Dimensionality of the feature vectors. Values assessed: 50, 100, 200
+- *window:* The maximum distance between the current and predicted word within a sentence. Values assessed: 2, 5, 8
+- *min_count:* Ignores all words with total frequency lower than this. Values assessed: 1 (no words are ignored based on frequency), 2, 5
+- *workers:* Use these many worker threads to train the model (faster training with multicore machines). Values assessed: 4
 - *alpha:* The initial learning rate. Values assessed: 0.025
-- *min_alpha:* Learning rate will linearly drop to min_alpha as training progresses. Values assessed: 0.00025, 
-- *epochs:* Number of iterations over the corpus. Values assessed: 40
-- Additional training algorithms, such as *setting dm (distributed memory model) or DBOW (distributed bag of words).* Values assessed: dm = 0; dm = 1 (model uses the context window to predict the next word (Distributed Memory model, DM))
+- *min_alpha:* Learning rate will linearly drop to min_alpha as training progresses. Values assessed: 0.00025
+- *epochs:* Number of iterations over the corpus. Values assessed: 40, 60, 100
+- Additional training algorithms, such as *setting dm (distributed memory model) or DBOW (distributed bag of words).* Values assessed: dm = 0; dm = 1 (model uses the context window to predict the next word (Distributed Memory model, DM)), additional dm_concat=1
+
+**3. Model Classifier** 
+
+For classification, we tested different configurations of logistic regression to determine the optimal setup for our predictive tasks:
+
+- *Basic Logistic Regression*: Initially, we deployed a logistic regression with default parameters to establish a baseline for performance comparison.
+- *Regularized Logistic Regression with L2 Penalty*:
+Configuration: LogisticRegression(C=10, penalty='l2', solver='lbfgs')
+Purpose: We increased the regularization strength to C=10 and employed the l2 penalty with the lbfgs solver to enhance model generalization and prevent overfitting.
+- *Regularized Logistic Regression with L1 Penalty*:
+Configuration: LogisticRegression(C=10, penalty='l1', solver='saga')
+Purpose: To assess the impact of l1 regularization, which promotes sparsity in the model coefficients, potentially improving model interpretability and performance on sparse data sets.
+
+**4. Model Evaluation and Results** 
+
+1) With the first configuration with 40 epochs the result of the model was 36% of the accuracy score, linear regression (1):
+`doc2vec_model = Doc2Vec(vector_size=50, window=2, min_count=1, workers=4, alpha=0.025, min_alpha=0.00025, dm=0)` 
+2) Changin to the DM model led us to the lower accuracy of 33%, also deployed linear regression (1)
 
 We have developed and evaluated a text classification model combining Doc2Vec embeddings with Logistic Regression. The model achieved an overall accuracy of 38.33% on the test dataset. 
 
