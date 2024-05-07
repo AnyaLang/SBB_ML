@@ -35,17 +35,23 @@ For classification, we tested different configurations of logistic regression to
 
 - *Basic Logistic Regression*: Initially, we deployed a logistic regression with default parameters to establish a baseline for performance comparison.
 - *Regularized Logistic Regression with L2 Penalty*:
-Configuration: LogisticRegression(C=10, penalty='l2', solver='lbfgs')
-Purpose: We increased the regularization strength to C=10 and employed the l2 penalty with the lbfgs solver to enhance model generalization and prevent overfitting.
+Configuration: LogisticRegression(C=10, penalty='l2', solver='saga')
+Purpose: We increased the regularization strength to C=10 and employed the l2 penalty.
 - *Regularized Logistic Regression with L1 Penalty*:
 Configuration: LogisticRegression(C=10, penalty='l1', solver='saga')
 Purpose: To assess the impact of l1 regularization, which promotes sparsity in the model coefficients, potentially improving model interpretability and performance on sparse data sets.
 
+We used "saga2 as it showed slightly higher results than "lbfgs" in this scenario.
+
 **4. Model Evaluation and Results** 
 
-1) With the first configuration with 40 epochs the result of the model was 36% of the accuracy score, linear regression (1):
-`doc2vec_model = Doc2Vec(vector_size=50, window=2, min_count=1, workers=4, alpha=0.025, min_alpha=0.00025, dm=0)` 
-2) Changin to the DM model led us to the lower accuracy of 33%, also deployed linear regression (1)
+1) **Regularization and Solver:** Configurations using {'C': 10, 'penalty': 'l1'} slightly outperformed those with {'C': 1, 'penalty': 'l2'}, indicating that stronger regularization with L1 penalty (which also promotes feature sparsity) might be more effective for this dataset.
+2) **Epochs:** Increasing the number of training epochs from 40 to 60 or even 100 did not consistently improve performance, suggesting that the model might be converging early or requires different adjustments in learning rate or vector dimensionality for further improvements. 40 epochs had the highest results for different configurations we made
+3) **Frequency count** Increasing min_count did not lead to an increase in the accuracy
+4) **Window** Larger window sizes led to higher accuracy from 2 to 8
+5) **Vector_size**: With the vector size increase from 50 to 200, the accuracy of the model substantially increases
+6) **Training algorithms** DBOW (dm=0) performed better than DM (dm=1)
+
 
 We have developed and evaluated a text classification model combining Doc2Vec embeddings with Logistic Regression. The model achieved an overall accuracy of 38.33% on the test dataset. 
 
@@ -63,6 +69,8 @@ We have developed and evaluated a text classification model combining Doc2Vec em
 weighted avg       0.38      0.38      0.38       960
 
 The initial results suggest that the combination of Doc2Vec and Logistic Regression provides a baseline for understanding and classifying our text data. We further adding more features such as TF-IDF scores to improve the model's understanding of the text.
+
+We used the best parameters from our previous configuration for the model with TF-IDF matrix.
 
 The integration of TF-IDF features with Doc2Vec embeddings has improved the performance of our logistic regression model for text classification. The updated model achieved an accuracy of 43.125% on the test dataset.
 
