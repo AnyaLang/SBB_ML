@@ -1,5 +1,102 @@
 # SBB_ML
 
+7️⃣ **Doc2Vec**
+
+**1. Data Preparation** Prior to deploying the Doc2Vec model, essential preprocessing steps were executed to prepare French language texts, which are crucial for optimizing model performance:
+
+*Tokenization and Cleaning:* Implemented a custom tokenizer using spaCy to:
+- Lemmatize words to their base forms.
+- Remove stopwords, punctuation, and placeholders like 'xx' or 'xxxx'.
+- Convert all text to lowercase to ensure uniformity.
+  
+*Example Transformation:* 
+
+`sample_sentence = "Nous sommes l'équipe SBB et nous faisons de notre mieux pour développer la meilleure machine d'apprentissage automatique pour la classification des phrases."`
+
+`processed_text = spacy_tokenizer(sample_sentence)`
+
+`processed_text`
+
+Transformed the sentence to *"équipe sbb faire mieux développer meilleur machine apprentissage automatique classification phrase"*
+
+**2. Feature Selection and Model Setup** Doc2Vec has several parameters that can be tuned:
+- *vector_size:* Dimensionality of the feature vectors. Values assessed: 50, 
+- *window:* The maximum distance between the current and predicted word within a sentence. Values assessed: 2, 
+- *min_count:* Ignores all words with total frequency lower than this. Values assessed: 1 (no words are ignored based on frequency)
+- *workers:* Use these many worker threads to train the model (faster training with multicore machines). Values assessed: 4, 
+- *alpha:* The initial learning rate. Values assessed: 0.025
+- *min_alpha:* Learning rate will linearly drop to min_alpha as training progresses. Values assessed: 0.00025, 
+- *epochs:* Number of iterations over the corpus. Values assessed: 40
+- Additional training algorithms, such as *setting dm (distributed memory model) or DBOW (distributed bag of words).* Values assessed: dm = 0; dm = 1 (model uses the context window to predict the next word (Distributed Memory model, DM))
+
+We have developed and evaluated a text classification model combining Doc2Vec embeddings with Logistic Regression. The model achieved an overall accuracy of 38.33% on the test dataset. 
+
+              precision    recall  f1-score   support
+
+           0       0.41      0.53      0.46       166
+           1       0.37      0.35      0.36       158
+           2       0.28      0.25      0.26       166
+           3       0.37      0.39      0.38       153
+           4       0.42      0.38      0.40       152
+           5       0.43      0.40      0.42       165
+
+    accuracy                           0.38       960
+   macro avg       0.38      0.38      0.38       960
+weighted avg       0.38      0.38      0.38       960
+
+The initial results suggest that the combination of Doc2Vec and Logistic Regression provides a baseline for understanding and classifying our text data. We further adding more features such as TF-IDF scores to improve the model's understanding of the text.
+
+The integration of TF-IDF features with Doc2Vec embeddings has improved the performance of our logistic regression model for text classification. The updated model achieved an accuracy of 43.125% on the test dataset.
+
+              precision    recall  f1-score   support
+
+           0       0.49      0.46      0.47       166
+           1       0.39      0.41      0.40       158
+           2       0.36      0.31      0.34       166
+           3       0.39      0.40      0.39       153
+           4       0.45      0.49      0.47       152
+           5       0.51      0.52      0.51       165
+
+    accuracy                           0.43       960
+   macro avg       0.43      0.43      0.43       960
+weighted avg       0.43      0.43      0.43       960
+
+![tf-idf](https://github.com/AnyaLang/SBB_ML/blob/18c355a151c996d9a5e7fe071d9441811cddb981/confusion%20matrix_TFIDF.png)
+
+
+In our Doc2Vec model, each word in the corpus is represented as a unique, high-dimensional vector. These vectors are trained such that words appearing in similar contexts have vectors that are close to each other in vector space. This characteristic allows the model to capture semantic relationships between words based on their usage in the text. We decided to explore which words our model finds semantically similar. We decided to look at the word "jour"
+
+*Similar Words to 'jour':*
+- paris: 0.9852
+- tard: 0.9822
+- matin: 0.9821
+- vacance: 0.9809
+- après-midi: 0.9809
+- coucher: 0.9807
+- cinéma: 0.9796
+- habiter: 0.9794
+- sport: 0.9793
+- voir: 0.9790
+
+
+**BERT**
+
+BERT is another model that we deployed from Hugging Face. While the capabilities of this model are extensive, we chose the FlauBERT model, which is more targeted towards our task, and therefore did not perform hyperparameter tuning for BERT. By simply deploying the model alongside the XGBoost algorithm, we achieved an accuracy of 45%. We used the large cased BERT model to achieve these results.
+
+`tokenizer = BertTokenizer.from_pretrained('bert-large-cased')`
+`model_bert = BertModel.from_pretrained('bert-large-cased')`
+
+
+              precision    recall  f1-score   support
+
+           0       0.65      0.65      0.65       166
+           1       0.35      0.37      0.36       158
+           2       0.39      0.37      0.38       166
+           3       0.43      0.46      0.44       153
+           4       0.37      0.36      0.36       152
+           5       0.48      0.45      0.46       165
+
+
 ## **Training the model with the FlauBERT model**
 
 For our training, we are using the FlauBERT model from [Hugging Face](https://huggingface.co/docs/transformers/en/model_doc/flaubert), as described:
@@ -24,7 +121,7 @@ Also, the [BERT authors recommend fine-tuning](https://github.com/google-researc
 
 Given the computational limitation, we will train our model only on 2 different different batch sizes.
 
-### **Model with different learning rates**
+### **FlauBERT Model over different learning rates:**
 
 Important to note that our first model is trained using the **AdamW optimizer**, which is a variant of the traditional Adam optimizer. AdamW incorporates a regularization technique known as [weight decay](https://github.com/tml-epfl/why-weight-decay), which is used in training neural networks to prevent overfitting. It functions by incorporating a term into the loss function that penalizes large weights.
 
@@ -280,95 +377,6 @@ Based on the results after training the model on the dataset we obtained from Ka
 ![youtube_predictions.png](https://github.com/AnyaLang/SBB_ML/blob/d42d9ce24795eb7c2b271b978b85b8798750944d/predictions_YouTube.png)
 
 The video was produced for beginner French learners. From the plot, we can see that 16 sentences fall into the A2 category and 4 into the A1 category. Additionally, some sentences are classified as more difficult, at the B1 level, by the model. This classification could pose challenges for learners but also encourage them to acquire new vocabulary and further develop their language skills."
-
-## **Impementing Doc2Vec, BERT**
-
-**Doc2Vec**
-
-Prior to deploying the Doc2Vec model, essential preprocessing steps were executed to prepare French language texts, which are crucial for optimizing model performance:
-
-*Tokenization and Cleaning:* Implemented a custom tokenizer using spaCy to:
-- Lemmatize words to their base forms.
-- Remove stopwords, punctuation, and placeholders like 'xx' or 'xxxx'.
-- Convert all text to lowercase to ensure uniformity.
-  
-
-*Example Transformation:* 
-
-`sample_sentence = "Nous sommes l'équipe SBB et nous faisons de notre mieux pour développer la meilleure machine d'apprentissage automatique pour la classification des phrases."`
-
-`processed_text = spacy_tokenizer(sample_sentence)`
-
-`processed_text`
-
-Transformed the sentence to "équipe sbb faire mieux développer meilleur machine apprentissage automatique classification phrase"
-
-We have developed and evaluated a text classification model combining Doc2Vec embeddings with Logistic Regression. The model achieved an overall accuracy of 38.33% on the test dataset. 
-
-              precision    recall  f1-score   support
-
-           0       0.41      0.53      0.46       166
-           1       0.37      0.35      0.36       158
-           2       0.28      0.25      0.26       166
-           3       0.37      0.39      0.38       153
-           4       0.42      0.38      0.40       152
-           5       0.43      0.40      0.42       165
-
-    accuracy                           0.38       960
-   macro avg       0.38      0.38      0.38       960
-weighted avg       0.38      0.38      0.38       960
-
-The initial results suggest that the combination of Doc2Vec and Logistic Regression provides a baseline for understanding and classifying our text data. We further adding more features such as TF-IDF scores to improve the model's understanding of the text.
-
-The integration of TF-IDF features with Doc2Vec embeddings has improved the performance of our logistic regression model for text classification. The updated model achieved an accuracy of 43.125% on the test dataset.
-
-              precision    recall  f1-score   support
-
-           0       0.49      0.46      0.47       166
-           1       0.39      0.41      0.40       158
-           2       0.36      0.31      0.34       166
-           3       0.39      0.40      0.39       153
-           4       0.45      0.49      0.47       152
-           5       0.51      0.52      0.51       165
-
-    accuracy                           0.43       960
-   macro avg       0.43      0.43      0.43       960
-weighted avg       0.43      0.43      0.43       960
-
-![tf-idf](https://github.com/AnyaLang/SBB_ML/blob/18c355a151c996d9a5e7fe071d9441811cddb981/confusion%20matrix_TFIDF.png)
-
-
-In our Doc2Vec model, each word in the corpus is represented as a unique, high-dimensional vector. These vectors are trained such that words appearing in similar contexts have vectors that are close to each other in vector space. This characteristic allows the model to capture semantic relationships between words based on their usage in the text. We decided to explore which words our model finds semantically similar. We decided to look at the word "jour"
-
-*Similar Words to 'jour':*
-- paris: 0.9852
-- tard: 0.9822
-- matin: 0.9821
-- vacance: 0.9809
-- après-midi: 0.9809
-- coucher: 0.9807
-- cinéma: 0.9796
-- habiter: 0.9794
-- sport: 0.9793
-- voir: 0.9790
-
-
-**BERT**
-
-BERT is another model that we deployed from Hugging Face. While the capabilities of this model are extensive, we chose the FlauBERT model, which is more targeted towards our task, and therefore did not perform hyperparameter tuning for BERT. By simply deploying the model alongside the XGBoost algorithm, we achieved an accuracy of 45%. We used the large cased BERT model to achieve these results.
-
-`tokenizer = BertTokenizer.from_pretrained('bert-large-cased')`
-`model_bert = BertModel.from_pretrained('bert-large-cased')`
-
-
-              precision    recall  f1-score   support
-
-           0       0.65      0.65      0.65       166
-           1       0.35      0.37      0.36       158
-           2       0.39      0.37      0.38       166
-           3       0.43      0.46      0.44       153
-           4       0.37      0.36      0.36       152
-           5       0.48      0.45      0.46       165
            
     accuracy                           0.45       960
    macro avg       0.44      0.44      0.44       960
