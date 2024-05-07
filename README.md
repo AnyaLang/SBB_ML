@@ -54,18 +54,31 @@ We used "saga2 as it showed slightly higher results than "lbfgs" in this scenari
 
 The best accuracy observed was 43.33%, achieved with a configuration of 100-dimensional vectors, an 8-word window, min count of 1, 100 epochs, and logistic regression with C=10 and L1 penalty. This configuration suggests that higher dimensional vectors and more extensive training (more epochs) with stronger regularization might help in capturing more complex patterns in the data effectively.
 
-Testing Configuration: (100, 8, 1, 100, {'C': 10, 'penalty': 'l1'})
-Accuracy: 0.43333333333333335
-Confusion Matrix:
- [[118  28  15   2   1   2]
- [ 48  65  28   8   4   5]
- [ 29  40  59  21   9   8]
- [ 12  16  24  47  28  26]
- [ 10   7  11  27  61  36]
- [ 10   9  14  32  34  66]]
+| Parameter    | Value |
+|--------------|-------|
+| Vector Size  | 100   |
+| Window       | 8     |
+| Min Count    | 1     |
+| Epochs       | 100   |
+| C (Penalty)  | 10    |
+| Penalty Type | L1    |
+
+### Accuracy
+- **43.33%**
+
+### Confusion Matrix
+
+|       | Class 0 | Class 1 | Class 2 | Class 3 | Class 4 | Class 5 |
+|-------|---------|---------|---------|---------|---------|---------|
+| Class 0 | 118     | 28      | 15      | 2       | 1       | 2       |
+| Class 1 | 48      | 65      | 28      | 8       | 4       | 5       |
+| Class 2 | 29      | 40      | 59      | 21      | 9       | 8       |
+| Class 3 | 12      | 16      | 24      | 47      | 28      | 26      |
+| Class 4 | 10      | 7       | 11      | 27      | 61      | 36      |
+| Class 5 | 10      | 9       | 14      | 32      | 34      | 66      |
 
 
-While we also included the vector size of 200 in the loop for evaluation, our runtime disconnected. So, we computed it separately, with the 8-word window, min count of 1, over 100 epochs, and logistic regression with C=10 and L1 penalty.
+While we initially included a vector size of 200 in the evaluation loop, our runtime disconnected. Consequently, we computed this configuration separately. It used an 8-word window, a min count of 1, was trained over 100 epochs, and employed logistic regression with a C value of 10 and an L1 penalty. However, increasing the vector size to 200 resulted in a model accuracy of 40%.
 
 We have developed and evaluated a text classification model combining Doc2Vec embeddings with Logistic Regression. The model achieved an overall accuracy of 38.33% on the test dataset. 
 
