@@ -41,7 +41,7 @@ Purpose: We increased the regularization strength to C=10 and employed the l2 pe
 Configuration: LogisticRegression(C=10, penalty='l1', solver='saga')
 Purpose: To assess the impact of l1 regularization, which promotes sparsity in the model coefficients, potentially improving model interpretability and performance on sparse data sets.
 
-We used "saga2 as it showed slightly higher results than "lbfgs" in this scenario.
+We used "saga" as it showed slightly higher results than "lbfgs" in this scenario.
 
 **4. Model Evaluation and Results** 
 
@@ -79,21 +79,6 @@ The best accuracy observed was 43.33%, achieved with a configuration of 100-dime
 
 
 While we initially included a vector size of 200 in the evaluation loop, our runtime disconnected. Consequently, we computed this configuration separately. It used an 8-word window, a min count of 1, was trained over 100 epochs, and employed logistic regression with a C value of 10 and an L1 penalty. However, increasing the vector size to 200 resulted in a model accuracy of 40%.
-
-We have developed and evaluated a text classification model combining Doc2Vec embeddings with Logistic Regression. The model achieved an overall accuracy of 38.33% on the test dataset. 
-
-              precision    recall  f1-score   support
-
-           0       0.41      0.53      0.46       166
-           1       0.37      0.35      0.36       158
-           2       0.28      0.25      0.26       166
-           3       0.37      0.39      0.38       153
-           4       0.42      0.38      0.40       152
-           5       0.43      0.40      0.42       165
-
-    accuracy                           0.38       960
-   macro avg       0.38      0.38      0.38       960
-weighted avg       0.38      0.38      0.38       960
 
 The initial results suggest that the combination of Doc2Vec and Logistic Regression provides a baseline for understanding and classifying our text data. We further adding more features such as TF-IDF scores to improve the model's understanding of the text.
 
