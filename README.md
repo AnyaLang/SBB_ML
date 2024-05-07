@@ -20,7 +20,7 @@
 Transformed the sentence to *"équipe sbb faire mieux développer meilleur machine apprentissage automatique classification phrase"*
 
 **2. Feature Selection and Model Setup** Doc2Vec has several parameters that can be tuned:
-- *vector_size:* Dimensionality of the feature vectors. Values assessed: 50, 100, 200
+- *vector_size:* Dimensionality of the feature vectors. Values assessed: 50, 100
 - *window:* The maximum distance between the current and predicted word within a sentence. Values assessed: 2, 5, 8
 - *min_count:* Ignores all words with total frequency lower than this. Values assessed: 1 (no words are ignored based on frequency), 2, 5
 - *workers:* Use these many worker threads to train the model (faster training with multicore machines). Values assessed: 4
@@ -46,14 +46,26 @@ We used "saga2 as it showed slightly higher results than "lbfgs" in this scenari
 **4. Model Evaluation and Results** 
 
 1) **Regularization and Solver:** Configurations using {'C': 10, 'penalty': 'l1'} slightly outperformed those with {'C': 1, 'penalty': 'l2'}, indicating that stronger regularization with L1 penalty (which also promotes feature sparsity) might be more effective for this dataset.
-2) **Epochs:** Increasing the number of training epochs from 40 to 60 or even 100 did not consistently improve performance, suggesting that the model might be converging early or requires different adjustments in learning rate or vector dimensionality for further improvements. 40 epochs had the highest results for different configurations we made
+2) **Epochs:** Longer training periods (100 epochs) sometimes resulted in slightly improved accuracy but not consistently across all configurations.
 3) **Frequency count** Increasing min_count did not lead to an increase in the accuracy
 4) **Window** Larger window sizes led to higher accuracy from 2 to 8. This suggests that considering a broader context around each word helps the model to better understand the text and make more accurate predictions.
-5) **Vector_size**: With the vector size increase from 50 to 200, the accuracy of the model substantially increases
+5) **Vector_size**: With the vector size increase from 50 to 100, the accuracy of the model substantially increases
 6) **Training algorithms** DBOW (dm=0) performed better than DM (dm=1)
 
 The best accuracy observed was 43.33%, achieved with a configuration of 100-dimensional vectors, an 8-word window, min count of 1, 100 epochs, and logistic regression with C=10 and L1 penalty. This configuration suggests that higher dimensional vectors and more extensive training (more epochs) with stronger regularization might help in capturing more complex patterns in the data effectively.
 
+Testing Configuration: (100, 8, 1, 100, {'C': 10, 'penalty': 'l1'})
+Accuracy: 0.43333333333333335
+Confusion Matrix:
+ [[118  28  15   2   1   2]
+ [ 48  65  28   8   4   5]
+ [ 29  40  59  21   9   8]
+ [ 12  16  24  47  28  26]
+ [ 10   7  11  27  61  36]
+ [ 10   9  14  32  34  66]]
+
+
+While we also included the vector size of 200 in the loop for evaluation, our runtime disconnected. So, we computed it separately, with the 8-word window, min count of 1, over 100 epochs, and logistic regression with C=10 and L1 penalty.
 
 We have developed and evaluated a text classification model combining Doc2Vec embeddings with Logistic Regression. The model achieved an overall accuracy of 38.33% on the test dataset. 
 
