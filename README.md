@@ -131,11 +131,32 @@ Despite using the best parameters from our previous configuration for the model 
 
 **Conclusion**: The best accuracy we achieved was 44%, using a configuration that included 100-dimensional vectors, an 8-word window, a minimum count of 1, 100 epochs, and logistic regression with a regularization strength of C=10 and an L1 penalty. Given the computational constraints encountered during the training, we recognize that there is potential to achieve even higher accuracy, especially in the combination of the TF-IDF matrix. By using the default logistic regression and the same configuration for the Doc2Vec with TF-IDF matrix, we were able to achieve the 45% of accuracy of the model.
 
-Our other findings were that the model PV-DM performed worse than PV-DBOW. This might be explained by the different configurations that are required for the model training or that our dataset isn't large enough to capture meaningful context windows around each word. However, this might be also due to the normalisation of the words that we did, lemmatization, the removal of stopwords and punctuation can sometimes remove meaningful context, which is particularly important for PV-DM where the sequence of words matters more.
+Our other findings indicated that the PV-DM model performed worse than the PV-DBOW model. This could be attributed to several factors, including the distinct configuration requirements for training each model or the possibility that our dataset is not large enough to capture meaningful contextual windows around each word. Additionally, the normalization processes applied to the text—such as lemmatization and the removal of stopwords and punctuation—might have eliminated crucial contextual elements. 
 
 8️⃣ **BERT**
 
-BERT is another model that we deployed from Hugging Face. 
+> As described on one of the [Hugging Face blogs](https://huggingface.co/blog/bert-101), BERT, short for Bidirectional Encoder Representations from Transformers, is a Machine Learning (ML) model for natural language processing. It was developed in 2018 by researchers at Google AI Language and serves as a **swiss army knife solution to 11+ of the most common language tasks**, such as sentiment analysis and named entity recognition.
+
+And since we are in Switzerland 🇨🇭, deploying BERT seemed like a good idea to train the model for our task!
+
+**1. Model architecture** In the following image, we can see the different sizes and architectures of the BERT model:
+
+![Bert](https://huggingface.co/blog/assets/52_bert_101/BERT-size-and-architecture.png)
+
+Here’s how many of the ML architecture components BERTbase and BERTlarge have:
+
+| Model      | Transformer Layers | Hidden Size | Attention Heads | Parameters | Processing | Length of Training |
+|------------|--------------------|-------------|-----------------|------------|------------|--------------------|
+| BERTbase   | 12                 | 768         | 12              | 110M       | 4 TPUs     | 4 days             |
+| BERTlarge  | 24                 | 1024        | 16              | 340M       | 16 TPUs    | 4 days             |
+
+
+We used the large cased BERT model in our training:
+
+`tokenizer = BertTokenizer.from_pretrained('bert-large-cased')`
+`model_bert = BertModel.from_pretrained('bert-large-cased')`
+
+**2. Feature Selection and Model Setup** 
 
 By simply deploying the model alongside the XGBoost algorithm, we achieved an accuracy of 45%. We used the large cased BERT model to achieve these results.
 
