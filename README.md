@@ -214,17 +214,7 @@ For this model, we adjusted some of the parameters and also implemented a learni
 
 1) Increased sequence length: `tokenizer = BertTokenizer.from_pretrained('bert-base-cased', model_max_length=256)`
 
-2) Implemented the learning rate scheduler, which gradually reduces the learning rate as the number of epochs increases. In this case, no warm-up is added.
-
-```python
-scheduler = get_scheduler(
-    "linear",
-    optimizer=trainer.optimizer,
-    num_warmup_steps=0,
-    num_training_steps=num_train_epochs * len(train_dataset)
-)
-```
-3) Other training arguments remained unchanged.
+2) Other training arguments remained unchanged.
 
 *Results*
 | Epoch | Training Loss | Validation Loss | Accuracy  | F1       | Precision | Recall   |
@@ -234,7 +224,7 @@ scheduler = get_scheduler(
 | 3     | 1.314400      | 1.172957        | 50.6250%  | 49.9922% | 50.8831%  | 50.3099% |
 
 
-In this case, the accuracy became lower, but by using the increased sequence length and the learning rate scheduler we see a substantial decrease in the loss validation compared to our **Base BERT Model**. This can suggest that our model is generalizing better and not overfitting to the training data.
+In this case, the accuracy became lower, but by using the increased sequence length we see a decrease in the loss validation compared to our **Base BERT Model**. This can suggest that our model is generalizing better and not overfitting to the training data.
 
 In the next step, we **increased the number of epochs to 5 epochs to monitor if there were any further improvements in the model accuracy.**
 
@@ -275,6 +265,25 @@ scheduler = get_scheduler(
 3) Training arguments remain the same except that we train the model over 5 epochs
 
 
+*Results*
+Epoch	Training Loss	Validation Loss	Accuracy	F1	Precision	Recall
+1	No log	1.267879	0.477083	0.451297	0.481879	0.458471
+2	1.430800	1.203128	0.477083	0.462310	0.504893	0.478295
+3	1.430800	1.208598	0.487500	0.479938	0.494882	0.489304
+4	1.082900	1.232723	0.481250	0.470514	0.493689	0.482663
+5	1.082900	1.325347	0.458333	0.449964	0.484276	0.454747
+
+We tried the same configuration for the sequence length of 128 and results were better.
+
+*Results*
+Epoch	Training Loss	Validation Loss	Accuracy	F1	Precision	Recall
+1	No log	1.355164	0.450000	0.434859	0.478929	0.440591
+2	1.420100	1.225194	0.487500	0.470986	0.497426	0.492272
+3	1.420100	1.194121	0.489583	0.480262	0.490184	0.489477
+4	1.080000	1.178910	0.514583	0.508377	0.512584	0.513463
+5	1.080000	1.262359	0.500000	0.490216	0.505802	0.495725
+
+
 2) Adjusted training arguments:
 
 ```python
@@ -299,17 +308,13 @@ Epoch	Training Loss	Validation Loss	Accuracy	F1	Precision	Recall
 
 
 **4. Results**
-
-1) **Training Configuration**: Models with a higher sequence length (`max_length=256`) slightly outperformed those with the default length, indicating that capturing more context from the input text can be beneficial.
-2) **Dropout and Regularization**: Introducing higher dropout rates improved model robustness, reducing overfitting as observed in validation loss improvements.
-3) **Epochs**: Longer training periods (up to 5 epochs) generally resulted in improved accuracy, suggesting that the model benefits from more extensive training iterations to better learn the complexities of the dataset.
-4) **Learning Rate**: Adjusting the learning rate to be lower showed better convergence over epochs without overshooting minima.
-5) **Tokenization Effects**: Expanding the tokenizer's vocabulary and enabling more aggressive token cleaning techniques slightly increased model performance, hinting at the importance of input quality and preprocessing.
-6) **Comparison with Traditional Classifiers**: BERT outperformed traditional machine learning classifiers (such as logistic regression) across most metrics, especially in handling nuanced language features and complex sentence structures.
-7) **Training Strategy**: Employing dynamic masking and varied sentence lengths during training helped the model generalize better to unseen text, avoiding common pitfalls of fixed masking strategies.
+1) **Comparison with Traditional Classifiers**: BERT outperformed traditional machine learning classifiers (such as logistic regression) across most metrics, especially in handling nuanced language features and complex sentence structures.
+2) **Training Configuration**: Models with a higher sequence length (`max_length=256`) performed worse over the same configurations. This does not suggest that higher sequence is worse, only within the scope of the training that we chose. Further hyperparameter tuning is needed to make a more definitive conclusion.
+3) **Dropout and Regularization**: Introducing dropout rates should improve model robustness, for our training we have not observed substantial differences.
+4) **Epochs**: Longer training periods (up to 4 epochs) generally resulted in improved accuracy
 
 
-**Conclusion**: 
+**Conclusion**: Introducing more things to the model made it perform worse, for the next stages it would be recommended to look more into the training parameters, such as adjusting the learning rate, and batch size and further see if the impact of the scheduler and the noise reduction. 
 
 While the capabilities of this model are extensive, we chose the FlauBERT model, which is more targeted towards our task, and therefore did not perform further hyperparameter tuning for BERT.
 
