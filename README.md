@@ -1,6 +1,6 @@
 # SBB_ML
 
-7️⃣ **Doc2Vec**
+## 7️⃣ **Doc2Vec**
 
 In our Doc2Vec model, each word in the corpus is represented as a unique, high-dimensional vector. These vectors are trained such that words appearing in similar contexts have vectors that are close to each other in vector space. This characteristic allows the model to capture semantic relationships between words based on their usage in the text. We decided to explore which words our model finds semantically similar. We decided to look at the word "jour"
 
@@ -133,7 +133,7 @@ Despite using the best parameters from our previous configuration for the model 
 
 Our other findings indicated that the PV-DM model performed worse than the PV-DBOW model. This could be attributed to several factors, including the distinct configuration requirements for training each model or the possibility that our dataset is not large enough to capture meaningful contextual windows around each word. Additionally, the normalization processes applied to the text—such as lemmatization and the removal of stopwords and punctuation—might have eliminated crucial contextual elements. 
 
-8️⃣ **BERT**
+## 8️⃣ **BERT**
 
 > As described on one of the [Hugging Face blogs](https://huggingface.co/blog/bert-101), BERT, short for Bidirectional Encoder Representations from Transformers, is a Machine Learning (ML) model for natural language processing. It was developed in 2018 by researchers at Google AI Language and serves as a **swiss army knife solution to 11+ of the most common language tasks**, such as sentiment analysis and named entity recognition.
 
@@ -301,7 +301,7 @@ We tried the same configuration for the sequence length of 128 and results were 
 
 **Conclusion**: Starting with a *basic configuratio*n of `max_length = 128`, the BERT model achieved a maximum accuracy of **51.4583%**, setting a performance benchmark. BERT has outperformed traditional models with the base configuration. During the training, we have observed that shorter sequence lengths (128 tokens) demonstrated better performance across metrics compared to longer lengths. Besides, during the training of the model over 5 epochs, the performance peaked at around the fourth epoch in multiple setups. This suggests that additional changes should be made to the training of the model, e.g. learning rate management or additional regularisation. While we incorporated the learning scheduler and also the droupout to the model, the results did not improve. While the capabilities of this model are extensive, we chose the FlauBERT model, which is more targeted towards our task, and therefore did not perform further hyperparameter tuning for BERT.
 
-9️⃣ **FlauBERT**
+## 9️⃣ **FlauBERT**
 
 
 **1. Model architecture**
