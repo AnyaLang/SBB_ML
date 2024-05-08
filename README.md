@@ -129,7 +129,7 @@ In our Doc2Vec model, each word in the corpus is represented as a unique, high-d
 - sport: 0.9793
 - voir: 0.9790
 
-**Conclusion**: The best accuracy we achieved was 44%, using a configuration that included 100-dimensional vectors, an 8-word window, a minimum count of 1, 100 epochs, and logistic regression with a regularization strength of C=10 and an L1 penalty. This configuration highlighted the potential of using higher-dimensional vectors and extensive training alongside strong regularization to effectively capture complex patterns in data. Given the computational constraints encountered during our experimentation, we recognize that there is potential to achieve even higher accuracy, especially in the combination of the TF-IDF matrix. 
+**Conclusion**: The best accuracy we achieved was 44%, using a configuration that included 100-dimensional vectors, an 8-word window, a minimum count of 1, 100 epochs, and logistic regression with a regularization strength of C=10 and an L1 penalty. This configuration highlighted the potential of using higher-dimensional vectors and extensive training alongside strong regularization to effectively capture complex patterns in data. Given the computational constraints encountered during our experimentation, we recognize that there is potential to achieve even higher accuracy, especially in the combination of the TF-IDF matrix, because with the default logistic regression and the same configuration for the Doc2Vec, we were able to achieve the 45% of the accuracy of the model.
 
 
 **BERT**
