@@ -291,44 +291,22 @@ We tried the same configuration for the sequence length of 128 and results were 
 
 ![epoch 5 128 scheduler](https://github.com/AnyaLang/SBB_ML/blob/34004983c35113d6524c1e9d78367eb71e43a089/5%20epocsh%20128%20sequence.png)
 
-2) Adjusted training arguments:
-
-```python
-training_args = TrainingArguments(
-    output_dir='./results',
-    evaluation_strategy='epoch',
-    save_strategy='epoch',
-    learning_rate=1e-5,  # Adjusted learning rate
-    per_device_train_batch_size=32,  # Adjusted batch size
-    per_device_eval_batch_size=128,  # Adjusted batch size
-    num_train_epochs=5,  # Increased number of epochs
-    weight_decay=0.01
-)
-```
-
-Epoch	Training Loss	Validation Loss	Accuracy	F1	Precision	Recall
-1	No log	1.452570	0.412500	0.369941	0.407669	0.407391
-2	No log	1.316133	0.433333	0.407037	0.412354	0.423493
-3	No log	1.280372	0.462500	0.446163	0.452032	0.451226
-4	1.411800	1.298560	0.437500	0.416285	0.428490	0.429181
-5	1.411800	1.354120	0.422917	0.401296	0.432286	0.415019
-
 
 **4. Results**
 1) **Comparison with Traditional Classifiers**: BERT outperformed traditional machine learning classifiers (such as logistic regression) across most metrics, especially in handling nuanced language features and complex sentence structures.
-2) **Training Configuration**: Models with a higher sequence length (`max_length=256`) performed worse over the same configurations. This does not suggest that higher sequence is worse, only within the scope of the training that we chose. Further hyperparameter tuning is needed to make a more definitive conclusion.
-3) **Dropout and Regularization**: Introducing dropout rates should improve model robustness, for our training we have not observed substantial differences.
-4) **Epochs**: Longer training periods (up to 4 epochs) generally resulted in improved accuracy
+2) **Training Configuration**: Models with a higher sequence length (`max_length=256`) underperformed compared to those with shorter sequences across the same training configurations. However, this does not necessarily imply that longer sequences are inherently less effective. The observed results might be specific to the chosen training setup. More comprehensive hyperparameter tuning is required to draw a definitive conclusion about the impact of sequence length on model performance.
+3) **Dropout**: By increasing the time of the training, and adding additional epochs, we observed that the model seems to start overfitting. Incorporating dropout did not significantly deter overfitting in our setting. 
+5) **Epochs**: Longer training periods (up to 4 epochs) generally resulted in improved accuracy
+6) **Learning Rate Scheduler with Warm-up:** Introduction of a warm-up phase in the learning rate scheduler helped in stabilising early training but we did not observe substantial improvement of the model regarding scheduler preventing the model overfitting or leading to higher accuracy.
 
-
-**Conclusion**: Introducing more things to the model made it perform worse, for the next stages it would be recommended to look more into the training parameters, such as adjusting the learning rate, and batch size and further see if the impact of the scheduler and the noise reduction. 
-
-While the capabilities of this model are extensive, we chose the FlauBERT model, which is more targeted towards our task, and therefore did not perform further hyperparameter tuning for BERT.
+**Conclusion**: Starting with a *basic configuratio*n of `max_length = 128`, the BERT model achieved a maximum accuracy of **51.4583%**, setting a performance benchmark. BERT has outperformed traditional models with the base configuration. During the training, we have observed that shorter sequence lengths (128 tokens) demonstrated better performance across metrics compared to longer lengths. Besides, during the training of the model over 5 epochs, the performance peaked at around the fourth epoch in multiple setups. This suggests that additional changes should be made to the training of the model, e.g. learning rate management or additional regularisation. While we incorporated the learning scheduler and also the droupout to the model, the results did not improve. While the capabilities of this model are extensive, we chose the FlauBERT model, which is more targeted towards our task, and therefore did not perform further hyperparameter tuning for BERT.
 
 9️⃣ **FlauBERT**
-## **Training the model with the FlauBERT model**
 
-For our training, we are using the FlauBERT model from [Hugging Face](https://huggingface.co/docs/transformers/en/model_doc/flaubert), as described:
+
+**1. Model architecture**
+
+We are using the FlauBERT model from [Hugging Face](https://huggingface.co/docs/transformers/en/model_doc/flaubert), as described:
 
 > The FlauBERT model was proposed in the paper FlauBERT: Unsupervised Language Model Pre-training for French by Hang Le et al. It’s a transformer model pretrained using a masked language modeling (MLM) objective (like BERT).
 
@@ -341,24 +319,40 @@ For the FlauBERT model, one can choose from several options:
 | flaubert-base-cased       | 12               | 12              | 768                 | 138M             |
 | flaubert-large-cased      | 24               | 16              | 1024                | 373M             |
 
-We will use the FlauBERT large cased model because it has greater depth, a more sophisticated attention mechanism, a larger embedding size, and a higher parameter count. Larger models such as the FlauBERT large cased typically outperform smaller ones across a variety of language understanding benchmarks, potentially offering higher accuracy.
+We will use the FlauBERT large cased model because it offers greater depth, a more sophisticated attention mechanism, larger embedding sizes, and a higher parameter count. We believe that this model will provide us with the highest potential accuracy. Although we are aware of potential computational limitations, we have decided to deploy this model as it best aligns with the goals of our task and is specifically trained to better classify French text.
 
-Also, the [BERT authors recommend fine-tuning](https://github.com/google-research/bert) for four epochs with the following hyperparameter options:
+```python
+model_french = 'flaubert/flaubert_large_cased'
+tokenizer = FlaubertTokenizer.from_pretrained(model_french, do_lowercase=False)
+```
+**Model parameters**
 
-- batch sizes: 8, 16, 32, 64, 128
-- learning rates: 3e-4, 1e-4, 5e-5, 3e-5
+The model has quite an extensive range of [parameters](https://huggingface.co/transformers/v3.2.0/model_doc/flaubert.html). For instance, default parameters of the model include language embeddings, and the `max_position_embeddings` was set to 512.  We decided to initially concentrate on hyperparameter tuning, particularly adjusting batch sizes, learning rates, and training epochs to optimise performance. If the results are not satisfactory and computational resources permit, we will delve deeper into other configurations. This may include exploring the pre-norm and post-norm settings in the transformer layers, which can affect training dynamics and model stability, different regularisation and dropout techniques etc.
 
-Given the computational limitation, we will train our model only on 2 different different batch sizes.
+**Hyperparameter tuning**
 
-### **FlauBERT Model over different learning rates:**
+Upon additionally reviewing the documentation on BERT and [FlauBERT](https://huggingface.co/docs/transformers/en/model_doc/flaubert), the optimal training duration for FlauBERT is approximately four epochs, with the following hyperparameter options:
 
-Important to note that our first model is trained using the **AdamW optimizer**, which is a variant of the traditional Adam optimizer. AdamW incorporates a regularization technique known as [weight decay](https://github.com/tml-epfl/why-weight-decay), which is used in training neural networks to prevent overfitting. It functions by incorporating a term into the loss function that penalizes large weights.
+*Batch sizes:* 8, 16, 32, 64, 128
+*Learning rates:* 3e-4, 1e-4, 5e-5, 3e-5
 
-Besides, we also employ a **Linear Learning Rate Scheduler** to manage the learning rate throughout the training process. This scheduler starts with a relatively high learning rate and gradually decreases it to near zero by the end of the training. This approach ensures that we begin training with aggressive learning steps and fine-tune the model parameters more delicately as training progresses.
+We will explore some of the listed batch sizes and the learning rates and also adjust other parameters during our training
 
-Although this training setup does not include a warm-up phase where the learning rate would gradually ramp up before decreasing, the scheduler is configured to reduce the learning rate slightly with each training step. This gradual reduction helps in stabilizing the training as it advances.
 
-We would like to first observe the results with this setup and may adjust these parameters further based on the outcomes of the initial training phase.
+**3. Model training**
+
+### **Evaluating the optimal parameters for training**
+
+Given the computational limitation, we will train our model only on 2 different different batch sizes to make this initial evaluation.
+
+```python
+# Parameters
+learning_rates = [1e-4, 5e-5, 3e-5, 2e-5]
+learning_rates = [1e-4, 5e-5, 3e-5, 2e-5]
+num_epochs = 4
+train_batch_sizes = [16, 32]  
+eval_batch_sizes = [16, 32]   
+```
 
 **Results of the training on the batch of 16 with different learning rates**
 
@@ -381,8 +375,12 @@ We would like to first observe the results with this setup and may adjust these 
 | 2e-05         | 3     | 0.06963      | 53.44%     | 53.24%    | 53.44%    | 52.64%    | -                      |
 | 2e-05         | 4     | 0.06303      | 52.71%     | 52.48%    | 52.71%    | 52.28%    | -                      |
 
+*Note on the training*
+Important to note that our first model is trained using the **AdamW optimizer**, which is a variant of the traditional Adam optimizer. AdamW incorporates a regularization technique known as [weight decay](https://github.com/tml-epfl/why-weight-decay), which is used in training neural networks to prevent overfitting. It functions by incorporating a term into the loss function that penalizes large weights.Besides, we also employ a **Linear Learning Rate Scheduler** to manage the learning rate throughout the training process. T Although this training setup does not include a warm-up phase where the learning rate would gradually ramp up before decreasing, the scheduler is configured to reduce the learning rate slightly with each training step. This gradual reduction helps in stabilizing the training as it advances.
 
-Our training was interrupted, so we couldn't fully evaluate the results for a batch size of 32. However, from what we observed, a learning rate of 5e-05 yielded the highest performance in terms of accuracy, precision, recall, and F1 score. In the next stage, we will continue training our model using this learning rate and adjust the batch size to fully assess the results for batch 32.
+*Results for different training parameters*
+
+Our training was interrupted, so we couldn't fully evaluate the results for a batch size of 32. However, from what we observed, a **learning rate of 5e-05 yielded the highest performance in terms of accuracy, precision, recall, and F1 score**. In the next stage, we will continue training our model using this learning rate and adjust the batch size to fully assess the results for batch 32.
 
 We further trained the model on the batch size 32 over 4 epochs with the learning rate 5e-05. These are the results that we got:
 
