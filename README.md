@@ -101,7 +101,7 @@ Despite using the best parameters from our previous configuration for the model 
 | **C5**| 10 |  3 | 10 | 21 | 63 | 45 |
 | **C6**| 12 |  5 |  9 | 30 | 29 | 80 |
 
-## Classification Report
+**Classification Report**
 
 | Class | Precision | Recall | F1-Score | Support |
 |-------|-----------|--------|----------|---------|
