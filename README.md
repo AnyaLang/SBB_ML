@@ -247,7 +247,9 @@ In the next step, we **increased the number of epochs to 5 epochs to monitor if 
 | 4     | 0.874100      | 1.205762        | 51.0417%  | 50.7684% | 51.5135%  | 50.7474% |
 | 5     | 0.874100      | 1.277318        | 50.2083%  | 49.4280% | 50.3706%  | 49.5938% |
 
+![matrix 5 epochs](https://github.com/AnyaLang/SBB_ML/blob/a5cf10d1a746b20f157ee7c4f0ce95cabee498e2/BERT%20increased%20sequence_5epochs.png)
 
+![training loss](https://github.com/AnyaLang/SBB_ML/blob/a5cf10d1a746b20f157ee7c4f0ce95cabee498e2/BERT%20training%20loss%20vs%20validation%20loss.png)
 
 The training loss decreases significantly after the third epoch, indicating that the model continues to learn and improve its understanding of the training data as more epochs are processed. The validation loss does not show a clear decreasing trend; it increases slightly in the later epochs. This could suggest the beginning of overfitting. The accuracy is the highest in the 4th epoch.
 
