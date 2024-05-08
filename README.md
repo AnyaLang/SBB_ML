@@ -129,12 +129,15 @@ Despite using the best parameters from our previous configuration for the model 
 | **Macro Avg**  | 0.44      | 0.44   | 0.44     | 960     |
 | **Weighted Avg** | 0.44    | 0.45   | 0.44     | 960     |
 
-**Conclusion**: The best accuracy we achieved was 44%, using a configuration that included 100-dimensional vectors, an 8-word window, a minimum count of 1, 100 epochs, and logistic regression with a regularization strength of C=10 and an L1 penalty. This configuration highlighted the potential of using higher-dimensional vectors and extensive training alongside strong regularization to effectively capture complex patterns in data. Given the computational constraints encountered during our experimentation, we recognize that there is potential to achieve even higher accuracy, especially in the combination of the TF-IDF matrix, because with the default logistic regression and the same configuration for the Doc2Vec, we were able to achieve the 45% of the accuracy of the model.
+**Conclusion**: The best accuracy we achieved was 44%, using a configuration that included 100-dimensional vectors, an 8-word window, a minimum count of 1, 100 epochs, and logistic regression with a regularization strength of C=10 and an L1 penalty. Given the computational constraints encountered during the training, we recognize that there is potential to achieve even higher accuracy, especially in the combination of the TF-IDF matrix. By using the default logistic regression and the same configuration for the Doc2Vec with TF-IDF matrix, we were able to achieve the 45% of accuracy of the model.
 
+Our other findings were that the model PV-DM performed worse than PV-DBOW. This might be explained by the different configurations that are required for the model training or that our dataset isn't large enough to capture meaningful context windows around each word. However, this might be also due to the normalisation of the words that we did, lemmatization, the removal of stopwords and punctuation can sometimes remove meaningful context, which is particularly important for PV-DM where the sequence of words matters more.
 
-**BERT**
+8️⃣ **BERT**
 
-BERT is another model that we deployed from Hugging Face. While the capabilities of this model are extensive, we chose the FlauBERT model, which is more targeted towards our task, and therefore did not perform hyperparameter tuning for BERT. By simply deploying the model alongside the XGBoost algorithm, we achieved an accuracy of 45%. We used the large cased BERT model to achieve these results.
+BERT is another model that we deployed from Hugging Face. 
+
+By simply deploying the model alongside the XGBoost algorithm, we achieved an accuracy of 45%. We used the large cased BERT model to achieve these results.
 
 `tokenizer = BertTokenizer.from_pretrained('bert-large-cased')`
 `model_bert = BertModel.from_pretrained('bert-large-cased')`
@@ -150,6 +153,10 @@ BERT is another model that we deployed from Hugging Face. While the capabilities
            5       0.48      0.45      0.46       165
 
 
+
+While the capabilities of this model are extensive, we chose the FlauBERT model, which is more targeted towards our task, and therefore did not perform hyperparameter tuning for BERT.
+
+9️⃣ **FlauBERT**
 ## **Training the model with the FlauBERT model**
 
 For our training, we are using the FlauBERT model from [Hugging Face](https://huggingface.co/docs/transformers/en/model_doc/flaubert), as described:
