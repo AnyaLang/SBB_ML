@@ -45,61 +45,73 @@ We used "saga" as it showed slightly higher results than "lbfgs" in this scenari
 
 **4. Model Evaluation and Results** 
 
-1) **Regularization and Solver:** Configurations using {'C': 10, 'penalty': 'l1'} slightly outperformed those with {'C': 1, 'penalty': 'l2'}, indicating that stronger regularization with L1 penalty (which also promotes feature sparsity) might be more effective for this dataset.
+1) **Regularization and Solver:** Configurations using {'C': 10, 'penalty': 'l2'} slightly outperformed those with {'C': 1, 'penalty': 'l1'}, indicating that stronger regularization with L2 penalty (which also promotes feature sparsity) might be more effective for this dataset.
 2) **Epochs:** Longer training periods (100 epochs) sometimes resulted in slightly improved accuracy but not consistently across all configurations.
 3) **Frequency count** Increasing min_count did not lead to an increase in the accuracy
 4) **Window** Larger window sizes led to higher accuracy from 2 to 8. This suggests that considering a broader context around each word helps the model to better understand the text and make more accurate predictions.
 5) **Vector_size**: With the vector size increase from 50 to 100, the accuracy of the model substantially increases
 6) **Training algorithms** DBOW (dm=0) performed better than DM (dm=1)
 
-The best accuracy observed was 43.33%, achieved with a configuration of 100-dimensional vectors, an 8-word window, min count of 1, 100 epochs, and logistic regression with C=10 and L1 penalty. This configuration suggests that higher dimensional vectors and more extensive training (more epochs) with stronger regularization might help in capturing more complex patterns in the data effectively.
+The best accuracy observed was 44%, achieved with a configuration of 100-dimensional vectors, an 8-word window, min count of 1, 100 epochs, and logistic regression with C=10 and L1 penalty. This configuration suggests that higher dimensional vectors and more extensive training (more epochs) with stronger regularization might help in capturing more complex patterns in the data effectively.
 
-| Parameter    | Value |
-|--------------|-------|
-| Vector Size  | 100   |
-| Window       | 8     |
-| Min Count    | 1     |
-| Epochs       | 100   |
-| C (Penalty)  | 10    |
-| Penalty Type | L1    |
+*Best model configuration*
 
-### Accuracy
-- **43.33%**
+| Parameter      | Value                 |
+|----------------|-----------------------|
+| Vector Size    | 100-dimensional       |
+| Window         | 8-word                |
+| Minimum Count  | 1                     |
+| Epochs         | 100                   |
+| Classifier     | Logistic Regression   |
+| C              | 10                    |
+| Penalty        | L1                    |
 
-### Confusion Matrix
+**Confusion Matrix:**
 
-|       | Class 0 | Class 1 | Class 2 | Class 3 | Class 4 | Class 5 |
-|-------|---------|---------|---------|---------|---------|---------|
-| Class 0 | 118     | 28      | 15      | 2       | 1       | 2       |
-| Class 1 | 48      | 65      | 28      | 8       | 4       | 5       |
-| Class 2 | 29      | 40      | 59      | 21      | 9       | 8       |
-| Class 3 | 12      | 16      | 24      | 47      | 28      | 26      |
-| Class 4 | 10      | 7       | 11      | 27      | 61      | 36      |
-| Class 5 | 10      | 9       | 14      | 32      | 34      | 66      |
+|       | C1 | C2 | C3 | C4 | C5 | C6 |
+|-------|----|----|----|----|----|----|
+| **C1**|111 | 30 | 20 |  1 |  1 |  3 |
+| **C2**| 43 | 65 | 31 | 11 |  2 |  6 |
+| **C3**| 25 | 34 | 53 | 27 | 12 | 15 |
+| **C4**|  7 |  6 | 22 | 60 | 27 | 31 |
+| **C5**|  2 |  4 |  9 | 34 | 60 | 43 |
+| **C6**|  3 |  3 | 23 | 14 | 48 | 74 |
 
-
-While we initially included a vector size of 200 in the evaluation loop, our runtime disconnected. Consequently, we computed this configuration separately. It used an 8-word window, a min count of 1, was trained over 100 epochs, and employed logistic regression with a C value of 10 and an L1 penalty. However, increasing the vector size to 200 resulted in a model accuracy of 40%.
+While initially including a vector size of 200 in the evaluation loop, runtime issues occurred. This configuration was computed separately, revealing a model accuracy of 40%.
 
 The initial results suggest that the combination of Doc2Vec and Logistic Regression provides a baseline for understanding and classifying our text data. We further adding more features such as TF-IDF scores to improve the model's understanding of the text.
 
-We used the best parameters from our previous configuration for the model with TF-IDF matrix.
+The integration of **TF-IDF** features with **Doc2Vec** embeddings has improved the logistic regression model for text classification:
 
-The integration of TF-IDF features with Doc2Vec embeddings has improved the performance of our logistic regression model for text classification. The updated model achieved an accuracy of 43.125% on the test dataset.
+**TF-IDF Configuration:** `TfidfVectorizer(ngram_range=(1, 2))`
 
-              precision    recall  f1-score   support
+Despite using the best parameters from our previous configuration for the model with a TF-IDF matrix, we encountered computational limitations using LogisticRegression(C=10, penalty='l2', solver='saga'). A default version of logistic regression was subsequently used.
 
-           0       0.49      0.46      0.47       166
-           1       0.39      0.41      0.40       158
-           2       0.36      0.31      0.34       166
-           3       0.39      0.40      0.39       153
-           4       0.45      0.49      0.47       152
-           5       0.51      0.52      0.51       165
+- **Combined Features Testing Configuration:** (100, 8, 1, 40)
+- **Combined Features Accuracy:** 44.89%
 
-    accuracy                           0.43       960
-   macro avg       0.43      0.43      0.43       960
-weighted avg       0.43      0.43      0.43       960
+**Confusion Matrix:**
 
-![tf-idf](https://github.com/AnyaLang/SBB_ML/blob/18c355a151c996d9a5e7fe071d9441811cddb981/confusion%20matrix_TFIDF.png)
+|       | C1 | C2 | C3 | C4 | C5 | C6 |
+|-------|----|----|----|----|----|----|
+| **C1**|119 | 34 | 12 |  0 |  0 |  1 |
+| **C2**| 60 | 67 | 26 |  2 |  2 |  1 |
+| **C3**| 34 | 45 | 50 | 19 | 10 |  8 |
+| **C4**| 17 |  7 | 21 | 52 | 32 | 24 |
+| **C5**| 10 |  3 | 10 | 21 | 63 | 45 |
+| **C6**| 12 |  5 |  9 | 30 | 29 | 80 |
+
+## Classification Report
+
+| Class | Precision | Recall | F1-Score | Support |
+|-------|-----------|--------|----------|---------|
+| 0     | 0.45      | 0.68   | 0.54     | 166     |
+| 1     | 0.39      | 0.39   | 0.39     | 158     |
+| 2     | 0.38      | 0.30   | 0.33     | 166     |
+| 3     | 0.45      | 0.38   | 0.41     | 153     |
+| 4     | 0.48      | 0.40   | 0.44     | 152     |
+| 5     | 0.51      | 0.52   | 0.52     | 165     |
+| **Total/Avg** | **0.44**  | **0.45**   | **0.44**     | **960** |
 
 
 In our Doc2Vec model, each word in the corpus is represented as a unique, high-dimensional vector. These vectors are trained such that words appearing in similar contexts have vectors that are close to each other in vector space. This characteristic allows the model to capture semantic relationships between words based on their usage in the text. We decided to explore which words our model finds semantically similar. We decided to look at the word "jour"
