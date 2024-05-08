@@ -217,6 +217,7 @@ For this model, we adjusted some of the parameters and also implemented a learni
 2) Other training arguments remained unchanged.
 
 *Results*
+
 | Epoch | Training Loss | Validation Loss | Accuracy  | F1       | Precision | Recall   |
 |-------|---------------|-----------------|-----------|----------|-----------|----------|
 | 1     | No log        | 1.221369        | 48.5417%  | 47.8542% | 51.3343%  | 48.5758% |
@@ -229,6 +230,7 @@ In this case, the accuracy became lower, but by using the increased sequence len
 In the next step, we **increased the number of epochs to 5 epochs to monitor if there were any further improvements in the model accuracy.**
 
 *Results*
+
 | Epoch | Training Loss | Validation Loss | Accuracy  | F1       | Precision | Recall   |
 |-------|---------------|-----------------|-----------|----------|-----------|----------|
 | 1     | No log        | 1.235162        | 48.7500%  | 47.1810% | 52.0505%  | 48.5894% |
@@ -376,6 +378,7 @@ eval_batch_sizes = [16, 32]
 | 2e-05         | 4     | 0.06303      | 52.71%     | 52.48%    | 52.71%    | 52.28%    | -                      |
 
 *Note on the training*
+
 Important to note that our first model is trained using the **AdamW optimizer**, which is a variant of the traditional Adam optimizer. AdamW incorporates a regularization technique known as [weight decay](https://github.com/tml-epfl/why-weight-decay), which is used in training neural networks to prevent overfitting. It functions by incorporating a term into the loss function that penalizes large weights.Besides, we also employ a **Linear Learning Rate Scheduler** to manage the learning rate throughout the training process. T Although this training setup does not include a warm-up phase where the learning rate would gradually ramp up before decreasing, the scheduler is configured to reduce the learning rate slightly with each training step. This gradual reduction helps in stabilizing the training as it advances.
 
 *Results for different training parameters*
