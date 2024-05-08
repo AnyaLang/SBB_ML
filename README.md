@@ -251,11 +251,12 @@ In the next step, we **increased the number of epochs to 5 epochs to monitor if 
 
 ![training loss](https://github.com/AnyaLang/SBB_ML/blob/a5cf10d1a746b20f157ee7c4f0ce95cabee498e2/BERT%20training%20loss%20vs%20validation%20loss.png)
 
-The training loss decreases significantly after the third epoch, indicating that the model continues to learn and improve its understanding of the training data as more epochs are processed. The validation loss does not show a clear decreasing trend; it increases slightly in the later epochs. This could suggest the beginning of overfitting. The accuracy is the highest in the 4th epoch.
+The training loss decreases significantly after the third epoch, indicating that the model continues to learn and improve its understanding of the training data as more epochs are processed. The validation loss does not show a clear decreasing trend; it increases slightly in the later epochs. This could suggest the beginning of **overfitting**. **The accuracy is the highest in the 4th epoch.**
 
 
 **BERT with Additional Dropout**:
-In addition to the previous configuration, the further modifications were made:
+
+In addition to the previous configuration, further modifications were made:
 
 1) To prevent overfitting or underfitting, we included the dropout rate parameter
 
@@ -263,8 +264,19 @@ In addition to the previous configuration, the further modifications were made:
 
 2) Included the warmup stage to the scheduler.
 
+```python
+scheduler = get_scheduler(
+    "linear",
+    optimizer=optimizer,
+    num_warmup_steps=int(0.1 * num_training_steps),  # 10% of training steps as warm-up
+    num_training_steps=num_training_steps
+)
+```
+3) Training arguments remain the same except that we train the model over 5 epochs
+
+
 2) Adjusted training arguments:
-   
+
 ```python
 training_args = TrainingArguments(
     output_dir='./results',
@@ -278,38 +290,12 @@ training_args = TrainingArguments(
 )
 ```
 
-1) To prevent overfitting or underfitting, we included the dropout rate parameter
-
-`config = BertConfig.from_pretrained('bert-base-cased', num_labels=len(label_dict), hidden_dropout_prob=0.2)`
-
-
-
 Epoch	Training Loss	Validation Loss	Accuracy	F1	Precision	Recall
 1	No log	1.452570	0.412500	0.369941	0.407669	0.407391
 2	No log	1.316133	0.433333	0.407037	0.412354	0.423493
 3	No log	1.280372	0.462500	0.446163	0.452032	0.451226
 4	1.411800	1.298560	0.437500	0.416285	0.428490	0.429181
 5	1.411800	1.354120	0.422917	0.401296	0.432286	0.415019
-
-
-with all different things but same configuration:
-
-# Training arguments
-training_args = TrainingArguments(
-    output_dir='./results',
-    evaluation_strategy='epoch',
-    save_strategy='epoch',
-    learning_rate=2e-5,
-    per_device_train_batch_size=16,
-    per_device_eval_batch_size=64,
-    num_train_epochs=3,
-    weight_decay=0.01
-)
-
-Epoch	Training Loss	Validation Loss	Accuracy	F1	Precision	Recall
-1	No log	1.251293	0.479167	0.459857	0.494765	0.475285
-2	1.360500	1.186942	0.493750	0.482764	0.492060	0.491113
-3	1.360500	1.234582	0.481250	0.467804	0.491556	0.478042
 
 
 **4. Results**
@@ -322,6 +308,8 @@ Epoch	Training Loss	Validation Loss	Accuracy	F1	Precision	Recall
 6) **Comparison with Traditional Classifiers**: BERT outperformed traditional machine learning classifiers (such as logistic regression) across most metrics, especially in handling nuanced language features and complex sentence structures.
 7) **Training Strategy**: Employing dynamic masking and varied sentence lengths during training helped the model generalize better to unseen text, avoiding common pitfalls of fixed masking strategies.
 
+
+**Conclusion**: 
 
 While the capabilities of this model are extensive, we chose the FlauBERT model, which is more targeted towards our task, and therefore did not perform further hyperparameter tuning for BERT.
 
