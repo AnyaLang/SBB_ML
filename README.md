@@ -265,24 +265,31 @@ scheduler = get_scheduler(
 3) Training arguments remain the same except that we train the model over 5 epochs
 
 
-*Results*
-Epoch	Training Loss	Validation Loss	Accuracy	F1	Precision	Recall
-1	No log	1.267879	0.477083	0.451297	0.481879	0.458471
-2	1.430800	1.203128	0.477083	0.462310	0.504893	0.478295
-3	1.430800	1.208598	0.487500	0.479938	0.494882	0.489304
-4	1.082900	1.232723	0.481250	0.470514	0.493689	0.482663
-5	1.082900	1.325347	0.458333	0.449964	0.484276	0.454747
+*Results for the model with max_lenght = 258*
+
+| Epoch | Training Loss | Validation Loss | Accuracy  | F1       | Precision | Recall   |
+|-------|---------------|-----------------|-----------|----------|-----------|----------|
+| 1     | No log        | 1.267879        | 47.7083%  | 45.1297% | 48.1879%  | 45.8471% |
+| 2     | 1.430800      | 1.203128        | 47.7083%  | 46.2310% | 50.4893%  | 47.8295% |
+| 3     | 1.430800      | 1.208598        | 48.7500%  | 47.9938% | 49.4882%  | 48.9304% |
+| 4     | 1.082900      | 1.232723        | 48.1250%  | 47.0514% | 49.3689%  | 48.2663% |
+| 5     | 1.082900      | 1.325347        | 45.8333%  | 44.9964% | 48.4276%  | 45.4747% |
+
+Despite improvements in the training loss, the validation loss increased as the epochs progressed, particularly notable in the fifth epoch.  The introduction of the warm-up phase has likely helped in stabilizing the training initially but has not sufficiently addressed overfitting.
 
 We tried the same configuration for the sequence length of 128 and results were better.
 
-*Results*
-Epoch	Training Loss	Validation Loss	Accuracy	F1	Precision	Recall
-1	No log	1.355164	0.450000	0.434859	0.478929	0.440591
-2	1.420100	1.225194	0.487500	0.470986	0.497426	0.492272
-3	1.420100	1.194121	0.489583	0.480262	0.490184	0.489477
-4	1.080000	1.178910	0.514583	0.508377	0.512584	0.513463
-5	1.080000	1.262359	0.500000	0.490216	0.505802	0.495725
+*Results for the model with max_lenght = 128*
 
+| Epoch | Training Loss | Validation Loss | Accuracy  | F1       | Precision | Recall   |
+|-------|---------------|-----------------|-----------|----------|-----------|----------|
+| 1     | No log        | 1.355164        | 43.4859%  | 47.8929% | 44.0591%  | 48.4929% |
+| 2     | 1.420100      | 1.225194        | 48.7500%  | 47.0986% | 49.7426%  | 49.2272% |
+| 3     | 1.420100      | 1.194121        | 48.9583%  | 48.0262% | 49.0184%  | 48.9477% |
+| 4     | 1.080000      | 1.178910        | 51.4583%  | 50.8377% | 51.2584%  | 51.3463% |
+| 5     | 1.080000      | 1.262359        | 50.0000%  | 49.0216% | 50.5802%  | 49.5725% |
+
+![epoch 5 128 scheduler](https://github.com/AnyaLang/SBB_ML/blob/34004983c35113d6524c1e9d78367eb71e43a089/5%20epocsh%20128%20sequence.png)
 
 2) Adjusted training arguments:
 
