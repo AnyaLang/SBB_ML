@@ -103,16 +103,17 @@ Despite using the best parameters from our previous configuration for the model 
 
 **Classification Report**
 
-| Class | Precision | Recall | F1-Score | Support |
-|-------|-----------|--------|----------|---------|
-| 0     | 0.45      | 0.68   | 0.54     | 166     |
-| 1     | 0.39      | 0.39   | 0.39     | 158     |
-| 2     | 0.38      | 0.30   | 0.33     | 166     |
-| 3     | 0.45      | 0.38   | 0.41     | 153     |
-| 4     | 0.48      | 0.40   | 0.44     | 152     |
-| 5     | 0.51      | 0.52   | 0.52     | 165     |
-| **Total/Avg** | **0.44**  | **0.45**   | **0.44**     | **960** |
-
+| Class          | Precision | Recall | F1-Score | Support |
+|----------------|-----------|--------|----------|---------|
+| 0              | 0.45      | 0.68   | 0.54     | 166     |
+| 1              | 0.39      | 0.39   | 0.39     | 158     |
+| 2              | 0.38      | 0.30   | 0.33     | 166     |
+| 3              | 0.45      | 0.38   | 0.41     | 153     |
+| 4              | 0.48      | 0.40   | 0.44     | 152     |
+| 5              | 0.51      | 0.52   | 0.52     | 165     |
+| **Accuracy**   |           |        | **0.45**  | 960     |
+| **Macro Avg**  | 0.44      | 0.44   | 0.44     | 960     |
+| **Weighted Avg** | 0.44    | 0.45   | 0.44     | 960     |
 
 In our Doc2Vec model, each word in the corpus is represented as a unique, high-dimensional vector. These vectors are trained such that words appearing in similar contexts have vectors that are close to each other in vector space. This characteristic allows the model to capture semantic relationships between words based on their usage in the text. We decided to explore which words our model finds semantically similar. We decided to look at the word "jour"
 
@@ -127,6 +128,8 @@ In our Doc2Vec model, each word in the corpus is represented as a unique, high-d
 - habiter: 0.9794
 - sport: 0.9793
 - voir: 0.9790
+
+**Conclusion**: The best accuracy we achieved was 44%, using a configuration that included 100-dimensional vectors, an 8-word window, a minimum count of 1, 100 epochs, and logistic regression with a regularization strength of C=10 and an L1 penalty. This configuration highlighted the potential of using higher-dimensional vectors and extensive training alongside strong regularization to effectively capture complex patterns in data. Given the computational constraints encountered during our experimentation, we recognize that there is potential to achieve even higher accuracy, especially in the combination of the TF-IDF matrix. 
 
 
 **BERT**
