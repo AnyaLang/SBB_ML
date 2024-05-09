@@ -644,12 +644,14 @@ Since we could not access the models from the previous training due to a runtime
 
 Based on the results after training the model on the dataset we obtained from Kaggle, we believe our model can well predict the difficulty of the sentences.
 
-![youtube_predictions.png]((https://github.com/AnyaLang/SBB_ML/blob/cae24ef359d209c372632ae900b8a945b1cedbfd/predictions%20YouTube%20visual.png)
+![youtube_predictions.png](https://github.com/AnyaLang/SBB_ML/blob/cae24ef359d209c372632ae900b8a945b1cedbfd/predictions%20YouTube%20visual.png)
 
 The video was produced for beginner French learners. From the plot, we can see that 16 sentences fall into the A2 category and 4 into the A1 category. Additionally, some sentences are classified as more difficult, at the B1 level, by the model. This classification could pose challenges for learners but also encourage them to acquire new vocabulary and further develop their language skills."
 
 Additionally, we were curious to investigate the **semantic relationships between various French words**, we used embeddings from the FlauBERT large cased model. By computing the cosine similarity, we could infer how the model perceives the relationships and similarities between these terms.
 
 ![cosine similarity](https://github.com/AnyaLang/SBB_ML/blob/cae24ef359d209c372632ae900b8a945b1cedbfd/cosine%20similarity%20french.png)
+
+
 
 High scores between the words may capture that all the words are related to each other as they fall into the food category. Especially interesting is the similarity score of 0.85 between 'poulet' (chicken) and 'viande' (meat), this indicates a very high degree of relatedness, which makes sense as chicken is a type of meat. However, 0.84 for the 'poulet' and 'fromage' cannot be explained that simple. Our assumption is that these words could often appear in a similar context, e.g. recipes. Although not extremely low, the similarity scores with 'lait' are generally lower compared to other pairs, which is logical given that milk is a liquid and is often not directly compared with solid foods like meat or salad in culinary contexts. However, we initially expected it to be more related to 'fromage' rather than 'poulet'.
