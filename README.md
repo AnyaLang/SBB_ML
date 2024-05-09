@@ -630,16 +630,26 @@ Example of the sentences:
     "Alors c'est parti, qu'est-ce que vous avez mangé depuis ce matin?",
 ]`
 
-Since we could not access the models from the previous training due to a runtime interruption, we trained another model with a batch size of 32, for 6 epochs, and a learning rate of 5e-5 to make the predictions.
+Since we could not access the models from the previous training due to a runtime interruption, we trained the model with a **batch size of 32, for 6 epochs, and a learning rate of 5e-5 to make the predictions.**
+
+| Epoch | Learning Rate | Average Loss    | Accuracy   | Precision   | Recall    | F1 Score   |
+|-------|---------------|-----------------|------------|-------------|-----------|------------|
+| 1/6   | 5e-5          | 0.0604157262327 | 0.39375    | 0.5144486   | 0.39375   | 0.3701024  |
+| 2/6   | 5e-5          | 0.0422514597885 | 0.4989583  | 0.5244477   | 0.4989583 | 0.4860280  |
+| 3/6   | 5e-5          | 0.0340066954804 | 0.5427083  | 0.5798898   | 0.5427083 | 0.5209575  |
+| 4/6   | 5e-5          | 0.0275729257846 | 0.5583333  | 0.5704371   | 0.5583333 | 0.5564640  |
+| 5/6   | 5e-5          | 0.0218229048653 | 0.5677083  | 0.5970088   | 0.5677083 | 0.5620301  |
+| 6/6   | 5e-5          | 0.0174353359539 | 0.5791667  | 0.5974417   | 0.5791667 | 0.5825952  |
+
 
 Based on the results after training the model on the dataset we obtained from Kaggle, we believe our model can well predict the difficulty of the sentences.
 
-![youtube_predictions.png](https://github.com/AnyaLang/SBB_ML/blob/d42d9ce24795eb7c2b271b978b85b8798750944d/predictions_YouTube.png)
+![youtube_predictions.png]((https://github.com/AnyaLang/SBB_ML/blob/cae24ef359d209c372632ae900b8a945b1cedbfd/predictions%20YouTube%20visual.png))
 
 The video was produced for beginner French learners. From the plot, we can see that 16 sentences fall into the A2 category and 4 into the A1 category. Additionally, some sentences are classified as more difficult, at the B1 level, by the model. This classification could pose challenges for learners but also encourage them to acquire new vocabulary and further develop their language skills."
-           
-    accuracy                           0.45       960
-   macro avg       0.44      0.44      0.44       960
-weighted avg       0.45      0.45      0.45       960
 
-![bert_confusion](https://github.com/AnyaLang/SBB_ML/blob/d793e080ecaa64a25a35fe512a9ef92109dd285e/confusion%20matrix_BERT.png)
+Additionally, we were curious to investigate the **semantic relationships between various French words**, we used embeddings from the FlauBERT large cased model. By computing the cosine similarity, we could infer how the model perceives the relationships and similarities between these terms.
+
+![cosine similarity](https://github.com/AnyaLang/SBB_ML/blob/cae24ef359d209c372632ae900b8a945b1cedbfd/cosine%20similarity%20french.png)
+
+High scores between the words may capture that all the words are related to each other as they fall into the food category. Especially interesting is the similarity score of 0.85 between 'poulet' (chicken) and 'viande' (meat), this indicates a very high degree of relatedness, which makes sense as chicken is a type of meat. However, 0.84 for the 'poulet' and 'fromage' cannot be explained that simple. Our assumption is that these words could often appear in a similar context, e.g. recipes. Although not extremely low, the similarity scores with 'lait' are generally lower compared to other pairs, which is logical given that milk is a liquid and is often not directly compared with solid foods like meat or salad in culinary contexts. However, we initially expected it to be more related to 'fromage' rather than 'poulet'.
