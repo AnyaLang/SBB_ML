@@ -644,7 +644,7 @@ Since we could not access the models from the previous training due to a runtime
 
 Based on the results after training the model on the dataset we obtained from Kaggle, we believe our model can well predict the difficulty of the sentences.
 
-![youtube_predictions.png]((https://github.com/AnyaLang/SBB_ML/blob/cae24ef359d209c372632ae900b8a945b1cedbfd/predictions%20YouTube%20visual.png))
+![youtube_predictions.png]((https://github.com/AnyaLang/SBB_ML/blob/cae24ef359d209c372632ae900b8a945b1cedbfd/predictions%20YouTube%20visual.png)
 
 The video was produced for beginner French learners. From the plot, we can see that 16 sentences fall into the A2 category and 4 into the A1 category. Additionally, some sentences are classified as more difficult, at the B1 level, by the model. This classification could pose challenges for learners but also encourage them to acquire new vocabulary and further develop their language skills."
 
