@@ -641,8 +641,7 @@ Since we could not access the models from the previous training due to a runtime
 | 5/6   | 5e-5          | 0.0218229048653 | 0.5677083  | 0.5970088   | 0.5677083 | 0.5620301  |
 | 6/6   | 5e-5          | 0.0174353359539 | 0.5791667  | 0.5974417   | 0.5791667 | 0.5825952  |
 
-
-Based on the results after training the model on the dataset we obtained from Kaggle, we believe our model can well predict the difficulty of the sentences.
+While now this model had shown lower results compared to what we have achieved initially, still based on the results after training the model on the dataset we obtained from Kaggle, we believe our model can well predict the difficulty of the sentences.
 
 ![youtube_predictions.png](https://github.com/AnyaLang/SBB_ML/blob/cae24ef359d209c372632ae900b8a945b1cedbfd/predictions%20YouTube%20visual.png)
 
