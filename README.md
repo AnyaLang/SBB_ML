@@ -356,7 +356,7 @@ train_batch_sizes = [16, 32]
 eval_batch_sizes = [16, 32]   
 ```
 
-**Results of the training on the batch of 16 with different learning rates**
+*Results of the training on the batch of 16 with different learning rates*
 
 | Learning Rate | Epoch | Average Loss | Accuracy   | Precision | Recall    | F1 Score  | Notes                  |
 |---------------|-------|--------------|------------|-----------|-----------|-----------|------------------------|
@@ -408,7 +408,7 @@ The main difference between the performance of the training on the batch 16 and 
 From our prior experience training BERT, we noticed a decrease in model accuracy after four epochs. However, in the case of FlauBERT, during previous training sessions, the model's accuracy improved from 43% to 57% over four epochs, which was substantially higher than archived by BERT. Consequently, we decided to extend the training duration to six epochs, using a batch size of 32 and see if we achieve higher accuracy with this model.
 
 
-**Results with the batch 32, learning rate 5e-5 over larger number of epochs**
+*Results with the batch 32, learning rate 5e-5 over larger number of epochs*
 
 | Epoch | Learning Rate | Average Loss   | Accuracy   | Precision   | Recall   | F1 Score   |
 |-------|---------------|----------------|------------|-------------|----------|------------|
@@ -441,22 +441,48 @@ optimizer = AdamW(model.parameters(), lr=1e-4, betas=(0.9, 0.999), eps=1e-08)
 scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=warmup_steps, num_training_steps=total_steps)
 ```
 
-**Results for 8 epochs with the adjusted learning rate, starting with 1e-04**
+*Results for 8 epochs with the adjusted learning rate, starting with 1e-04*
 
-| Epoch | Learning Rate | Average Loss      | Accuracy   | Precision | Recall   | F1 Score  |
-|-------|---------------|-------------------|------------|-----------|----------|-----------|
-| 1/8   | 0.00009722    | 0.059470302890986 | 0.365625   | 0.3330621 | 0.365625 | 0.3027832 |
-| 2/8   | 0.00008333    | 0.053232380685707 | 0.4791667  | 0.4275987 | 0.4791667| 0.4342403 |
-| 3/8   | 0.00006944    | 0.038865594674523 | 0.5541667  | 0.5699164 | 0.5541667| 0.5361277 |
-| 4/8   | 0.00005556    | 0.034336493226389 | 0.565625   | 0.5869896 | 0.565625 | 0.5635115 |
-| 5/8   | 0.00004167    | 0.022284670624261 | 0.6010417  | 0.5997075 | 0.6010417| 0.5990875 |
-| 6/8   | 0.00002778    | 0.015347646844263 | 0.603125   | 0.6056449 | 0.603125 | 0.5911651 |
-| 7/8   | 0.00001389    | 0.009685143810930 | 0.6020833  | 0.6107261 | 0.6020833| 0.6032911 |
-| 8/8   | 0.00000000    | 0.005019144429146 | 0.6166667  | 0.6212918 | 0.6166667| 0.6177674 |
+| Epoch | Current LR  | Training Loss | Validation Loss | Accuracy    | Precision   | Recall     | F1 Score   |
+|-------|-------------|---------------|-----------------|-------------|-------------|------------|------------|
+| 1/8   | 0.00009722  | 0.0629        | 0.0623          | 0.267708333 | 0.397342995 | 0.267708333| 0.221578047|
+| 2/8   | 0.00008333  | 0.0508        | 0.2714          | 0.378125    | 0.476473793 | 0.378125   | 0.346038228|
+| 3/8   | 0.00006944  | 0.0459        | 0.0451          | 0.45        | 0.553757879 | 0.45       | 0.425472568|
+| 4/8   | 0.00005556  | 0.0348        | 0.0395          | 0.530208333 | 0.568265338 | 0.530208333| 0.522485341|
+| 5/8   | 0.00004167  | 0.0249        | 0.0376          | 0.58125     | 0.594250948 | 0.58125    | 0.579418981|
+| 6/8   | 0.00002778  | 0.0167        | 0.0433          | 0.6125      | 0.611882205 | 0.6125     | 0.608741828|
+| 7/8   | 0.00001389  | 0.0107        | 0.0509          | 0.589583333 | 0.595456059 | 0.589583333| 0.591445696|
+| 8/8   | 0.00000000  | 0.0058        | 0.0587          | 0.5875      | 0.595540066 | 0.5875     | 0.589796859|
 
-![learning_rate.png](https://github.com/AnyaLang/SBB_ML/blob/b509447374760d91759c3c62027701d928a15ce2/Model%20with%20a%20different%20learning%20rate%20adjustement.png)
 
-While the model with the adjusted learning rate demonstrated a higher accuracy score and performed better than the models before over other metrics, the submission on Kaggle provided a lower score. We also adjusted the number of epochs to 15 and lower to 4 and 6, however, the results were worse.
+![F1 and accuracy](https://github.com/AnyaLang/SBB_ML/blob/cce0556038fd34f09376da79c3cba35d88ecd5f9/F1%20and%20accuracy_with_adjusted%20learning_1e-04.png)
+
+Both accuracy and F1 scores show a clear upward trend from the first to the sixth epoch, improving from 0.2677 and 0.2216 to 0.6125 and 0.6087, respectively.  Post the sixth epoch, both accuracy and F1 score plateau and then slightly decline in the final epochs (epoch 7 and 8). This stage also aligns with the increasing validation loss. 
+
+![loss](https://github.com/AnyaLang/SBB_ML/blob/cce0556038fd34f09376da79c3cba35d88ecd5f9/loss_with_adjusted%20learning_1e-04.png)
+
+The training loss consistently decreases from 0.0629 in the first epoch to 0.0058 in the final epoch. However, we observe that the validation loss spikes at the second epoch but decreases until the fifth epoch, achieving a low of 0.0376. However, from the sixth epoch, it begins to increase suggesting the onset of overfitting. 
+
+*Classification report*
+
+| Class | Precision | Recall | F1-Score | Support |
+|-------|-----------|--------|----------|---------|
+| A1    | 0.74      | 0.83   | 0.78     | 166     |
+| A2    | 0.57      | 0.41   | 0.48     | 158     |
+| B1    | 0.51      | 0.60   | 0.55     | 166     |
+| B2    | 0.58      | 0.54   | 0.56     | 153     |
+| C1    | 0.55      | 0.60   | 0.57     | 152     |
+| C2    | 0.71      | 0.68   | 0.70     | 165     |
+|       |           |        |          |         |
+| **Accuracy**  |         |        | **0.61**  | **960**   |
+| **Macro Avg** | **0.61** | **0.61** | **0.61** | **960**   |
+| **Weighted Avg** | **0.61** | **0.61** | **0.61** | **960**   |
+
+![Confusion matrix](https://github.com/AnyaLang/SBB_ML/blob/cce0556038fd34f09376da79c3cba35d88ecd5f9/confusion%20matrix_model_with_adjusted%20learning_1e-04.png)
+
+The model demonstrates its strongest predictive accuracy for the A1 and C2 levels, indicating the capability to recognize the distinct linguistic features associated with the lowest and highest proficiency levels. However, it struggles with the A2 level, achieving the lowest F1-score of 0.48. For the intermediate B1 and B2 levels, the model achieves moderate F1-scores of 0.55 and 0.56, respectively. While C1 is slightly better achieving 0.57, it still indicates that the model struggles in distinguishing between closely related proficiency levels.
+
+While the model with the adjusted learning rate demonstrated a higher accuracy score and performed better than the models before over other metrics, the submission on Kaggle provided a  score of 0.596. We also adjusted the number of epochs to 15 and lower to 4 and 6, however, the results were worse.
 
 **Increased learning rate to 3e-4**
 
