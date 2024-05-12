@@ -2,21 +2,15 @@
 
 ## 7️⃣ **Doc2Vec**
 
-In our Doc2Vec model, each word in the corpus is represented as a unique, high-dimensional vector. These vectors are trained such that words appearing in similar contexts have vectors that are close to each other in vector space. This characteristic allows the model to capture semantic relationships between words based on their usage in the text. We decided to explore which words our model finds semantically similar. We decided to look at the word "jour"
+After initially training our models using traditional algorithms such as linear regression, K-nearest neighbours, and random forests, we proceeded to explore models better suited for working with text. Among several approaches, we first decided to work with the Doc2Vec model.
 
-*Similar Words to 'jour':*
-- paris: 0.9852
-- tard: 0.9822
-- matin: 0.9821
-- vacance: 0.9809
-- après-midi: 0.9809
-- coucher: 0.9807
-- cinéma: 0.9796
-- habiter: 0.9794
-- sport: 0.9793
-- voir: 0.9790
+> Doc2Vec is a neural network-based approach that learns the distributed representation of documents. It is an unsupervised learning technique that maps each document to a fixed-length vector in a high-dimensional space. The vectors are learned in such a way that similar documents are mapped to nearby points in the vector space. (Source: [GeeksforGeeks](https://www.geeksforgeeks.org/doc2vec-in-nlp/))
 
-**1. Data Preparation** Prior to deploying the Doc2Vec model, essential preprocessing steps were executed to prepare French language texts, which are crucial for optimizing model performance:
+Although we are familiar with Word2Vec, our initial experiments did not yield satisfactory results; hence, they are not included in this report.
+
+Given that Doc2Vec can understand the semantic meanings of words in context more effectively than simpler models, we believe it will enhance its ability to learn document-level representations. This capability enables it to capture the context of words with greater accuracy, thereby potentially leading to higher overall accuracy of the model.
+
+**1. Data Preparation** Prior to deploying the Doc2Vec model, essential preprocessing steps were completed to prepare French language texts, which are crucial for optimizing model performance:
 
 *Tokenization and Cleaning:* Implemented a custom tokenizer using spaCy to:
 - Lemmatize words to their base forms.
@@ -25,13 +19,13 @@ In our Doc2Vec model, each word in the corpus is represented as a unique, high-d
   
 *Example Transformation:* 
 
-`sample_sentence = "Nous sommes l'équipe SBB et nous faisons de notre mieux pour développer la meilleure machine d'apprentissage automatique pour la classification des phrases."`
+```python
+sample_sentence = "Nous sommes l'équipe SBB et nous faisons de notre mieux pour développer la meilleure machine d'apprentissage automatique pour la classification des phrases."
+processed_text = spacy_tokenizer(sample_sentence)
+processed_text
+```
 
-`processed_text = spacy_tokenizer(sample_sentence)`
-
-`processed_text`
-
-Transformed the sentence to *"équipe sbb faire mieux développer meilleur machine apprentissage automatique classification phrase"*
+Transformed the sentence to `*équipe sbb faire mieux développer meilleur machine apprentissage automatique classification phrase*`
 
 **2. Feature Selection and Model Setup** Doc2Vec has several parameters that can be tuned:
 - *vector_size:* Dimensionality of the feature vectors. Values assessed: 50, 100
@@ -55,7 +49,7 @@ Purpose: We increased the regularization strength to C=10 and employed the l2 pe
 Configuration: LogisticRegression(C=10, penalty='l1', solver='saga')
 Purpose: To assess the impact of l1 regularization, which promotes sparsity in the model coefficients, potentially improving model interpretability and performance on sparse data sets.
 
-We used "saga" as it showed slightly higher results than "lbfgs" in this scenario.
+We used "saga" as it showed slightly higher results than "lbfgs" in the first training.
 
 **4. Model Evaluation and Results** 
 
@@ -80,16 +74,17 @@ The best accuracy observed was 44%, achieved with a configuration of 100-dimensi
 | C              | 10                    |
 | Penalty        | L1                    |
 
-**Confusion Matrix:**
+*Confusion Matrix Best model configuration*
 
-|       | C1 | C2 | C3 | C4 | C5 | C6 |
-|-------|----|----|----|----|----|----|
-| **C1**|111 | 30 | 20 |  1 |  1 |  3 |
-| **C2**| 43 | 65 | 31 | 11 |  2 |  6 |
-| **C3**| 25 | 34 | 53 | 27 | 12 | 15 |
-| **C4**|  7 |  6 | 22 | 60 | 27 | 31 |
-| **C5**|  2 |  4 |  9 | 34 | 60 | 43 |
-| **C6**|  3 |  3 | 23 | 14 | 48 | 74 |
+| True/Predicted | A1   | A2   | B1   | B2   | C1   | C2   |
+|----------------|------|------|------|------|------|------|
+| **A1**         | 111  | 30   | 20   | 1    | 1    | 3    |
+| **A2**         | 43   | 65   | 31   | 11   | 2    | 6    |
+| **B1**         | 25   | 34   | 53   | 27   | 12   | 15   |
+| **B2**         | 7    | 6    | 22   | 60   | 27   | 31   |
+| **C1**         | 2    | 4    | 9    | 34   | 60   | 43   |
+| **C2**         | 3    | 3    | 23   | 14   | 48   | 74   |
+
 
 While initially including a vector size of 200 in the evaluation loop, runtime issues occurred. This configuration was computed separately, revealing a model accuracy of 40%.
 
@@ -104,18 +99,19 @@ Despite using the best parameters from our previous configuration for the model 
 - **Combined Features Testing Configuration:** (100, 8, 1, 40)
 - **Combined Features Accuracy:** 44.89%
 
-**Confusion Matrix:**
+*Confusion Matrix Best model configuration with TF-IDF*
 
-|       | C1 | C2 | C3 | C4 | C5 | C6 |
-|-------|----|----|----|----|----|----|
-| **C1**|119 | 34 | 12 |  0 |  0 |  1 |
-| **C2**| 60 | 67 | 26 |  2 |  2 |  1 |
-| **C3**| 34 | 45 | 50 | 19 | 10 |  8 |
-| **C4**| 17 |  7 | 21 | 52 | 32 | 24 |
-| **C5**| 10 |  3 | 10 | 21 | 63 | 45 |
-| **C6**| 12 |  5 |  9 | 30 | 29 | 80 |
+| True/Predicted | A1   | A2   | B1   | B2   | C1   | C2   |
+|----------------|------|------|------|------|------|------|
+| **A1**         | 119  | 34   | 12   | 0    | 0    | 1    |
+| **A2**         | 60   | 67   | 26   | 2    | 2    | 1    |
+| **B1**         | 34   | 45   | 50   | 19   | 10   | 8    |
+| **B2**         | 17   | 7    | 21   | 52   | 32   | 24   |
+| **C1**         | 10   | 3    | 10   | 21   | 63   | 45   |
+| **C2**         | 12   | 5    | 9    | 30   | 29   | 80   |
 
-**Classification Report**
+
+*Classification Report Best model configuration with TF-IDF*
 
 | Class          | Precision | Recall | F1-Score | Support |
 |----------------|-----------|--------|----------|---------|
@@ -198,7 +194,7 @@ training_args = TrainingArguments(
 
 During our very first training with **simple configuration, we were able to already achieve 51% accuracy!**
 
-*Results*
+*Results Base BERT Model*
 | Epoch | Training Loss | Validation Loss | Accuracy  | F1       | Precision | Recall   |
 |-------|---------------|-----------------|-----------|----------|-----------|----------|
 | 1     | No log        | 1.318586        | 40.2083%  | 32.3755% | 32.7760%  | 39.3142% |
@@ -216,7 +212,7 @@ For this model, we adjusted some of the parameters and also implemented a learni
 
 2) Other training arguments remained unchanged.
 
-*Results*
+*Results BERT with Increased Sequence Length*
 
 | Epoch | Training Loss | Validation Loss | Accuracy  | F1       | Precision | Recall   |
 |-------|---------------|-----------------|-----------|----------|-----------|----------|
@@ -229,7 +225,7 @@ In this case, the accuracy became lower, but by using the increased sequence len
 
 In the next step, we **increased the number of epochs to 5 epochs to monitor if there were any further improvements in the model accuracy.**
 
-*Results*
+*Results BERT with Increased Sequence Length*
 
 | Epoch | Training Loss | Validation Loss | Accuracy  | F1       | Precision | Recall   |
 |-------|---------------|-----------------|-----------|----------|-----------|----------|
@@ -239,7 +235,18 @@ In the next step, we **increased the number of epochs to 5 epochs to monitor if 
 | 4     | 0.874100      | 1.205762        | 51.0417%  | 50.7684% | 51.5135%  | 50.7474% |
 | 5     | 0.874100      | 1.277318        | 50.2083%  | 49.4280% | 50.3706%  | 49.5938% |
 
-![matrix 5 epochs](https://github.com/AnyaLang/SBB_ML/blob/a5cf10d1a746b20f157ee7c4f0ce95cabee498e2/BERT%20increased%20sequence_5epochs.png)
+*Confusion matrix BERT with Increased Sequence Length*
+
+| True/Predicted | A1   | A2   | B1   | B2   | C1   | C2   |
+|----------------|------|------|------|------|------|------|
+| **A1**         | 64   | 21   | 5    | 1    | 0    | 0    |
+| **A2**         | 15   | 39   | 18   | 0    | 0    | 0    |
+| **B1**         | 12   | 27   | 42   | 5    | 1    | 5    |
+| **B2**         | 0    | 2    | 20   | 35   | 8    | 5    |
+| **C1**         | 0    | 0    | 2    | 0    | 22   | 12   |
+| **C2**         | 0    | 0    | 11   | 0    | 22   | 39   |
+
+*Training and Validation loss BERT with Increased Sequence Length*
 
 ![training loss](https://github.com/AnyaLang/SBB_ML/blob/a5cf10d1a746b20f157ee7c4f0ce95cabee498e2/BERT%20training%20loss%20vs%20validation%20loss.png)
 
