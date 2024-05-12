@@ -298,7 +298,16 @@ We tried the same configuration for the sequence length of 128 and results were 
 | 4     | 1.080000      | 1.178910        | 51.4583%  | 50.8377% | 51.2584%  | 51.3463% |
 | 5     | 1.080000      | 1.262359        | 50.0000%  | 49.0216% | 50.5802%  | 49.5725% |
 
-![epoch 5 128 scheduler](https://github.com/AnyaLang/SBB_ML/blob/34004983c35113d6524c1e9d78367eb71e43a089/5%20epocsh%20128%20sequence.png)
+*Confusion matrix for the model with max_lenght = 128*
+
+| True/Predicted | A1  | A2  | B1  | B2  | C1  | C2  |
+|----------------|-----|-----|-----|-----|-----|-----|
+| **A1**         | 66  | 18  | 7   | 0   | 0   | 0   |
+| **A2**         | 9   | 47  | 15  | 0   | 0   | 1   |
+| **B1**         | 10  | 28  | 43  | 7   | 0   | 4   |
+| **B2**         | 0   | 3   | 18  | 34  | 6   | 9   |
+| **C1**         | 1   | 0   | 17  | 0   | 22  | 11  |
+| **C2**         | 0   | 0   | 0   | 20  | 18  | 28  |
 
 
 **4. Results**
