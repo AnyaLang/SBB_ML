@@ -352,9 +352,10 @@ The model has quite an extensive range of [parameters](https://huggingface.co/tr
 Upon additionally reviewing the documentation on BERT and [FlauBERT](https://huggingface.co/docs/transformers/en/model_doc/flaubert), the optimal training duration for FlauBERT is approximately four epochs, with the following hyperparameter options:
 
 *Batch sizes:* 8, 16, 32, 64, 128
+
 *Learning rates:* 3e-4, 1e-4, 5e-5, 3e-5
 
-We will explore some of the listed batch sizes and the learning rates and also adjust other parameters during our training
+We will explore some of the listed batch sizes and the learning rates and also adjust other parameters during our training.
 
 
 **3. Model training**
@@ -393,6 +394,7 @@ eval_batch_sizes = [16, 32]
 | 2e-05         | 3     | 0.06963      | 53.44%     | 53.24%    | 53.44%    | 52.64%    | -                      |
 | 2e-05         | 4     | 0.06303      | 52.71%     | 52.48%    | 52.71%    | 52.28%    | -                      |
 
+
 *Note on the training*
 
 Important to note that our first model is trained using the **AdamW optimizer**, which is a variant of the traditional Adam optimizer. AdamW incorporates a regularization technique known as [weight decay](https://github.com/tml-epfl/why-weight-decay), which is used in training neural networks to prevent overfitting. It functions by incorporating a term into the loss function that penalizes large weights.Besides, we also employ a **Linear Learning Rate Scheduler** to manage the learning rate throughout the training process. T Although this training setup does not include a warm-up phase where the learning rate would gradually ramp up before decreasing, the scheduler is configured to reduce the learning rate slightly with each training step. This gradual reduction helps in stabilizing the training as it advances.
@@ -415,7 +417,7 @@ We further trained the model on the batch size 32 over 4 epochs with the learnin
 | 3/4   | 5e-5          | 0.031953962224846| 0.5510417  | 0.5744112 | 0.5510417| 0.5477183 |
 | 4/4   | 5e-5          | 0.025974183475288| 0.5739583  | 0.5810352 | 0.5739583| 0.5750711 |
 
-The main difference between the performance of the training on the batch 16 and 32 with the same learning rate 5e-5 is the average loss. From the graph, it's clear that the average loss for the batch size of 32 is significantly lower than that for the batch size of 16 at every epoch.
+The main difference between the performance of the training on the batch 16 and 32 with the same learning rate 5e-5 is the average loss. From the graph, it's clear that the average loss for the batch size of 32 is significantly lower than that for the batch size of 16 at every epoch. 
 
 ![16 and 32 batch_loss.png](https://github.com/AnyaLang/SBB_ML/blob/125ad85ffe0c16a54ce6138367cc1b7af2dc0b6e/16%20and%2032%20batch_loss.png)
 
@@ -689,10 +691,3 @@ While now this model had shown lower results compared to what we have achieved i
 
 The video was produced for beginner French learners. From the plot, we can see that 16 sentences fall into the A2 category and 4 into the A1 category. Additionally, some sentences are classified as more difficult, at the B1 level, by the model. This classification could pose challenges for learners but also encourage them to acquire new vocabulary and further develop their language skills."
 
-Additionally, we were curious to investigate the **semantic relationships between various French words**, we used embeddings from the FlauBERT large cased model. By computing the cosine similarity, we could infer how the model perceives the relationships and similarities between these terms.
-
-![cosine similarity](https://github.com/AnyaLang/SBB_ML/blob/cae24ef359d209c372632ae900b8a945b1cedbfd/cosine%20similarity%20french.png)
-
-
-
-High scores between the words may capture that all the words are related to each other as they fall into the food category. Especially interesting is the similarity score of 0.85 between 'poulet' (chicken) and 'viande' (meat), this indicates a very high degree of relatedness, which makes sense as chicken is a type of meat. However, 0.84 for the 'poulet' and 'fromage' cannot be explained that simple. Our assumption is that these words could often appear in a similar context, e.g. recipes. Although not extremely low, the similarity scores with 'lait' are generally lower compared to other pairs, which is logical given that milk is a liquid and is often not directly compared with solid foods like meat or salad in culinary contexts. However, we initially expected it to be more related to 'fromage' rather than 'poulet'.
