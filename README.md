@@ -110,6 +110,7 @@ Despite using the best parameters from our previous configuration for the model 
 | **C1**         | 10   | 3    | 10   | 21   | 63   | 45   |
 | **C2**         | 12   | 5    | 9    | 30   | 29   | 80   |
 
+From the confusion matrix, we see that the model demonstrate relatively high values along the diagonal for classes A1, B2, C1, and C2, indicating good accuracy in correctly predicting these classes. Specifically, A1 (119 correct predictions), B2 (52 correct predictions), C1 (63 correct predictions), and C2 (80 correct predictions) perform well. However, the model still struggles to distinguish the relatively close classes, for instance, A1 and A2, with 34 instances of A1 being misclassified as A2, and 60 instances of A2 being misclassified as A1. 
 
 *Classification Report Best model configuration with TF-IDF*
 
@@ -235,17 +236,6 @@ In the next step, we **increased the number of epochs to 5 epochs to monitor if 
 | 4     | 0.874100      | 1.205762        | 51.0417%  | 50.7684% | 51.5135%  | 50.7474% |
 | 5     | 0.874100      | 1.277318        | 50.2083%  | 49.4280% | 50.3706%  | 49.5938% |
 
-*Confusion matrix BERT with Increased Sequence Length*
-
-| True/Predicted | A1   | A2   | B1   | B2   | C1   | C2   |
-|----------------|------|------|------|------|------|------|
-| **A1**         | 64   | 21   | 5    | 1    | 0    | 0    |
-| **A2**         | 15   | 39   | 18   | 0    | 0    | 0    |
-| **B1**         | 12   | 27   | 42   | 5    | 1    | 5    |
-| **B2**         | 0    | 2    | 20   | 35   | 8    | 5    |
-| **C1**         | 0    | 0    | 2    | 0    | 22   | 12   |
-| **C2**         | 0    | 0    | 11   | 0    | 22   | 39   |
-
 *Training and Validation loss BERT with Increased Sequence Length*
 
 ![training loss](https://github.com/AnyaLang/SBB_ML/blob/a5cf10d1a746b20f157ee7c4f0ce95cabee498e2/BERT%20training%20loss%20vs%20validation%20loss.png)
@@ -297,17 +287,6 @@ We tried the same configuration for the sequence length of 128 and results were 
 | 3     | 1.420100      | 1.194121        | 48.9583%  | 48.0262% | 49.0184%  | 48.9477% |
 | 4     | 1.080000      | 1.178910        | 51.4583%  | 50.8377% | 51.2584%  | 51.3463% |
 | 5     | 1.080000      | 1.262359        | 50.0000%  | 49.0216% | 50.5802%  | 49.5725% |
-
-*Confusion matrix for the model with max_lenght = 128*
-
-| True/Predicted | A1  | A2  | B1  | B2  | C1  | C2  |
-|----------------|-----|-----|-----|-----|-----|-----|
-| **A1**         | 66  | 18  | 7   | 0   | 0   | 0   |
-| **A2**         | 9   | 47  | 15  | 0   | 0   | 1   |
-| **B1**         | 10  | 28  | 43  | 7   | 0   | 4   |
-| **B2**         | 0   | 3   | 18  | 34  | 6   | 9   |
-| **C1**         | 1   | 0   | 17  | 0   | 22  | 11  |
-| **C2**         | 0   | 0   | 0   | 20  | 18  | 28  |
 
 
 **4. Results**
