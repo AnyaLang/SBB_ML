@@ -678,4 +678,25 @@ We have obtained the following results:
 
 The video was produced for beginner French learners. From the plot, we can see that 16 sentences fall into the A2 category and 4 into the A1 category. Additionally, some sentences are classified as more difficult, at the B1 level, by the model. This classification could pose challenges for learners but also encourage them to acquire new vocabulary and further develop their language skills."
 
+## 🔟 **CamemBERT**
+
+> CamemBERT is a state-of-the-art language model for French based on the RoBERTa architecture pretrained on the French subcorpus of the newly available multilingual corpus OSCAR.
+
+*Results for the Model with a different learning rate adjustement*
+
+| Epoch | Current LR  | Training Loss | Validation Loss | Accuracy | Precision | Recall  | F1 Score |
+|-------|-------------|---------------|-----------------|----------|-----------|---------|----------|
+| 1/8   | 0.00009722  | 0.0468        | 0.0354          | 51.04%   | 53.36%    | 51.04%  | 48.83%   |
+| 2/8   | 0.00008333  | 0.0333        | 0.0344          | 50.21%   | 52.19%    | 50.21%  | 49.93%   |
+| 3/8   | 0.00006944  | 0.0252        | 0.0327          | 57.71%   | 60.71%    | 57.71%  | 57.52%   |
+| 4/8   | 0.00005556  | 0.0178        | 0.0379          | 56.67%   | 56.07%    | 56.67%  | 55.98%   |
+| 5/8   | 0.00004167  | 0.0118        | 0.0446          | 53.96%   | 56.81%    | 53.96%  | 54.34%   |
+| 6/8   | 0.00002778  | 0.0067        | 0.0491          | 54.90%   | 57.48%    | 54.90%  | 54.97%   |
+| 7/8   | 0.00001389  | 0.0039        | 0.0547          | 54.90%   | 56.90%    | 54.90%  | 55.20%   |
+| 8/8   | 0.00000000  | 0.0022        | 0.0577          | 56.25%   | 58.90%    | 56.25%  | 56.44%   |
+
+The best accuracy was achieved in the 3rd epoch. Accuracy isn't improving consistently, suggesting some challenges in the model's ability to consistently classify new data correctly.
+
+Both the training and validation losses generally decrease over the epochs, indicating that the model is learning and generalizing well to the validation data. However, from Epoch 5 onward, there's a noticeable increase in validation loss despite a continuing decrease in training loss. Regularisation techniques should be used to achieve better results over the training. 
+
 We are excited to apply our model and the skills learned during this project to help others find the most suitable text for themselves to learn French or even work further on developing a more powerful model for text classification!
