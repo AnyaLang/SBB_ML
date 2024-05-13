@@ -684,6 +684,8 @@ The video was produced for beginner French learners. From the plot, we can see t
 
 ![CamemBERT](https://github.com/AnyaLang/SBB_ML/blob/19b3630a2f64b44bc84acd766390b5c484a9aebd/CamamBERT.png)
 
+**Model with a different learning rate adjustement**
+
 *Results for the Model with a different learning rate adjustement*
 
 | Epoch | Current LR  | Training Loss | Validation Loss | Accuracy | Precision | Recall  | F1 Score |
@@ -700,5 +702,48 @@ The video was produced for beginner French learners. From the plot, we can see t
 The best accuracy was achieved in the 3rd epoch, 57.71%. We see that the accuracy isn't improving consistently, suggesting some challenges in the model's ability to consistently classify new data correctly.
 
 Both the training and validation losses generally decrease over the epochs, indicating that the model is learning and generalizing well to the validation data. However, from Epoch 5 onward, there's a noticeable increase in validation loss despite a continuing decrease in training loss. Regularisation techniques should be used to achieve better results over the training. 
+
+**Model with a 5e-05 learning rate 6 epochs**
+
+*Results model with a 5e-05 learning rate 6 epochs*
+
+| Epoch | Training Loss | Validation Loss | Accuracy | Precision | Recall | F1 Score |
+|-------|---------------|-----------------|----------|-----------|--------|----------|
+| 1     | 0.0456        | 0.0374          | 0.4865   | 0.4749    | 0.4865 | 0.4547   |
+| 2     | 0.0343        | 0.0375          | 0.4750   | 0.4930    | 0.4750 | 0.4640   |
+| 3     | 0.0283        | 0.0334          | 0.5344   | 0.5370    | 0.5344 | 0.5289   |
+| 4     | 0.0234        | 0.0349          | 0.5365   | 0.5622    | 0.5365 | 0.5296   |
+| 5     | 0.0195        | 0.0348          | 0.5604   | 0.5760    | 0.5604 | 0.5593   |
+| 6     | 0.0165        | 0.0378          | 0.5250   | 0.5470    | 0.5250 | 0.5225   |
+
+
+*Confusion Matrix*
+
+| Actual\Predicted | A1  | A2  | B1  | B2  | C1  | C2  |
+|------------------|-----|-----|-----|-----|-----|-----|
+| **A1**           | 141 | 20  | 5   | 0   | 0   | 0   |
+| **A2**           | 43  | 80  | 33  | 2   | 0   | 0   |
+| **B1**           | 20  | 53  | 84  | 7   | 0   | 2   |
+| **B2**           | 1   | 0   | 55  | 75  | 18  | 4   |
+| **C1**           | 0   | 0   | 7   | 79  | 54  | 12  |
+| **C2**           | 0   | 0   | 5   | 38  | 52  | 70  |
+
+
+
+*Classification Report*
+
+| Class | Precision | Recall | F1-score | Support |
+|-------|-----------|--------|----------|---------|
+| A1    | 0.69      | 0.85   | 0.76     | 166     |
+| A2    | 0.52      | 0.51   | 0.51     | 158     |
+| B1    | 0.44      | 0.51   | 0.47     | 166     |
+| B2    | 0.37      | 0.49   | 0.42     | 153     |
+| C1    | 0.44      | 0.36   | 0.39     | 152     |
+| C2    | 0.80      | 0.42   | 0.55     | 165     |
+|       |           |        |          |         |
+| **Accuracy** |           |        | 0.53     | 960     |
+| **Macro Avg**| 0.54      | 0.52   | 0.52     | 960     |
+| **Weighted Avg**| 0.55  | 0.53   | 0.52     | 960     |
+
 
 We are excited to apply our model and the skills learned during this project to help others find the most suitable text for themselves to learn French or even work further on developing a more powerful model for text classification!
