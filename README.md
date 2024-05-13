@@ -810,5 +810,5 @@ The validation loss remains relatively stable, with a slight increase towards th
 **Conclusion**: The best accuracy achieved with the base CamemBERT model was 57.71% during the third epoch under a specific learning rate adjustment. Notably, this model reached a high level of accuracy more quickly than FlauBERT, although it also began to overfit earlier. Introducing L1 regularization helped address overfitting, leading to more stable validation losses and a modest improvement in model generalization, although it slightly reduced the model's peak accuracy. The parameters which we used for FlauBERT did not yield as high accuracy scores. This may be due to the smaller size of the model we deployed for CamemBERT, and also because we should have included more extensive tuning in the training, which we did not do due to the computational constraints we experienced further in the training.
 
 
-We are excited to apply our model and the skills learned during this project to help others find the most suitable text for themselves to learn French or even work further on developing a more powerful model for text classification!
+💟**We are excited to apply our the skills learned during this project to help others find the most suitable text for themselves to learn French or even work further on developing a more powerful model for text classification!** 💟
 
