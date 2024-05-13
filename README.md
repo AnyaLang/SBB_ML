@@ -298,7 +298,7 @@ We tried the same configuration for the sequence length of 128 and results were 
 
 **Conclusion**: Starting with a *basic configuratio*n of `max_length = 128`, the BERT model achieved a maximum accuracy of **51.4583%**, setting a performance benchmark. BERT has outperformed traditional models with the base configuration. During the training, we have observed that shorter sequence lengths (128 tokens) demonstrated better performance across metrics compared to longer lengths. Besides, during the training of the model over 5 epochs, the performance peaked at around the fourth epoch in multiple setups. This suggests that additional changes should be made to the training of the model, e.g. learning rate management or additional regularisation. As we incorporated the learning scheduler and also the droupout to the model, the results did not improve. 
 
-While the capabilities of this model are extensive, and further refinement of the regularization during training could be done, we decided to proceed with the FlauBERT model and explore other training approaches, which are more targeted towards our task. 
+While the capabilities of this model are extensive, and further refinement of the regularization during training could be done, we decided to proceed with other models and explore other training approaches, which are more targeted towards French language. 
 
 ## 9️⃣ **FlauBERT**
 
@@ -678,13 +678,26 @@ We have obtained the following results:
 
 The video was produced for beginner French learners. From the plot, we can see that 16 sentences fall into the A2 category and 4 into the A1 category. Additionally, some sentences are classified as more difficult, at the B1 level, by the model. This classification could pose challenges for learners but also encourage them to acquire new vocabulary and further develop their language skills."
 
+
 ## 🔟 **CamemBERT**
 
 > CamemBERT is a state-of-the-art language model for French based on the RoBERTa architecture pretrained on the French subcorpus of the newly available multilingual corpus OSCAR. (Source: [CamemBERT](https://camembert-model.fr/))
 
+While CamemBERT large had approximately the same number of parameters as FlauBERT, we decided to deploy this model and see if we can achieve results close to those with FlauBERT and explore how this model behaves.
+
+Given some of the computational limitations, we have deployed the base model:
+
+``` python
+model_name = "camembert-base"
+tokenizer = CamembertTokenizer.from_pretrained(model_name)
+model = CamembertModel.from_pretrained(model_name)
+```
+
 ![CamemBERT](https://github.com/AnyaLang/SBB_ML/blob/19b3630a2f64b44bc84acd766390b5c484a9aebd/CamamBERT.png)
 
 **Model with a different learning rate adjustement**
+
+During our first training with the base CamemBERT model, we followed a similar approach as with FlauBERT. While the model achieved lower accuracy, which we believe is mostly due to the size of the model, we noticed a much faster time for the model to reach high accuracy, at 57.71% on the third epoch, while for the FlauBERT model with the same configurations over the batch size of 32, it took 5 epochs. What is interesting is that the CamemBERT model also started overfitting much earlier than in the case of the FlauBERT model.
 
 *Results for the Model with a different learning rate adjustement*
 
@@ -747,3 +760,4 @@ Both the training and validation losses generally decrease over the epochs, indi
 
 
 We are excited to apply our model and the skills learned during this project to help others find the most suitable text for themselves to learn French or even work further on developing a more powerful model for text classification!
+
