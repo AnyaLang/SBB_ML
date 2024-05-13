@@ -644,6 +644,8 @@ While our best model achieved an accuracy of 0.610 on Kaggle by following this a
 
 ## **Making predictions on the YouTube video**
 
+![YouTube Video](https://drive.google.com/uc?export=view&id=1A-QgMNBh1DNDSIQlxJ9FR4CNVqZlyAc1 "Image Title")
+
 We wanted to use our model to make the predictions on the videos targeted to beginner French learners. We chose the video on YouTube and created the df with the sentences from the video.
 
 The video selected to make predictions is: [What Do French People Actually Eat? | Easy French 189](https://www.youtube.com/watch?v=p65EBC9lW9k&list=PLnazreCxpqRmpb4lGvzvCGXIXZkL3Nc27&index=4)
@@ -668,7 +670,12 @@ Since we could not access the models from the previous training due to a runtime
 
 While now this model had shown lower results compared to what we have achieved initially, still based on the results after training the model on the dataset we obtained from Kaggle, we believe our model can well predict the difficulty of the sentences.
 
+We have obtained the following results:
+
+*Predictions on the YouTube video*
+
 ![youtube_predictions.png](https://github.com/AnyaLang/SBB_ML/blob/cae24ef359d209c372632ae900b8a945b1cedbfd/predictions%20YouTube%20visual.png)
 
 The video was produced for beginner French learners. From the plot, we can see that 16 sentences fall into the A2 category and 4 into the A1 category. Additionally, some sentences are classified as more difficult, at the B1 level, by the model. This classification could pose challenges for learners but also encourage them to acquire new vocabulary and further develop their language skills."
 
+We are excited to apply our model and the skills learned during this project to help others find the most suitable text for themselves to learn French or even work further on developing a more powerful model for text classification!
