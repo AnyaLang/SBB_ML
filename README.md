@@ -678,6 +678,10 @@ We have obtained the following results:
 
 The video was produced for beginner French learners. From the plot, we can see that 16 sentences fall into the A2 category and 4 into the A1 category. Additionally, some sentences are classified as more difficult, at the B1 level, by the model. This classification could pose challenges for learners but also encourage them to acquire new vocabulary and further develop their language skills."
 
+**Conclusion**: In our project using the FlauBERT model, we explored how various training parameters, including regularization techniques, schedulers, learning rates, batch sizes, and model sizes, impacted the model's performance. We discovered that the combination of batch size and learning rate was crucial. Some settings allowed us to train the model for up to 15 epochs without it learning the training data too closely—a problem known as overfitting. However, other settings led to overfitting much earlier.
+
+Despite spending considerable time fine-tuning the model's settings, it remains challenging to pinpoint the optimal configuration for achieving high accuracy. Nevertheless, we managed to reach a commendable 60% accuracy within just six epochs using a learning rate of 5e-05 and a batch size of 32, utilizing the AdamW optimizer configured at 3e-4. This outcome illustrates that although there is no single training strategy, carefully observing the model's response to different settings and making adjustments can lead to significant improvements. For instance, further training a previously saved model at a lower learning rate yielded even better results. Our work with the FlauBERT model was a continuous process of experimentation and refinement to identify the most effective training strategies.
+
 
 ## 🔟 **CamemBERT**
 
@@ -802,6 +806,9 @@ The validation loss remains relatively stable, with a slight increase towards th
 | **Weighted Avg**| 0.55  | 0.53   | 0.52     | 960     |
 
  The classification report shows uneven performance across different classes as we have seen already in other models, with the model better predicting A1 and C2 classes.
+
+**Conclusion**: 
+
 
 We are excited to apply our model and the skills learned during this project to help others find the most suitable text for themselves to learn French or even work further on developing a more powerful model for text classification!
 
