@@ -680,7 +680,7 @@ The video was produced for beginner French learners. From the plot, we can see t
 
 ## 🔟 **CamemBERT**
 
-> CamemBERT is a state-of-the-art language model for French based on the RoBERTa architecture pretrained on the French subcorpus of the newly available multilingual corpus OSCAR.
+> CamemBERT is a state-of-the-art language model for French based on the RoBERTa architecture pretrained on the French subcorpus of the newly available multilingual corpus OSCAR. (Source: [CamemBERT](https://camembert-model.fr/))
 
 *Results for the Model with a different learning rate adjustement*
 
@@ -695,7 +695,7 @@ The video was produced for beginner French learners. From the plot, we can see t
 | 7/8   | 0.00001389  | 0.0039        | 0.0547          | 54.90%   | 56.90%    | 54.90%  | 55.20%   |
 | 8/8   | 0.00000000  | 0.0022        | 0.0577          | 56.25%   | 58.90%    | 56.25%  | 56.44%   |
 
-The best accuracy was achieved in the 3rd epoch. Accuracy isn't improving consistently, suggesting some challenges in the model's ability to consistently classify new data correctly.
+The best accuracy was achieved in the 3rd epoch, 57.71%. We see that the accuracy isn't improving consistently, suggesting some challenges in the model's ability to consistently classify new data correctly.
 
 Both the training and validation losses generally decrease over the epochs, indicating that the model is learning and generalizing well to the validation data. However, from Epoch 5 onward, there's a noticeable increase in validation loss despite a continuing decrease in training loss. Regularisation techniques should be used to achieve better results over the training. 
 
