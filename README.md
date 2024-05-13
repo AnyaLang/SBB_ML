@@ -716,6 +716,48 @@ The best accuracy was achieved in the 3rd epoch, 57.71%. We see that the accurac
 
 Both the training and validation losses generally decrease over the epochs, indicating that the model is learning and generalizing well to the validation data. However, from Epoch 5 onward, there's a noticeable increase in validation loss despite a continuing decrease in training loss. Regularisation techniques should be used to achieve better results over the training. 
 
+**Introducing the L1 regularisation**
+
+To address the issue of overfitting observed during the training of the CamemBERT model, we decided to introduce L1 regularisation. This regularisation technique adds a penalty equivalent to the absolute value of the magnitude of the coefficients to the loss function.
+
+``` python
+ # Add L1 regularisation
+ l1_penalty = sum(p.abs().sum() for p in model.parameters())
+loss += lambda_l1 * l1_penalty
+```
+
+After incorporating L1 regularisation into the training process, we observed an improvement in the model's performance in terms of generalisation. The model was less prone to overfitting, as evidenced by the more stable validation loss. However, the model achieved a lower accuracy score after introducing L1 regularisation. 
+
+*Results with L1 Regularisation*
+
+| Epoch | Current LR   | Training Loss | Validation Loss | Accuracy | Precision | Recall  | F1 Score | Notes                                |
+|-------|--------------|---------------|-----------------|----------|-----------|---------|----------|--------------------------------------|
+| 1/8   | 0.00009722   | 2.1948        | 0.0352          | 51.35%   | 53.00%    | 51.35%  | 49.33%   | Best model saved as epoch1 with F1 0.49 |
+| 2/8   | 0.00008333   | 2.0949        | 0.0336          | 52.60%   | 54.18%    | 52.60%  | 52.53%   | Best model saved as epoch2 with F1 0.53 |
+| 3/8   | 0.00006944   | 2.0227        | 0.0338          | 55.73%   | 57.03%    | 55.73%  | 55.75%   | Best model saved as epoch3 with F1 0.56 |
+| 4/8   | 0.00005556   | 1.9692        | 0.0388          | 56.04%   | 56.60%    | 56.04%  | 55.72%   |                                      |
+| 5/8   | 0.00004167   | 1.9277        | 0.0517          | 48.96%   | 53.91%    | 48.96%  | 47.61%   |                                      |
+| 6/8   | 0.00002778   | 1.8938        | 0.0486          | 56.88%   | 58.83%    | 56.88%  | 56.83%   | Best model saved as epoch6 with F1 0.57 |
+| 7/8   | 0.00001389   | 1.8649        | 0.0572          | 55.00%   | 57.82%    | 55.00%  | 54.98%   |                                      |
+| 8/8   | 0.00000000   | 1.8430        | 0.0572          | 55.73%   | 58.16%    | 55.73%  | 55.70%   |                                      |
+
+
+*Classification Report with L1 Regularisation*
+
+| Level | Precision | Recall | F1-Score | Support |
+|-------|-----------|--------|----------|---------|
+| A1    | 0.71      | 0.75   | 0.73     | 166     |
+| A2    | 0.47      | 0.53   | 0.50     | 158     |
+| B1    | 0.49      | 0.47   | 0.48     | 166     |
+| B2    | 0.51      | 0.60   | 0.55     | 153     |
+| C1    | 0.48      | 0.57   | 0.52     | 152     |
+| C2    | 0.81      | 0.42   | 0.55     | 165     |
+|       |           |        |          |         |
+| **Accuracy** |         |        | **0.56**  | **960**   |
+| **Macro Avg** | **0.58** | **0.56** | **0.56** | **960**   |
+| **Weighted Avg** | **0.58** | **0.56** | **0.56** | **960**   |
+
+
 **Model with a 5e-05 learning rate 6 epochs**
 
 *Results model with a 5e-05 learning rate 6 epochs*
@@ -729,8 +771,10 @@ Both the training and validation losses generally decrease over the epochs, indi
 | 5     | 0.0195        | 0.0348          | 0.5604   | 0.5760    | 0.5604 | 0.5593   |
 | 6     | 0.0165        | 0.0378          | 0.5250   | 0.5470    | 0.5250 | 0.5225   |
 
+The accuracy peaks in Epoch 5 at 56.04% and then drops in Epoch 6 to 52.50%. This fluctuation can indicate that the model may have reached its learning capacity with the current architecture and training setup.
+The validation loss remains relatively stable, with a slight increase towards the last epoch. The training loss as expected reduces over the epochs.
 
-*Confusion Matrix*
+*Confusion Matrix with a 5e-05 learning rate 6 epochs*
 
 | Actual\Predicted | A1  | A2  | B1  | B2  | C1  | C2  |
 |------------------|-----|-----|-----|-----|-----|-----|
@@ -742,8 +786,7 @@ Both the training and validation losses generally decrease over the epochs, indi
 | **C2**           | 0   | 0   | 5   | 38  | 52  | 70  |
 
 
-
-*Classification Report*
+*Classification Report with a 5e-05 learning rate 6 epochs*
 
 | Class | Precision | Recall | F1-score | Support |
 |-------|-----------|--------|----------|---------|
@@ -758,6 +801,7 @@ Both the training and validation losses generally decrease over the epochs, indi
 | **Macro Avg**| 0.54      | 0.52   | 0.52     | 960     |
 | **Weighted Avg**| 0.55  | 0.53   | 0.52     | 960     |
 
+ The classification report shows uneven performance across different classes as we have seen already in other models, with the model better predicting A1 and C2 classes.
 
 We are excited to apply our model and the skills learned during this project to help others find the most suitable text for themselves to learn French or even work further on developing a more powerful model for text classification!
 
