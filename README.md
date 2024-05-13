@@ -682,6 +682,8 @@ The video was produced for beginner French learners. From the plot, we can see t
 
 > CamemBERT is a state-of-the-art language model for French based on the RoBERTa architecture pretrained on the French subcorpus of the newly available multilingual corpus OSCAR. (Source: [CamemBERT](https://camembert-model.fr/))
 
+![CamemBERT](https://github.com/AnyaLang/SBB_ML/blob/19b3630a2f64b44bc84acd766390b5c484a9aebd/CamamBERT.png)
+
 *Results for the Model with a different learning rate adjustement*
 
 | Epoch | Current LR  | Training Loss | Validation Loss | Accuracy | Precision | Recall  | F1 Score |
