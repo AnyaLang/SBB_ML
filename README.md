@@ -238,7 +238,7 @@ In the next step, we **increased the number of epochs to 5 epochs to monitor if 
 
 *Training and Validation loss BERT with Increased Sequence Length*
 
-![training loss](https://github.com/AnyaLang/SBB_ML/blob/a5cf10d1a746b20f157ee7c4f0ce95cabee498e2/BERT%20training%20loss%20vs%20validation%20loss.png)
+![training loss_BERT](https://github.com/AnyaLang/SBB_ML/blob/2f1bbece203f89c17bdf049d8b5a1bcf18d99e19/Visuals/BERT%20training%20loss%20vs%20validation%20loss.png)
 
 The training loss decreases significantly after the third epoch, indicating that the model continues to learn and improve its understanding of the training data as more epochs are processed. The validation loss does not show a clear decreasing trend; it increases slightly in the later epochs. This could suggest the beginning of **overfitting**. **The accuracy is the highest in the 4th epoch.**
 
