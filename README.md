@@ -400,7 +400,9 @@ We further trained the model on the batch size 32 over 4 epochs with the learnin
 
 The main difference between the performance of the training on the batch 16 and 32 with the same learning rate 5e-5 is the average loss. From the graph, it's clear that the average loss for the batch size of 32 is significantly lower than that for the batch size of 16 at every epoch. 
 
-![16 and 32 batch_loss.png](https://github.com/AnyaLang/SBB_ML/blob/125ad85ffe0c16a54ce6138367cc1b7af2dc0b6e/16%20and%2032%20batch_loss.png)
+![16 and 32 batch_loss.png](https://github.com/AnyaLang/SBB_ML/blob/da060355c46c3ac513bfdad1bb53ae69696892f4/Visuals/16%20and%2032%20batch_loss.png)
+
+![16 and 32 batch_accuracy.png](https://github.com/AnyaLang/SBB_ML/blob/d189c3932c598846fcc3212a3d20e2998d1298c8/Visuals/16%20and%2032%20batch_accuracy.png)
 
 ### **Model with 5e-5 learning rate, batch 32, 6 epochs**
 
@@ -454,11 +456,11 @@ scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=warmup_s
 | 8/8   | 0.00000000  | 0.0058        | 0.0587          | 0.5875      | 0.595540066 | 0.5875     | 0.589796859|
 
 
-![F1 and accuracy](https://github.com/AnyaLang/SBB_ML/blob/cce0556038fd34f09376da79c3cba35d88ecd5f9/F1%20and%20accuracy_with_adjusted%20learning_1e-04.png)
+![F1 and accuracy](https://github.com/AnyaLang/SBB_ML/blob/d189c3932c598846fcc3212a3d20e2998d1298c8/Visuals/F1%20and%20accuracy_with_adjusted%20learning_1e-04.png)
 
 Both accuracy and F1 scores show a clear upward trend from the first to the sixth epoch, improving from 0.2677 and 0.2216 to 0.6125 and 0.6087, respectively.  Post the sixth epoch, both accuracy and F1 score plateau and then slightly decline in the final epochs (epoch 7 and 8). This stage also aligns with the increasing validation loss. 
 
-![loss](https://github.com/AnyaLang/SBB_ML/blob/cce0556038fd34f09376da79c3cba35d88ecd5f9/loss_with_adjusted%20learning_1e-04.png)
+![loss](https://github.com/AnyaLang/SBB_ML/blob/d189c3932c598846fcc3212a3d20e2998d1298c8/Visuals/loss_with_adjusted%20learning_1e-04.png)
 
 The training loss consistently decreases from 0.0629 in the first epoch to 0.0058 in the final epoch. However, we observe that the validation loss spikes at the second epoch but decreases until the fifth epoch, achieving a low of 0.0376. However, from the sixth epoch, it begins to increase suggesting the onset of overfitting. 
 
@@ -591,7 +593,7 @@ The best model from this training had the result on Kaggle of 0.600.
 | C1               | 242   |
 | C2               | 156   |
 
-![predictions.png](https://github.com/AnyaLang/SBB_ML/blob/a61cf5434af67b37f57bf0cd083882fffb8aaa4a/all_predictions.png)
+![predictions.png](https://github.com/AnyaLang/SBB_ML/blob/d189c3932c598846fcc3212a3d20e2998d1298c8/Visuals/all_predictions.png)
 
 **Approach we took for the best model on Kaggle**
 
@@ -650,7 +652,7 @@ While our best model achieved an accuracy of 0.610 on Kaggle by following this a
 | C1               | 173   |
 | C2               | 183   |
 
-![predictions_best.png](https://github.com/AnyaLang/SBB_ML/blob/4f95efcdcfd33810b7f1419ee02da33ddcb365f1/best_graph.png)
+![predictions_best.png](https://github.com/AnyaLang/SBB_ML/blob/3d4419e9cc9ead3046b4115519c965bac65c6007/Visuals/best_graph.png)
 
 ## **Making predictions on the YouTube video**
 
@@ -684,7 +686,8 @@ We have obtained the following results:
 
 *Predictions on the YouTube video*
 
-![youtube_predictions.png](https://github.com/AnyaLang/SBB_ML/blob/cae24ef359d209c372632ae900b8a945b1cedbfd/predictions%20YouTube%20visual.png)
+![youtube_predictions.png](https://github.com/AnyaLang/SBB_ML/blob/f2ea59e0b5f79aa55de9e48049a598a446828fb4/Visuals/predictions%20YouTube%20visual.png)
+
 
 The video was produced for beginner French learners. From the plot, we can see that 16 sentences fall into the A2 category and 4 into the A1 category. Additionally, some sentences are classified as more difficult, at the B1 level, by the model. This classification could pose challenges for learners but also encourage them to acquire new vocabulary and further develop their language skills."
 
@@ -707,7 +710,7 @@ tokenizer = CamembertTokenizer.from_pretrained(model_name)
 model = CamembertModel.from_pretrained(model_name)
 ```
 
-![CamemBERT](https://github.com/AnyaLang/SBB_ML/blob/19b3630a2f64b44bc84acd766390b5c484a9aebd/CamamBERT.png)
+![CamemBERT](https://github.com/AnyaLang/SBB_ML/blob/f2ea59e0b5f79aa55de9e48049a598a446828fb4/Visuals/CamamBERT.png)
 
 **Model with a different learning rate adjustement**
 
