@@ -477,7 +477,17 @@ The training loss consistently decreases from 0.0629 in the first epoch to 0.005
 | **Macro Avg** | **0.61** | **0.61** | **0.61** | **960**   |
 | **Weighted Avg** | **0.61** | **0.61** | **0.61** | **960**   |
 
-![Confusion matrix](https://github.com/AnyaLang/SBB_ML/blob/cce0556038fd34f09376da79c3cba35d88ecd5f9/confusion%20matrix_model_with_adjusted%20learning_1e-04.png)
+*Confusion matrix*
+
+| True \ Predicted | A1  | A2  | B1  | B2  | C1  | C2  |
+|------------------|-----|-----|-----|-----|-----|-----|
+| A1               | 122 | 33  | 11  | 0   | 0   | 0   |
+| A2               | 26  | 77  | 51  | 3   | 1   | 0   |
+| B1               | 13  | 39  | 93  | 15  | 3   | 3   |
+| B2               | 0   | 4   | 20  | 92  | 29  | 8   |
+| C1               | 0   | 1   | 5   | 39  | 82  | 25  |
+| C2               | 0   | 0   | 4   | 14  | 49  | 98  |
+
 
 The model demonstrates its strongest predictive accuracy for the A1 and C2 levels, indicating the capability to recognize the distinct linguistic features associated with the lowest and highest proficiency levels. However, it struggles with the A2 level, achieving the lowest F1-score of 0.48. For the intermediate B1 and B2 levels, the model achieves moderate F1-scores of 0.55 and 0.56, respectively. While C1 is slightly better achieving 0.57, it still indicates that the model struggles in distinguishing between closely related proficiency levels.
 
