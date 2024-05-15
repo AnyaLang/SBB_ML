@@ -678,7 +678,7 @@ Upon additionally reviewing the documentation on BERT and [FlauBERT](https://hug
 We will explore some of the listed batch sizes and the learning rates and also adjust other parameters during our training.
 
 
-**3. Model training**
+**2. Model training**
 
 ### **Evaluating the optimal parameters for training**
 
@@ -693,7 +693,7 @@ train_batch_sizes = [16, 32]
 eval_batch_sizes = [16, 32]   
 ```
 
-*Results of the training on the batch of 16 with different learning rates*
+*Results of the training on the batch of 16 with different learning rates:*
 
 | Learning Rate | Epoch | Average Loss | Accuracy   | Precision | Recall    | F1 Score  | Notes                  |
 |---------------|-------|--------------|------------|-----------|-----------|-----------|------------------------|
@@ -715,7 +715,7 @@ eval_batch_sizes = [16, 32]
 | 2e-05         | 4     | 0.06303      | 52.71%     | 52.48%    | 52.71%    | 52.28%    | -                      |
 
 
-*Note on the training*
+*Note on the training:*
 
 Important to note that our first model is trained using the **AdamW optimizer**, which is a variant of the traditional Adam optimizer. AdamW incorporates a regularization technique known as [weight decay](https://github.com/tml-epfl/why-weight-decay), which is used in training neural networks to prevent overfitting. It functions by incorporating a term into the loss function that penalizes large weights.Besides, we also employ a **Linear Learning Rate Scheduler** to manage the learning rate throughout the training process. T Although this training setup does not include a warm-up phase where the learning rate would gradually ramp up before decreasing, the scheduler is configured to reduce the learning rate slightly with each training step. This gradual reduction helps in stabilizing the training as it advances.
 
@@ -724,7 +724,7 @@ Important to note that our first model is trained using the **AdamW optimizer**,
     scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=0, num_training_steps=(len(train_dataset) // train_batch_size) * num_epochs)
 ```
 
-*Results for different training parameters*
+*Results for different training parameters:*
 
 Our training was interrupted, so we couldn't fully evaluate the results for a batch size of 32. However, from what we observed, a **learning rate of 5e-05 yielded the highest performance in terms of accuracy, precision, recall, and F1 score**. In the next stage, we will continue training our model using this learning rate and adjust the batch size to fully assess the results for batch 32.
 
