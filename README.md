@@ -680,7 +680,7 @@ We will explore some of the listed batch sizes and the learning rates and also a
 
 **2. Model training**
 
-### **Evaluating the optimal parameters for training**
+**Evaluating the optimal parameters for training**
 
 We will train our model only on 2 different different batch sizes to make this initial evaluation.
 
@@ -717,7 +717,7 @@ eval_batch_sizes = [16, 32]
 
 *Note on the training:*
 
-Important to note that our first model is trained using the **AdamW optimizer**, which is a variant of the traditional Adam optimizer. AdamW incorporates a regularization technique known as [weight decay](https://github.com/tml-epfl/why-weight-decay), which is used in training neural networks to prevent overfitting. It functions by incorporating a term into the loss function that penalizes large weights.Besides, we also employ a **Linear Learning Rate Scheduler** to manage the learning rate throughout the training process. T Although this training setup does not include a warm-up phase where the learning rate would gradually ramp up before decreasing, the scheduler is configured to reduce the learning rate slightly with each training step. This gradual reduction helps in stabilizing the training as it advances.
+Important to note that our first model is trained using the AdamW optimizer, which is a variant of the traditional Adam optimizer. AdamW incorporates a regularization technique known as [weight decay](https://github.com/tml-epfl/why-weight-decay), which is used in training neural networks to prevent overfitting. It functions by incorporating a term into the loss function that penalizes large weights.Besides, we also employ a Linear Learning Rate Scheduler to manage the learning rate throughout the training process. T Although this training setup does not include a warm-up phase where the learning rate would gradually ramp up before decreasing, the scheduler is configured to reduce the learning rate slightly with each training step. This gradual reduction helps in stabilizing the training as it advances.
 
 ```python
  optimizer = AdamW(model.parameters(), lr=learning_rate, betas=(0.9, 0.999), eps=1e-08)
@@ -743,7 +743,7 @@ The main difference between the performance of the training on the batch 16 and 
 
 ![16 and 32 batch_accuracy.png](https://github.com/AnyaLang/SBB_ML/blob/d189c3932c598846fcc3212a3d20e2998d1298c8/Visuals/16%20and%2032%20batch_accuracy.png)
 
-### **Model with 5e-5 learning rate, batch 32, 6 epochs**
+**Model with 5e-5 learning rate, batch 32, 6 epochs**
 
 From our prior experience training BERT, we noticed a decrease in model accuracy after four epochs. However, in the case of FlauBERT, during previous training sessions, the model's accuracy improved from 43% to 57% over four epochs, which was substantially higher than archived by BERT. Consequently, we decided to extend the training duration to six epochs, using a batch size of 32 and see if we achieve higher accuracy with this model.
 
@@ -763,18 +763,18 @@ By looking at the initial results, one might conclude that 4 epochs are enough s
 
 We also experimented and changed the number of epochs to 4, 6 and 8. However, for this training setting 6 epochs resulted in the highest accuracy of the model and F1 value.
 
-### **Model with a different learning rate adjustement**
+**Model with a different learning rate adjustement**
 
 Modifications for Warm-Up Phase and Learning Rate Adjustment
 
-**Increased the Initial Learning Rate:** We start with a higher initial learning rate - 1e-4.
+*Increased the Initial Learning Rate:* We start with a higher initial learning rate - 1e-4.
 
 ```python
 # Initialize the optimizer with a higher initial learning rate
 optimizer = AdamW(model.parameters(), lr=1e-4, betas=(0.9, 0.999), eps=1e-08)
 ```
 
-**Added Warm-Up Steps:** Introduce a warm-up phase where the learning rate will linearly increase to this higher initial rate over a number of steps. A common strategy is to set the warm-up steps to 10% of the total training steps.
+*Added Warm-Up Steps:* Introduce a warm-up phase where the learning rate will linearly increase to this higher initial rate over a number of steps. A common strategy is to set the warm-up steps to 10% of the total training steps.
 
 ```python
 # Scheduler with warm-up phase
@@ -847,7 +847,7 @@ scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=warmup_s
 ```
 While in the previous steps, we looked only at the average loss, for this step, we wanted to see the changes over the epochs in more detail.
 
-**Results for 8 epochs with the adjusted learning rate, starting with 3e-04**
+*Results for 8 epochs with the adjusted learning rate, starting with 3e-04:*
 
 | Epoch | Training Loss | Validation Loss | Accuracy | Precision | Recall | F1 Score |
 |-------|---------------|-----------------|----------|-----------|--------|----------|
@@ -867,13 +867,13 @@ While in the previous steps, we looked only at the average loss, for this step, 
 
 While accuracy continued to increase over the epochs, the results were not as good as for the previous model. Thus, the start with such a high learning rate might not be optimal, or it may require a longer training time.
 
-### **Model 3e-05 with large number of epochs and batch size 16**
+**Model with 3e-05 learning rate, batch size 16 and a larger number of epochs**
 
 During the training, we encountered several errors related to Memory Errors, so we decided to explore training the models with a lower batch size and different learning rates. From the previous settings, a learning rate of 5e-05 performed the best. However, we wanted to assess if the model could achieve even higher results if trained with similar parameters over a larger number of epochs, but by adopting a lower learning rate.
 
 Therefore, we have decided to continue refining the model with this learning rate. To further explore the model's capacity, we plan to keep the batch size at 16 and adjust the learning rate to 3e-05,  while extending the training period. We believe that this will allow a more stable learning process for the model and help in mitigating the overfitting.
 
-**Model 3e-05 with large number of epochs and batch size 16**
+*Results for 15 epochs with 3e-05 learning rate and batch size 16:*
 
 | Epoch  | Learning Rate | Average Loss    | Validation Accuracy | Notes                                     |
 |--------|---------------|-----------------|---------------------|-------------------------------------------|
@@ -949,7 +949,7 @@ We extended the training by **an additional 6 epochs with learning rate 2e-05, w
 | 5/6   | 2e-05         | 0.03376048295150819 | 0.5864583333333333  |                                                |
 | 6/6   | 2e-05         | 0.02625617888628161 | 0.5916666666666667  | Saved as `best_model_lr2e-05_ep6_acc0.59.pt`    |
 
-Observing continuous improvement, we decided that maintaining the learning rate of 2e-05 was optimal and proceeded to extend the training for 3 more epochs, however, given one issue in the code, the training extended to additional **9 epochs**. Throughout this extended training period, we noticed that while the **average loss consistently decreased, the accuracy improvements on our model plateaued, showing only marginal gains**.
+Observing continuous improvement, we decided that maintaining the learning rate of 2e-05 was optimal and proceeded to extend the training for 3 more epochs, however, given one issue in the code, the training extended to additional 9 epochs. Throughout this extended training period, we noticed that while the average loss consistently decreased, the accuracy improvements on our model plateaued, showing only marginal gains.
 
 | Epoch | Learning Rate | Average Loss         | Validation Accuracy   |
 |-------|---------------|----------------------|-----------------------|
