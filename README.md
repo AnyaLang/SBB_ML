@@ -1176,7 +1176,7 @@ To further challenge the app, we introduced a more complex sentence. Specificall
 
 ![french4u_pred_2.jpg](https://github.com/AnyaLang/SBB_ML/blob/5a5e0650cd29a6dc7a3de5a7776c162ce7f055ee/Visuals/french4u_pred_2.jpg)
 
-Click on the following link to access the French4u app and perform predictions by yourself: [link](https://french4u.streamlit.app/)
+Click on the following link to access the French4u app and perform further predictions by yourself: [link](https://french4u.streamlit.app/)
 
 Click on the following link to access the repository containing all the files used to create the app: [link](https://github.com/allobo49/Streamlit) 
 
