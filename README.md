@@ -1162,11 +1162,7 @@ The plot reveals that most sentences are classified under the A2 category, indic
 
 The previous prediction was carried out using Google Colab, a tool that many people are not familiar with. Which method could we use to allow anyone to easily utilize our model? Developing an application through Streamlit could be one way. Therefore, we decided to get to work and create the French4U app.
 
-Given the complexity and size of our best model, we faced many difficulties in creating the Streamlit app with it. Therefore, since we wanted to create an MVP (Minimum Viable Product), we decided to implement Logistic Regression with features, one of the models that delivered one of the highest accuracies, specifically around 51%. Follow this link to access the repository containing all the files used to create the app: [link](https://github.com/allobo49/Streamlit) 
-
-
-
-To directly access the app created, click on [this link](https://french4u.streamlit.app/).
+Given the complexity and size of our best model, we faced many difficulties in creating the Streamlit app with it. Therefore, since we wanted to create an MVP (Minimum Viable Product), we decided to implement Logistic Regression with features, one of the models that delivered one of the highest accuracies, specifically around 51%. Follow this link to access the repository containing all the files used to create the app: [link](https://github.com/allobo49/Streamlit) To directly access the app created, click on this [link](https://french4u.streamlit.app/).
 
 ## Video
 Add on Sunday
