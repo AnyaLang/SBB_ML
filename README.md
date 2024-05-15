@@ -1166,7 +1166,7 @@ Given the complexity and size of our best model, we faced many difficulties in c
 
 Regarding the interface design, we aimed to be as straightforward and user-friendly as possible. The interface is designed to let users predict the difficulty of the French sentences they input. We found it most convenient to clearly explain this purpose, provide a box for writing the sentence, and add a button that, when clicked, immediately predicts the difficulty and displays it below. Here's how it looks:
 
-![youtube_predictions.png](https://github.com/AnyaLang/SBB_ML/blob/f2ea59e0b5f79aa55de9e48049a598a446828fb4/Visuals/predictions%20YouTube%20visual.png)
+![french4u_interface.jpg]((https://github.com/AnyaLang/SBB_ML/blob/dbfa113016d43be9708749106469ef02cfff34d0/Visuals/french4u_interface.jpg))
 
 Follow this link to access the repository containing all the files used to create the app: [link](https://github.com/allobo49/Streamlit) 
 
