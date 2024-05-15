@@ -1006,7 +1006,7 @@ Despite spending considerable time fine-tuning the model's settings, it remains 
 
 > CamemBERT is a state-of-the-art language model for French based on the RoBERTa architecture pretrained on the French subcorpus of the newly available multilingual corpus OSCAR. (Source: [CamemBERT](https://camembert-model.fr/))
 
-While CamemBERT large had approximately the same number of parameters as FlauBERT, we decided to deploy this model and see if we can achieve results close to those with FlauBERT and explore how this model behaves.
+While CamemBERT large had approximately the same number of parameters as FlauBERT, we decided to deploy this model to explore how it behaves and to see if we could improve the results obtained with FlauBERT.
 
 Given some of the computational limitations, we have deployed the base model:
 
