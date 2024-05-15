@@ -663,11 +663,11 @@ We will use the FlauBERT large cased model because it offers greater depth, a mo
 model_french = 'flaubert/flaubert_large_cased'
 tokenizer = FlaubertTokenizer.from_pretrained(model_french, do_lowercase=False)
 ```
-**Model parameters**
+**2. Model parameters**
 
 The model has quite an extensive range of [parameters](https://huggingface.co/transformers/v3.2.0/model_doc/flaubert.html). For instance, default parameters of the model include language embeddings, and the `max_position_embeddings` was set to 512.  We decided to initially concentrate on hyperparameter tuning, particularly adjusting batch sizes, learning rates, and training epochs to optimise performance. If the results are not satisfactory and computational resources permit, we will delve deeper into other configurations. This may include exploring the pre-norm and post-norm settings in the transformer layers, which can affect training dynamics and model stability, different regularisation and dropout techniques etc.
 
-**Hyperparameter tuning**
+**3. Hyperparameter tuning**
 
 Upon additionally reviewing the documentation on BERT and [FlauBERT](https://huggingface.co/docs/transformers/en/model_doc/flaubert), the optimal training duration for FlauBERT is approximately four epochs, with the following hyperparameter options:
 
@@ -678,7 +678,7 @@ Upon additionally reviewing the documentation on BERT and [FlauBERT](https://hug
 We will explore some of the listed batch sizes and the learning rates and also adjust other parameters during our training.
 
 
-**2. Model training**
+**4. Model training and Results**
 
 **Evaluating the optimal parameters for training**
 
