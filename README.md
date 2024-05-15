@@ -1128,8 +1128,6 @@ Add by the end...
 
 ## Making predictions on a YouTube video 
 
-![YouTube Video](https://drive.google.com/uc?export=view&id=1A-QgMNBh1DNDSIQlxJ9FR4CNVqZlyAc1 "Image Title")
-
 It's time for a real-world test! Let's see how our model performs in a broader and more practical context. We've taken the transcript from a YouTube video designed for beginner French learners and run it through our model. Will it accurately identify A1 and A2 difficulty levels?
 
 The specific video selected to make predictions is: [What Do French People Actually Eat? | Easy French 189](https://www.youtube.com/watch?v=p65EBC9lW9k&list=PLnazreCxpqRmpb4lGvzvCGXIXZkL3Nc27&index=4)
