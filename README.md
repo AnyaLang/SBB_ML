@@ -1187,17 +1187,17 @@ Add on Sunday
 
 The work done both by Anna Dovha and Ana Llorens in the current project has been proportionally balanced. Although both students have supported each other in the different tasks performed, each of them were mainly responsible for the following parts:
 
-*Ana Dovha*
+*Ana Dovha:*
 - Models: Doc2Vec, BERT, FlauBERT and CamemBERT.
 - Predictions on a Youtube Video.
 - ReadME.
 
-*Ana Llorens*
+*Ana Llorens:*
 - Models: Logistic Regression, Random Forest Classifier, Decission Tree Classifier, KNN Classifier and Neural Networks.
 - Streamlit Application.
 - ReadME.
 
-In the case of Ana Llorens, she initially worked on FlauBERT model too as it showed significant potential. However, she eventually encountered limitations with her computer's capacity, and even with Colab Pro, she could no longer run the developed code. Since Ana Dovha had a more powerful computer and we needed to acquire additional computational units, we decided to continue working with this model solely on her computer.
+In the case of Ana Llorens, she initially worked on FlauBERT model too as it showed significant potential. However, she eventually encountered limitations with her computer's capacity, and even with Colab Pro, she could no longer run the respective code. Since Ana Dovha had a more powerful computer and we needed to acquire additional computational units, we decided to continue working with this model solely on her computer.
 
 ---
 💟**We are excited to apply our the skills learned during this project to help others find the most suitable text for themselves to learn French or even work further on developing a more powerful model for text classification!** 💟
