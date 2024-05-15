@@ -1168,13 +1168,15 @@ Regarding the interface design, we aimed to be as straightforward and user-frien
 
 ![french4u_interface.jpg](https://github.com/AnyaLang/SBB_ML/blob/dbfa113016d43be9708749106469ef02cfff34d0/Visuals/french4u_interface.jpg)
 
-![french4u_pred_1.jpg](https://github.com/AnyaLang/SBB_ML/blob/aeb1ef1b4eb494a528333d60b31892db206d758e/Visuals/french4u_pred_1.jpg)
+To ensure the app and its predictions were functioning correctly, we conducted tests by inputting various sentences and assessing the resulting difficulty levels. We began with a common introductory sentence from A1 French courses, "Je m'appelle Ana" ("My name is Ana"). The screenshot below demonstrates that the app accurately assessed the difficulty level:
+
+![french4u_pred_1.jpg](https://github.com/AnyaLang/SBB_ML/blob/983775943aa1eea0be930c149c12aadaf52f9682/Visuals/french4u_pred_1.jpg)
 
 ![french4u_pred_2.jpg](https://github.com/AnyaLang/SBB_ML/blob/aeb1ef1b4eb494a528333d60b31892db206d758e/Visuals/french4u_pred_2.jpg)
 
 Follow this link to access the repository containing all the files used to create the app: [link](https://github.com/allobo49/Streamlit) 
 
-To directly access the French4U platform, click on this [link](https://french4u.streamlit.app/)
+To directly access the French4U app, click on this [link](https://french4u.streamlit.app/)
 
 
 
