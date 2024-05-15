@@ -321,27 +321,23 @@ Best parameters associated with this model: {Iterations 1500, Learning Rate 1.04
 
 |                 | Precision | Recall | F1-Score | Support |
 |-----------------|-----------|--------|----------|---------|
-| **0 (A1 Level)**| 0.80      | 0.23   | 0.36     | 153     |
-| **1 (A2 Level)**| 0.40      | 0.78   | 0.53     | 156     |
-| **2 (B1 Level)**| 0.50      | 0.43   | 0.46     | 153     |
-| **3 (B2 Level)**| 0.47      | 0.50   | 0.49     | 173     |
-| **4 (C1 Level)**| 0.38      | 0.37   | 0.38     | 166     |
-| **5 (C2 Level)**| 0.53      | 0.45   | 0.48     | 159     |
-| **accuracy**    |           |        | 0.46     | 960     |
-| **macro avg**   | 0.51      | 0.46   | 0.45     | 960     |
-| **weighted avg**| 0.51      | 0.46   | 0.45     | 960     |
+| **0 (A1 Level)**| 0.75      | 0.36   | 0.49     | 153     |
+| **1 (A2 Level)**| 0.43      | 0.78   | 0.56     | 156     |
+| **2 (B1 Level)**| 0.56      | 0.45   | 0.50     | 153     |
+| **3 (B2 Level)**| 0.50      | 0.49   | 0.49     | 173     |
+| **4 (C1 Level)**| 0.42      | 0.58   | 0.49     | 166     |
+| **5 (C2 Level)**| 0.64      | 0.34   | 0.44     | 159    |
+| **accuracy**    |           |        | 0.50     | 960     |
+| **macro avg**   | 0.55      | 0.50   | 0.50     | 960     |
+| **weighted avg**| 0.55      | 0.50   | 0.49     | 960     |
 
-Best parameters associated with this model: {Iterations 1500, Learning Rate 1.049, Accuracy 46.15%}
+Best parameters associated with this model: {Iterations 1500, Learning Rate 1.049, Accuracy 50.10%}
 
 **Conclusion**
 
-In comparing the performance of the neural network models for the "Only-sentence Assessment" and "Additional Features Assessment," notable differences emerge.
+In comparing the performance of the neural network models for the "Only-sentence Assessment" and "Additional Features Assessment," notable differences emerge. The "Only-sentence Assessment" model achieved an overall accuracy of 42.29%, with precision, recall, and F1-scores ranging from 0.37 to 0.56 across different difficulty levels. This model demonstrated a balanced performance across most classes. Conversely, the "Additional Features Assessment" model exhibited an improved overall accuracy of 50.10%. Moreover, it excels in identifying A2 and C1 proficiency levels, with high recall scores of 0.78 and 0.58 respectively, indicating it effectively recognizes these levels but often at the cost of misclassifying other levels as A2 or C1 due to feature overlaps.
 
-The "Only-sentence Assessment" model achieved an overall accuracy of 42.29%, with precision, recall, and F1-scores ranging from 0.37 to 0.56 across different difficulty levels. This model demonstrated a balanced performance across most classes.
-
-Conversely, the "Additional Features Assessment" model exhibited an improved overall accuracy of 46.15%. Notably, this model displayed higher precision, recall, and F1-scores for several difficulty levels, particularly for classes 0 (A1 Level) and 1 (A2 Level). However, it demonstrated lower performance for classes 3 (B2 Level) and 5 (C2 Level).
-
-Overall, while both models utilized the same hyperparameters (Iterations: 1500, Learning Rate: 1.049), the inclusion of additional features in the latter model led to a modest improvement in accuracy and performance metrics.
+Overall, both best models utilize the same hyperparameters (Iterations: 1500, Learning Rate: 1.049), this can be attributed to the effective balance this setting achieves between training depth and step size adjustment. The choice of 1500 iterations likely provides sufficient epochs for the models to adequately converge on the data's complex patterns without overfitting, a common risk with excessive training. Meanwhile, a learning rate of 1.049 is aggressive enough to ensure rapid convergence, avoiding the slow progress associated with smaller rates like 0.001, yet it avoids the instability or divergence that can occur with excessively high rates like 12.031. This combination of parameters indicates that the models require a robust, yet cautiously quick approach to learning in order to capture and generalize the nuanced features inherent in the dataset effectively.
 
 ## 7️⃣ **Doc2Vec**
 
