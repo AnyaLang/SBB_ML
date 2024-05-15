@@ -1076,7 +1076,7 @@ After incorporating L1 regularisation into the training process, we observed an 
 | **Weighted Avg** | **0.58** | **0.56** | **0.56** | **960**   |
 
 
-**Model with a 5e-05 learning rate 6 epochs**
+**Model with a 5e-05 learning rate and 6 epochs**
 
 *Results model with a 5e-05 learning rate 6 epochs*
 
@@ -1161,10 +1161,10 @@ While now this model had shown lower results compared to what we have achieved i
 The plot reveals that most sentences are classified under the A1 and A2 categories, indicating that the model effectively recognizes the text as suitable for beginners. Additionally, the model identifies some sentences as more challenging, categorizing them at the B1 level. This higher classification might challenge learners, yet it also offers an opportunity to expand their vocabulary and enhance their language skills, potentially reflecting the video author's intent to promote linguistic growth."
 
 ## Streamlit Application
-Which is the point of developing a model to predict the difficulty of a French Level if we do not leverage it? Now it's 
+
 
 ## Video
-
+Add on Sunday
 
 ## Contributions
 
