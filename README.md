@@ -1160,6 +1160,9 @@ The plot reveals that most sentences are classified under the A2 category, indic
 
 ## Streamlit Application
 
+The previous prediction was carried out using Google Colab, a tool that many people are not familiar with. Which method could we use to allow anyone to easily utilize our model? Developing an application through Streamlit could be one way. Therefore, we decided to get to work and create the French4U app.
+
+Given the complexity and size of our best model, we faced many difficulties in creating the Streamlit app with it. Therefore, since we wanted to create an MVP (Minimum Viable Product), we decided to implement Logistic Regression with features that achieved an accuracy of approximately 51%. Here you can find the folder with all the files that have been used for its creation: 
 
 ## Video
 Add on Sunday
