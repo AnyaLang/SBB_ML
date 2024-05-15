@@ -938,7 +938,7 @@ The best model from this training had the result on Kaggle of 0.600.
 
 ![predictions.png](https://github.com/AnyaLang/SBB_ML/blob/d189c3932c598846fcc3212a3d20e2998d1298c8/Visuals/all_predictions.png)
 
-**Approach we took for the best model on Kaggle**
+**Approach we took for the 🏆 BEST MODEL 🏆 on Kaggle**
 
 **After achieving initial results from 15 epochs with the learning rate 3e-05, we changed the learning rate to 1e-05 and continued the training for 3 more epochs. We saw the improvement of the model, so decided to proceed the training with slightly higher learning rate.**
 
@@ -996,43 +996,6 @@ While our best model achieved an accuracy of 0.610 on Kaggle by following this a
 | C2               | 183   |
 
 ![predictions_best.png](https://github.com/AnyaLang/SBB_ML/blob/3d4419e9cc9ead3046b4115519c965bac65c6007/Visuals/best_graph.png)
-
-## **Making predictions on the YouTube video**
-
-![YouTube Video](https://drive.google.com/uc?export=view&id=1A-QgMNBh1DNDSIQlxJ9FR4CNVqZlyAc1 "Image Title")
-
-We wanted to use our model to make the predictions on the videos targeted to beginner French learners. We chose the video on YouTube and created the df with the sentences from the video.
-
-The video selected to make predictions is: [What Do French People Actually Eat? | Easy French 189](https://www.youtube.com/watch?v=p65EBC9lW9k&list=PLnazreCxpqRmpb4lGvzvCGXIXZkL3Nc27&index=4)
-
-Example of the sentences:
-`sentences = [
-    "Salut les amis, bienvenue dans ce nouvel épisode.",
-    "Aujourd'hui je suis dans le 11e arrondissement et je vais demander aux gens de parler de leurs habitudes alimentaires.",
-    "Alors c'est parti, qu'est-ce que vous avez mangé depuis ce matin?",
-]`
-
-Since we could not access the models from the previous training due to a runtime interruption, we trained the model with a **batch size of 32, for 6 epochs, and a learning rate of 5e-5 to make the predictions.**
-
-| Epoch | Learning Rate | Average Loss    | Accuracy   | Precision   | Recall    | F1 Score   |
-|-------|---------------|-----------------|------------|-------------|-----------|------------|
-| 1/6   | 5e-5          | 0.0604157262327 | 0.39375    | 0.5144486   | 0.39375   | 0.3701024  |
-| 2/6   | 5e-5          | 0.0422514597885 | 0.4989583  | 0.5244477   | 0.4989583 | 0.4860280  |
-| 3/6   | 5e-5          | 0.0340066954804 | 0.5427083  | 0.5798898   | 0.5427083 | 0.5209575  |
-| 4/6   | 5e-5          | 0.0275729257846 | 0.5583333  | 0.5704371   | 0.5583333 | 0.5564640  |
-| 5/6   | 5e-5          | 0.0218229048653 | 0.5677083  | 0.5970088   | 0.5677083 | 0.5620301  |
-| 6/6   | 5e-5          | 0.0174353359539 | 0.5791667  | 0.5974417   | 0.5791667 | 0.5825952  |
-
-While now this model had shown lower results compared to what we have achieved initially, still based on the results after training the model on the dataset we obtained from Kaggle, we believe our model can well predict the difficulty of the sentences.
-
-We have obtained the following results:
-
-*Predictions on the YouTube video*
-
-![youtube_predictions.png](https://github.com/AnyaLang/SBB_ML/blob/f2ea59e0b5f79aa55de9e48049a598a446828fb4/Visuals/predictions%20YouTube%20visual.png)
-
-
-The video was produced for beginner French learners. From the plot, we can see that 16 sentences fall into the A2 category and 4 into the A1 category. Additionally, some sentences are classified as more difficult, at the B1 level, by the model. This classification could pose challenges for learners but also encourage them to acquire new vocabulary and further develop their language skills."
 
 **Conclusion**: In our project using the FlauBERT model, we explored how various training parameters, including regularization techniques, schedulers, learning rates, batch sizes, and model sizes, impacted the model's performance. We discovered that the combination of batch size and learning rate was crucial. Some settings allowed us to train the model for up to 15 epochs without it learning the training data too closely—a problem known as overfitting. However, other settings led to overfitting much earlier.
 
@@ -1165,7 +1128,51 @@ The validation loss remains relatively stable, with a slight increase towards th
 
 **Conclusion**: The best accuracy achieved with the base CamemBERT model was 57.71% during the third epoch under a specific learning rate adjustment. Notably, this model reached a high level of accuracy more quickly than FlauBERT, although it also began to overfit earlier. Introducing L1 regularization helped address overfitting, leading to more stable validation losses and a modest improvement in model generalization, although it slightly reduced the model's peak accuracy. The parameters which we used for FlauBERT did not yield as high accuracy scores. This may be due to the smaller size of the model we deployed for CamemBERT, and also because we should have included more extensive tuning in the training, which we did not do due to the computational constraints we experienced further in the training.
 
----
+## Ranking
+
+## Making predictions on a YouTube video with our 🏆 BEST MODEL 🏆
+
+![YouTube Video](https://drive.google.com/uc?export=view&id=1A-QgMNBh1DNDSIQlxJ9FR4CNVqZlyAc1 "Image Title")
+
+We wanted to use our model to make the predictions on the videos targeted to beginner French learners. We chose the video on YouTube and created the df with the sentences from the video.
+
+The video selected to make predictions is: [What Do French People Actually Eat? | Easy French 189](https://www.youtube.com/watch?v=p65EBC9lW9k&list=PLnazreCxpqRmpb4lGvzvCGXIXZkL3Nc27&index=4)
+
+Example of the sentences:
+`sentences = [
+    "Salut les amis, bienvenue dans ce nouvel épisode.",
+    "Aujourd'hui je suis dans le 11e arrondissement et je vais demander aux gens de parler de leurs habitudes alimentaires.",
+    "Alors c'est parti, qu'est-ce que vous avez mangé depuis ce matin?",
+]`
+
+Since we could not access the models from the previous training due to a runtime interruption, we trained the model with a **batch size of 32, for 6 epochs, and a learning rate of 5e-5 to make the predictions.**
+
+| Epoch | Learning Rate | Average Loss    | Accuracy   | Precision   | Recall    | F1 Score   |
+|-------|---------------|-----------------|------------|-------------|-----------|------------|
+| 1/6   | 5e-5          | 0.0604157262327 | 0.39375    | 0.5144486   | 0.39375   | 0.3701024  |
+| 2/6   | 5e-5          | 0.0422514597885 | 0.4989583  | 0.5244477   | 0.4989583 | 0.4860280  |
+| 3/6   | 5e-5          | 0.0340066954804 | 0.5427083  | 0.5798898   | 0.5427083 | 0.5209575  |
+| 4/6   | 5e-5          | 0.0275729257846 | 0.5583333  | 0.5704371   | 0.5583333 | 0.5564640  |
+| 5/6   | 5e-5          | 0.0218229048653 | 0.5677083  | 0.5970088   | 0.5677083 | 0.5620301  |
+| 6/6   | 5e-5          | 0.0174353359539 | 0.5791667  | 0.5974417   | 0.5791667 | 0.5825952  |
+
+While now this model had shown lower results compared to what we have achieved initially, still based on the results after training the model on the dataset we obtained from Kaggle, we believe our model can well predict the difficulty of the sentences.
+
+We have obtained the following results:
+
+*Predictions on the YouTube video*
+
+![youtube_predictions.png](https://github.com/AnyaLang/SBB_ML/blob/f2ea59e0b5f79aa55de9e48049a598a446828fb4/Visuals/predictions%20YouTube%20visual.png)
+
+The video was produced for beginner French learners. From the plot, we can see that 16 sentences fall into the A2 category and 4 into the A1 category. Additionally, some sentences are classified as more difficult, at the B1 level, by the model. This classification could pose challenges for learners but also encourage them to acquire new vocabulary and further develop their language skills."
+
+## Streamlit Application
+Which is the point of developing a model to predict the difficulty of a French Level if we do not leverage it? Now it's 
+
+## Video
+
+
+## Contributions
 
 💟**We are excited to apply our the skills learned during this project to help others find the most suitable text for themselves to learn French or even work further on developing a more powerful model for text classification!** 💟
 
