@@ -339,7 +339,7 @@ In comparing the performance of the neural network models for the "Only-sentence
 
 Overall, both best models utilize the same hyperparameters (Iterations: 1500, Learning Rate: 1.049), this can be attributed to the effective balance this setting achieves between training depth and step size adjustment. The choice of 1500 iterations likely provides sufficient epochs for the models to adequately converge on the data's complex patterns without overfitting, a common risk with excessive training. Meanwhile, a learning rate of 1.049 is aggressive enough to ensure rapid convergence, avoiding the slow progress associated with smaller rates like 0.001, yet it avoids the instability or divergence that can occur with excessively high rates like 12.031. This combination of parameters indicates that the models require a robust, yet cautiously quick approach to learning in order to capture and generalize the nuanced features inherent in the dataset effectively.
 
-## 7️⃣ **Doc2Vec**
+### 7️⃣ **Doc2Vec**
 
 After initially training our models using traditional algorithms such as linear regression, K-nearest neighbours, and random forests, we proceeded to explore models better suited for working with text. Among several approaches, we first decided to work with the Doc2Vec model.
 
@@ -469,7 +469,7 @@ From the confusion matrix, we see that the model demonstrate relatively high val
 
 Our other findings indicated that the PV-DM model performed worse than the PV-DBOW model. This could be attributed to several factors, including the distinct configuration requirements for training each model or the possibility that our dataset is not large enough to capture meaningful contextual windows around each word. Additionally, the normalization processes applied to the text—such as lemmatization and the removal of stopwords and punctuation—might have eliminated crucial contextual elements. 
 
-## 8️⃣ **BERT**
+### 8️⃣ **BERT**
 
 > As described on one of the [Hugging Face blogs](https://huggingface.co/blog/bert-101), BERT, short for Bidirectional Encoder Representations from Transformers, is a Machine Learning (ML) model for natural language processing. It was developed in 2018 by researchers at Google AI Language and serves as a **swiss army knife solution to 11+ of the most common language tasks**, such as sentiment analysis and named entity recognition.
 
@@ -639,8 +639,7 @@ We tried the same configuration for the sequence length of 128 and results were 
 
 While the capabilities of this model are extensive, and further refinement of the regularization during training could be done, we decided to proceed with other models and explore other training approaches, which are more targeted towards French language. 
 
-## 9️⃣ **FlauBERT**
-
+### 9️⃣ **FlauBERT**
 
 **1. Model architecture**
 
@@ -998,7 +997,7 @@ While our best model achieved an accuracy of 0.610 on Kaggle by following this a
 Despite spending considerable time fine-tuning the model's settings, it remains challenging to pinpoint the optimal configuration for achieving high accuracy. Nevertheless, we managed to reach a commendable 60% accuracy within just six epochs using a learning rate of 5e-05 and a batch size of 32, utilizing the AdamW optimizer configured at 3e-4. This outcome illustrates that although there is no single training strategy, carefully observing the model's response to different settings and making adjustments can lead to significant improvements. For instance, further training a previously saved model at a lower learning rate yielded even better results. Our work with the FlauBERT model was a continuous process of experimentation and refinement to identify the most effective training strategies.
 
 
-## 🔟 **CamemBERT**
+### 🔟 **CamemBERT**
 
 > CamemBERT is a state-of-the-art language model for French based on the RoBERTa architecture pretrained on the French subcorpus of the newly available multilingual corpus OSCAR. (Source: [CamemBERT](https://camembert-model.fr/))
 
@@ -1125,14 +1124,15 @@ The validation loss remains relatively stable, with a slight increase towards th
 **Conclusion**: The best accuracy achieved with the base CamemBERT model was 57.71% during the third epoch under a specific learning rate adjustment. Notably, this model reached a high level of accuracy more quickly than FlauBERT, although it also began to overfit earlier. Introducing L1 regularization helped address overfitting, leading to more stable validation losses and a modest improvement in model generalization, although it slightly reduced the model's peak accuracy. The parameters which we used for FlauBERT did not yield as high accuracy scores. This may be due to the smaller size of the model we deployed for CamemBERT, and also because we should have included more extensive tuning in the training, which we did not do due to the computational constraints we experienced further in the training.
 
 ## Ranking
+Add by the end...
 
-## Making predictions on a YouTube video with our 🏆 BEST MODEL 🏆
+## Making predictions on a YouTube video 
 
 ![YouTube Video](https://drive.google.com/uc?export=view&id=1A-QgMNBh1DNDSIQlxJ9FR4CNVqZlyAc1 "Image Title")
 
-We wanted to use our model to make the predictions on the videos targeted to beginner French learners. We chose the video on YouTube and created the df with the sentences from the video.
+It's time for a real-world test! Let's see how our model performs in a broader and more practical context. We've taken the transcript from a YouTube video designed for beginner French learners and run it through our model. Will it accurately identify A1 and A2 difficulty levels?
 
-The video selected to make predictions is: [What Do French People Actually Eat? | Easy French 189](https://www.youtube.com/watch?v=p65EBC9lW9k&list=PLnazreCxpqRmpb4lGvzvCGXIXZkL3Nc27&index=4)
+The specific video selected to make predictions is: [What Do French People Actually Eat? | Easy French 189](https://www.youtube.com/watch?v=p65EBC9lW9k&list=PLnazreCxpqRmpb4lGvzvCGXIXZkL3Nc27&index=4)
 
 Example of the sentences:
 `sentences = [
@@ -1141,7 +1141,7 @@ Example of the sentences:
     "Alors c'est parti, qu'est-ce que vous avez mangé depuis ce matin?",
 ]`
 
-Since we could not access the models from the previous training due to a runtime interruption, we trained the model with a **batch size of 32, for 6 epochs, and a learning rate of 5e-5 to make the predictions.**
+Since we could not access the models from the previous training due to a runtime interruption, we trained the model with a batch size of 32, for 6 epochs, and a learning rate of 5e-5 to make the predictions.
 
 | Epoch | Learning Rate | Average Loss    | Accuracy   | Precision   | Recall    | F1 Score   |
 |-------|---------------|-----------------|------------|-------------|-----------|------------|
@@ -1152,15 +1152,13 @@ Since we could not access the models from the previous training due to a runtime
 | 5/6   | 5e-5          | 0.0218229048653 | 0.5677083  | 0.5970088   | 0.5677083 | 0.5620301  |
 | 6/6   | 5e-5          | 0.0174353359539 | 0.5791667  | 0.5974417   | 0.5791667 | 0.5825952  |
 
-While now this model had shown lower results compared to what we have achieved initially, still based on the results after training the model on the dataset we obtained from Kaggle, we believe our model can well predict the difficulty of the sentences.
-
-We have obtained the following results:
+While now this model had shown lower results compared to what we have achieved initially, still based on the results after training the model on the dataset we obtained from Kaggle, we believe our model can well predict the difficulty of the sentences. These are the results obtained:
 
 *Predictions on the YouTube video*
 
 ![youtube_predictions.png](https://github.com/AnyaLang/SBB_ML/blob/f2ea59e0b5f79aa55de9e48049a598a446828fb4/Visuals/predictions%20YouTube%20visual.png)
 
-The video was produced for beginner French learners. From the plot, we can see that 16 sentences fall into the A2 category and 4 into the A1 category. Additionally, some sentences are classified as more difficult, at the B1 level, by the model. This classification could pose challenges for learners but also encourage them to acquire new vocabulary and further develop their language skills."
+The plot reveals that most sentences are classified under the A1 and A2 categories, indicating that the model effectively recognizes the text as suitable for beginners. Additionally, the model identifies some sentences as more challenging, categorizing them at the B1 level. This higher classification might challenge learners, yet it also offers an opportunity to expand their vocabulary and enhance their language skills, potentially reflecting the video author's intent to promote linguistic growth."
 
 ## Streamlit Application
 Which is the point of developing a model to predict the difficulty of a French Level if we do not leverage it? Now it's 
