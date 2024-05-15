@@ -1172,7 +1172,9 @@ To ensure the app and its predictions were functioning correctly, we conducted t
 
 ![french4u_pred_1.jpg](https://github.com/AnyaLang/SBB_ML/blob/983775943aa1eea0be930c149c12aadaf52f9682/Visuals/french4u_pred_1.jpg)
 
-![french4u_pred_2.jpg](https://github.com/AnyaLang/SBB_ML/blob/aeb1ef1b4eb494a528333d60b31892db206d758e/Visuals/french4u_pred_2.jpg)
+To further challenge the app, we introduced a more complex sentence. Specifically, we selected the first sentence from the 'training_data' file: "Les coûts kilométriques réels peuvent diverger sensiblement des valeurs moyennes en fonction du moyen de transport utilisé, du taux d'occupation ou du taux de remplissage, de l'infrastructure utilisée, de la topographie des lignes, du flux de trafic, etc.," which is categorized as C1 difficulty. We then input this sentence into the French4u platform and made a prediction. As demonstrated in the screenshot below, the app correctly determined its difficulty level:
+
+![french4u_pred_2.jpg](https://github.com/AnyaLang/SBB_ML/blob/5a5e0650cd29a6dc7a3de5a7776c162ce7f055ee/Visuals/french4u_pred_2.jpg)
 
 Follow this link to access the repository containing all the files used to create the app: [link](https://github.com/allobo49/Streamlit) 
 
