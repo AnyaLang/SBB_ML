@@ -990,7 +990,7 @@ While our best model achieved an accuracy of 0.610 on Kaggle by following this a
 | C1               | 173   |
 | C2               | 183   |
 
-The best model can be downloaded and tested: ![link](**https://drive.google.com/drive/folders/188hcioD-3x4oLQeG0Og7o7YbLxs46TEY?usp=sharing**)
+The best model can be downloaded and tested: [link](**https://drive.google.com/drive/folders/188hcioD-3x4oLQeG0Og7o7YbLxs46TEY?usp=sharing**)
 
 ![predictions_best.png](https://github.com/AnyaLang/SBB_ML/blob/3d4419e9cc9ead3046b4115519c965bac65c6007/Visuals/best_graph.png)
 
