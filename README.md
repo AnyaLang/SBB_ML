@@ -1187,8 +1187,8 @@ Add on Sunday
 
 The work done both by Anna Dovha and Ana Llorens in the current project has been proportionally balanced. Although both students have supported each other in the different tasks performed, each of them were mainly responsible for the following parts:
 
-*Ana Dovha:*
-- Models: Doc2Vec, BERT, FlauBERT and CamemBERT.
+*Anna Dovha:*
+- Models: Doc2Vec, ELMo (not documented) BERT, FlauBERT and CamemBERT.
 - Predictions on a Youtube Video.
 - ReadME.
 
