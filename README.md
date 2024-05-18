@@ -990,6 +990,8 @@ While our best model achieved an accuracy of 0.610 on Kaggle by following this a
 | C1               | 173   |
 | C2               | 183   |
 
+The best model can be downloaded and tested: ![link](**https://drive.google.com/drive/folders/188hcioD-3x4oLQeG0Og7o7YbLxs46TEY?usp=sharing**)
+
 ![predictions_best.png](https://github.com/AnyaLang/SBB_ML/blob/3d4419e9cc9ead3046b4115519c965bac65c6007/Visuals/best_graph.png)
 
 **Conclusion**: In our project using the FlauBERT model, we explored how various training parameters, including regularization techniques, schedulers, learning rates, batch sizes, and model sizes, impacted the model's performance. We discovered that the combination of batch size and learning rate was crucial. Some settings allowed us to train the model for up to 15 epochs without it learning the training data too closely—a problem known as overfitting. However, other settings led to overfitting much earlier.
