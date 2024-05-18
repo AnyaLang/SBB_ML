@@ -1156,7 +1156,7 @@ While now this model had shown lower results compared to what we have achieved i
 
 ![youtube_predictions.png](https://github.com/AnyaLang/SBB_ML/blob/f2ea59e0b5f79aa55de9e48049a598a446828fb4/Visuals/predictions%20YouTube%20visual.png)
 
-The plot reveals that most sentences are classified under the A2 category, indicating that the model effectively recognizes the text as suitable for beginners. Additionally, the model identifies some sentences as more challenging, categorizing them at the B1 level. This higher classification might challenge learners, yet it also offers an opportunity to expand their vocabulary and enhance their language skills, potentially reflecting the video author's intent to promote linguistic growth."
+The plot reveals that most sentences are classified under the A2 category, indicating that the model effectively recognizes the text as suitable for beginners. Additionally, the model identifies some sentences as more challenging, categorizing them at the B1 level. This higher classification might challenge learners, yet it also offers an opportunity to expand their vocabulary and enhance their language skills, potentially reflecting the video author's intent to promote linguistic growth.
 
 ## Streamlit Application
 
