@@ -1188,6 +1188,7 @@ The work done both by Anna Dovha and Ana Llorens in the current project has been
 
 *Anna Dovha:*
 - Models: Doc2Vec, BERT, FlauBERT and CamemBERT.
+- Kaggle predictions
 - Predictions on a Youtube Video.
 - ReadME.
 
