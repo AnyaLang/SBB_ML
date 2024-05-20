@@ -1125,9 +1125,6 @@ The validation loss remains relatively stable, with a slight increase towards th
 
 **Conclusion**: The best accuracy achieved with the base CamemBERT model was 57.71% during the third epoch under a specific learning rate adjustment. Notably, this model reached a high level of accuracy more quickly than FlauBERT, although it also began to overfit earlier. Introducing L1 regularization helped address overfitting, leading to more stable validation losses and a modest improvement in model generalization, although it slightly reduced the model's peak accuracy. The parameters which we used for FlauBERT did not yield as high accuracy scores. This may be due to the smaller size of the model we deployed for CamemBERT, and also because we should have included more extensive tuning in the training, which we did not do due to the computational constraints we experienced further in the training.
 
-## Ranking
-Add by the end...
-
 ## Making predictions on a YouTube video 
 
 It's time for a real-world test! Let's see how our model performs in a broader and more practical context. We've taken the transcript from a YouTube video designed for beginner French learners and run it through our model. Will it accurately identify A1 and A2 difficulty levels?
