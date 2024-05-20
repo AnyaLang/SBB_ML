@@ -1197,7 +1197,7 @@ The work done both by Anna Dovha and Ana Llorens in the current project has been
 - Youtube Video.
 - ReadME.
 
-In the case of Ana Llorens, she initially worked on FlauBERT model too as it showed significant potential. However, she eventually encountered limitations with her computer's capacity, and even with Colab Pro, she could no longer run the respective code. Since Ana Dovha had a more powerful computer and we needed to acquire additional computational units, we decided to continue working with this model solely on her computer.
+In the case of Ana Llorens, she initially worked on FlauBERT model too as it showed significant potential. However, she eventually encountered limitations with her computer's capacity, and even with Colab Pro, she could no longer run the respective code. Since Anna Dovha had a more powerful computer and we needed to acquire additional computational units, we decided to continue working with this model solely on her computer.
 
 ---
 💟**We are excited to apply our the skills learned during this project to help others find the most suitable text for themselves to learn French or even work further on developing a more powerful model for text classification!** 💟
