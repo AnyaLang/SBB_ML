@@ -1,4 +1,4 @@
-# 🇫🇷 French4U - Streamlit App
+# 🇫🇷 French4U: Streamlit App
 
 Click to [this link](https://github.com/allobo49/Streamlit) to access the repository where all Streamlit files are located.
 
