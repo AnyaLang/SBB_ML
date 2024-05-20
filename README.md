@@ -401,7 +401,7 @@ We used "saga" as it showed slightly higher results than "lbfgs" in the first tr
 
 The best accuracy observed was 44%, achieved with a configuration of 100-dimensional vectors, an 8-word window, min count of 1, 100 epochs, and logistic regression with C=10 and L1 penalty. This configuration suggests that higher dimensional vectors and more extensive training (more epochs) with stronger regularization might help in capturing more complex patterns in the data effectively.
 
-*Best model configuration*
+*Best model configuration:*
 
 | Parameter      | Value                 |
 |----------------|-----------------------|
@@ -413,7 +413,7 @@ The best accuracy observed was 44%, achieved with a configuration of 100-dimensi
 | C              | 10                    |
 | Penalty        | L1                    |
 
-*Confusion Matrix Best model configuration*
+*Confusion Matrix Best model configuration:*
 
 | True/Predicted | A1   | A2   | B1   | B2   | C1   | C2   |
 |----------------|------|------|------|------|------|------|
@@ -438,7 +438,7 @@ Despite using the best parameters from our previous configuration for the model 
 - **Combined Features Testing Configuration:** (100, 8, 1, 40)
 - **Combined Features Accuracy:** 44.89%
 
-*Confusion Matrix Best model configuration with TF-IDF*
+*Confusion Matrix Best model configuration with TF-IDF:*
 
 | True/Predicted | A1   | A2   | B1   | B2   | C1   | C2   |
 |----------------|------|------|------|------|------|------|
@@ -451,7 +451,7 @@ Despite using the best parameters from our previous configuration for the model 
 
 From the confusion matrix, we see that the model demonstrate relatively high values along the diagonal for classes A1, B2, C1, and C2, indicating good accuracy in correctly predicting these classes. Specifically, A1 (119 correct predictions), B2 (52 correct predictions), C1 (63 correct predictions), and C2 (80 correct predictions) perform well. However, the model still struggles to distinguish the relatively close classes, for instance, A1 and A2, with 34 instances of A1 being misclassified as A2, and 60 instances of A2 being misclassified as A1. 
 
-*Classification Report Best model configuration with TF-IDF*
+*Classification Report Best model configuration with TF-IDF:*
 
 | Class          | Precision | Recall | F1-Score | Support |
 |----------------|-----------|--------|----------|---------|
@@ -534,7 +534,7 @@ training_args = TrainingArguments(
 
 During our very first training with **simple configuration, we were able to already achieve 51% accuracy!**
 
-*Results Base BERT Model*
+*Results Base BERT Model:*
 | Epoch | Training Loss | Validation Loss | Accuracy  | F1       | Precision | Recall   |
 |-------|---------------|-----------------|-----------|----------|-----------|----------|
 | 1     | No log        | 1.318586        | 40.2083%  | 32.3755% | 32.7760%  | 39.3142% |
@@ -552,7 +552,7 @@ For this model, we adjusted some of the parameters and also implemented a learni
 
 2) Other training arguments remained unchanged.
 
-*Results BERT with Increased Sequence Length*
+*Results BERT with Increased Sequence Length:*
 
 | Epoch | Training Loss | Validation Loss | Accuracy  | F1       | Precision | Recall   |
 |-------|---------------|-----------------|-----------|----------|-----------|----------|
@@ -565,7 +565,7 @@ In this case, the accuracy became lower, but by using the increased sequence len
 
 In the next step, we **increased the number of epochs to 5 epochs to monitor if there were any further improvements in the model accuracy.**
 
-*Results BERT with Increased Sequence Length*
+*Results BERT with Increased Sequence Length:*
 
 | Epoch | Training Loss | Validation Loss | Accuracy  | F1       | Precision | Recall   |
 |-------|---------------|-----------------|-----------|----------|-----------|----------|
@@ -603,7 +603,7 @@ scheduler = get_scheduler(
 3) Training arguments remain the same except that we train the model over 5 epochs
 
 
-*Results for the model with max_lenght = 258*
+*Results for the model with max_lenght = 258:*
 
 | Epoch | Training Loss | Validation Loss | Accuracy  | F1       | Precision | Recall   |
 |-------|---------------|-----------------|-----------|----------|-----------|----------|
@@ -617,7 +617,7 @@ Despite improvements in the training loss, the validation loss increased as the 
 
 We tried the same configuration for the sequence length of 128 and results were better.
 
-*Results for the model with max_lenght = 128*
+*Results for the model with max_lenght = 128:*
 
 | Epoch | Training Loss | Validation Loss | Accuracy  | F1       | Precision | Recall   |
 |-------|---------------|-----------------|-----------|----------|-----------|----------|
@@ -747,7 +747,7 @@ The main difference between the performance of the training on the batch 16 and 
 From our prior experience training BERT, we noticed a decrease in model accuracy after four epochs. However, in the case of FlauBERT, during previous training sessions, the model's accuracy improved from 43% to 57% over four epochs, which was substantially higher than archived by BERT. Consequently, we decided to extend the training duration to six epochs, using a batch size of 32 and see if we achieve higher accuracy with this model.
 
 
-*Results with the batch 32, learning rate 5e-5 over larger number of epochs*
+*Results with the batch 32, learning rate 5e-5 over larger number of epochs:*
 
 | Epoch | Learning Rate | Average Loss   | Accuracy   | Precision   | Recall   | F1 Score   |
 |-------|---------------|----------------|------------|-------------|----------|------------|
@@ -780,7 +780,7 @@ optimizer = AdamW(model.parameters(), lr=1e-4, betas=(0.9, 0.999), eps=1e-08)
 scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=warmup_steps, num_training_steps=total_steps)
 ```
 
-*Results for 8 epochs with the adjusted learning rate, starting with 1e-04*
+*Results for 8 epochs with the adjusted learning rate, starting with 1e-04:*
 
 | Epoch | Current LR  | Training Loss | Validation Loss | Accuracy    | Precision   | Recall     | F1 Score   |
 |-------|-------------|---------------|-----------------|-------------|-------------|------------|------------|
@@ -802,7 +802,7 @@ Both accuracy and F1 scores show a clear upward trend from the first to the sixt
 
 The training loss consistently decreases from 0.0629 in the first epoch to 0.0058 in the final epoch. However, we observe that the validation loss spikes at the second epoch but decreases until the fifth epoch, achieving a low of 0.0376. However, from the sixth epoch, it begins to increase suggesting the onset of overfitting. 
 
-*Classification report*
+*Classification report:*
 
 | Class | Precision | Recall | F1-Score | Support |
 |-------|-----------|--------|----------|---------|
@@ -817,7 +817,7 @@ The training loss consistently decreases from 0.0629 in the first epoch to 0.005
 | **Macro Avg** | **0.61** | **0.61** | **0.61** | **960**   |
 | **Weighted Avg** | **0.61** | **0.61** | **0.61** | **960**   |
 
-*Confusion matrix*
+*Confusion matrix:*
 
 | True \ Predicted | A1  | A2  | B1  | B2  | C1  | C2  |
 |------------------|-----|-----|-----|-----|-----|-----|
