@@ -1182,8 +1182,9 @@ Click on the following link to access the French4u app and perform further predi
 
 Click on the following link to access the repository containing all the files used to create the app: [link](https://github.com/allobo49/Streamlit) 
 
-## Video
-Add on Sunday
+## Youtube Video
+
+What inspired us to create French4U? What various models did we explore before settling on the optimal one? Which are the key performance indicators? How does the platform function? Click on this [link](https://youtu.be/xhOqNZHnM9o) to discover our journey leading up to the development of French4U and to find answers to all these questions.
 
 ## Contributions
 
@@ -1197,6 +1198,7 @@ The work done both by Anna Dovha and Ana Llorens in the current project has been
 *Ana Llorens:*
 - Models: Logistic Regression, Random Forest Classifier, Decission Tree Classifier, KNN Classifier and Neural Networks.
 - Streamlit Application.
+- Youtube Video.
 - ReadME.
 
 In the case of Ana Llorens, she initially worked on FlauBERT model too as it showed significant potential. However, she eventually encountered limitations with her computer's capacity, and even with Colab Pro, she could no longer run the respective code. Since Ana Dovha had a more powerful computer and we needed to acquire additional computational units, we decided to continue working with this model solely on her computer.
