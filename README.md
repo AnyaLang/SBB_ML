@@ -1166,17 +1166,13 @@ The previous prediction was carried out using Google Colab, a tool that many peo
 
 Given the complexity and size of our best model, we faced many difficulties in creating the Streamlit app with it. Therefore, since we wanted to create an MVP (Minimum Viable Product), we decided to implement Logistic Regression with features, one of the models that delivered one of the highest accuracies, specifically around 51%.
 
-Regarding the interface design, we aimed to be as straightforward and user-friendly as possible. The interface is designed to let users predict the difficulty of the French sentences they input. We found it most convenient to clearly explain this purpose, provide a box for writing the sentence, and add a button that, when clicked, immediately predicts the difficulty and displays it below. Here's how it looks:
+Regarding the interface design, we aimed to be as straightforward and user-friendly as possible. The interface is designed to let users predict the difficulty of the French sentences they input. We found it most convenient to clearly explain the purpose of the platform, state the guidelines, provide a box for writing the sentence, and add a button that, when clicked, immediately predicts the difficulty and displays it below. Here's how it looks:
 
 ![french4u_interface.jpg](https://github.com/AnyaLang/SBB_ML/blob/dbfa113016d43be9708749106469ef02cfff34d0/Visuals/french4u_interface.jpg)
 
-To ensure the app and its predictions were functioning correctly, we conducted tests by inputting various sentences and assessing the resulting difficulty levels. We began with a common introductory sentence from A1 French courses, "Je m'appelle Ana" ("My name is Ana"). The screenshot below demonstrates that the app accurately assessed the difficulty level:
+To ensure the app and its predictions were functioning correctly, we conducted several tests by inputting various sentences and assessing the resulting difficulty levels. For instance, we began with a common introductory sentence from A1 French courses, "Je m'appelle Ana" ("My name is Ana"). The screenshot below demonstrates that the app accurately assessed the difficulty level:
 
 ![french4u_pred_1.jpg](https://github.com/AnyaLang/SBB_ML/blob/983775943aa1eea0be930c149c12aadaf52f9682/Visuals/french4u_pred_1.jpg)
-
-To further challenge the app, we introduced a more complex sentence. Specifically, we selected the first sentence from the 'training_data' file: "Les coûts kilométriques réels peuvent diverger sensiblement des valeurs moyennes en fonction du moyen de transport utilisé, du taux d'occupation ou du taux de remplissage, de l'infrastructure utilisée, de la topographie des lignes, du flux de trafic, etc.," which is categorized as C1 difficulty. We then input this sentence into the French4u platform and made a prediction. As demonstrated in the screenshot below, the app correctly determined its difficulty level:
-
-![french4u_pred_2.jpg](https://github.com/AnyaLang/SBB_ML/blob/5a5e0650cd29a6dc7a3de5a7776c162ce7f055ee/Visuals/french4u_pred_2.jpg)
 
 Click on the following link to access the French4u app and perform further predictions by yourself: [link](https://french4u.streamlit.app/)
 
