@@ -1125,6 +1125,11 @@ The validation loss remains relatively stable, with a slight increase towards th
 
 **Conclusion**: The best accuracy achieved with the base CamemBERT model was 57.71% during the third epoch under a specific learning rate adjustment. Notably, this model reached a high level of accuracy more quickly than FlauBERT, although it also began to overfit earlier. Introducing L1 regularization helped address overfitting, leading to more stable validation losses and a modest improvement in model generalization, although it slightly reduced the model's peak accuracy. The parameters which we used for FlauBERT did not yield as high accuracy scores. This may be due to the smaller size of the model we deployed for CamemBERT, and also because we should have included more extensive tuning in the training, which we did not do due to the computational constraints we experienced further in the training.
 
+## Ranking
+
+Regarding the Kaggle Competition, following our submission using our top-performing model, we secured the 9th spot on the Leaderboard, merely 0.012 points behind the team in 3rd place.
+
+
 ## Making predictions on a YouTube video 
 
 It's time for a real-world test! Let's see how our model performs in a broader and more practical context. We've taken the transcript from a YouTube video designed for beginner French learners and run it through our model. Will it accurately identify A1 and A2 difficulty levels?
@@ -1179,7 +1184,7 @@ Click on the following link to access the repository containing all the files us
 
 ## Youtube Video
 
-What inspired us to create French4U? What various models did we explore before settling on the optimal one? Which are the key performance indicators? How does the platform function? Click on this [link](https://youtu.be/xhOqNZHnM9o) to discover our journey leading up to the development of French4U and to find answers to all these questions.
+What inspired us to create French4U? What various models did we explore before settling on our best one? Which are the key performance indicators? How does the platform function? Click on this [link](https://youtu.be/xhOqNZHnM9o) to discover our journey leading up to the development of French4U and to find answers to all these questions.
 
 ## Contributions
 
